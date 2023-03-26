@@ -7,6 +7,8 @@ import { CarouselComponent } from './_base_components/carousel/carousel.componen
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './_base_components/login/login.component';
 import { RegisterComponent } from './_base_components/register/register.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { RegisterComponent } from './_base_components/register/register.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

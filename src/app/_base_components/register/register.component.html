@@ -8,27 +8,27 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
             <div class="form-group row">
                 <div class="col">
-                    <label for="exampleInputEmail1">Firstname</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="fedi">
+                    <label for="exampleInputEmail1" >Firstname</label>
+                    <input type="text" class="form-control" ngModel name="firstName" id="firstName" placeholder="fedi">
                 </div>
                 <div class="col">
                     <label for="exampleInputEmail1">Lastname</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="labidi">
+              <input type="text" class="form-control" ngModel name="lastName" id="lastName" placeholder="labidi">
                 </div>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <input type="email" class="form-control" ngModel name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
           
             <div class="form-group row">
                 <div class="col">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password">
+                    <input type="password" class="form-control" ngModel name="password" id="password" placeholder="password">
                   </div>
                 <div class="col">
                     <label for="exampleInputPassword1">Confirm password</label>
@@ -37,18 +37,12 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Phone</label>
-                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="+216 71 000 000">
+                <input type="text" class="form-control" ngModel name="phoneNumber" id="phoneNumber" placeholder="+216 71 000 000">
               </div>
               
             
             <button type="submit" class="btn btn-primary">Submit</button>
-            <div>
-              <small id="emailHelp" class="form-text text-muted">You dont have an account? </small>
-            
-            <button type="button" class="btn btn-neutral">register</button>
-  
-            </div>
-            <div class="alert alert-success" role="alert">
+            <div [hidden]="created" class="alert alert-success" role="alert">
                 Account created! Check your email.
               </div>
           </form>
