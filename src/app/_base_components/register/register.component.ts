@@ -7,8 +7,6 @@ import { UserService } from 'src/app/_services/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-
-
 export class RegisterComponent {
   created = true;
   not_created = true;
@@ -20,7 +18,7 @@ export class RegisterComponent {
       (response)=>{
         this.created=false;
         this.message=response
-      }, 
+      },
       (error)=>{
         console.log(error);
         this.not_created=false;
