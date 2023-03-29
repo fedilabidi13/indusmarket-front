@@ -3,7 +3,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">register</h5>
-          <button type="button" routerLink="/" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -42,8 +42,12 @@
               
             
             <button type="submit" class="btn btn-primary">Submit</button>
-            <div [hidden]="created" class="alert alert-success" role="alert">
-                Account created! Check your email.
+          
+              <div [hidden]="not_created" class="alert alert-danger" role="alert">
+                Error when submitting form.
+              </div>
+              <div [hidden]="created" class="alert alert-success" role="alert">
+                {{message}}
               </div>
           </form>
           
