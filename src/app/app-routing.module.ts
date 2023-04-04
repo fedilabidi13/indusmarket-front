@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './_base_components/login/login.component';
 import { RegisterComponent } from './_base_components/register/register.component';
-import { AppComponent } from './app.component';
+import {HomeComponent} from "./_base_components/home/home.component";
+import {ProfileComponent} from "./_base_components/profile/profile.component";
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', component: AppComponent },
-  
-  
+  { path: '', component: HomeComponent },
+  { path: 'profile', component: ProfileComponent },
+
+
 ];
 @NgModule({
   declarations: [],

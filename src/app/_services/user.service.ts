@@ -5,6 +5,7 @@ import {BehaviorSubject, catchError, map, Observable} from 'rxjs';
 import { User } from '../models/user';
 import jwt_decode from "jwt-decode";
 import {ProcessHTTPMsgService} from './process-httpmsg.service';
+import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -16,10 +17,11 @@ export class UserService {
 
   helper = new JwtHelperService();
   user!: Observable<User> ;
-  user2 !: User;
+  user2 = new User();
   errMsg!: string;
 
-  constructor(private httpClient:HttpClient) {
+  constructor(private httpClient:HttpClient, private router:Router) {
+    this.user2.id=0;
   }
 
   public register(registerData: any){
@@ -27,33 +29,47 @@ export class UserService {
   }
   public login(loginData: any){
     return this.httpClient.post(this.PATH_OF_API+"/auth/authenticate",loginData,{ responseType: 'text' });
+
   }
   getUser(email: string): Observable<User>{
      return this.httpClient.get<User>(this.PATH_OF_API + "/auth/get?email=" + email).pipe();
   }
-  getCurrentUser() {
+  public getCurrentUser():User{
     const token = localStorage.getItem('currentUser');
     if (token!=null)
     {
       const decodedJwt: any = jwt_decode(token);
       const email = decodedJwt.sub;
-
+      console.log(token);
       this.getUser(email).subscribe({
-        next: (user) => {
-           console.log(user);
-           this.user2=user;
-        },error: (error: any) => {
-          console.error(error);
+      next: (user) => {
+        console.log(user);
+        this.user2.id=user.id
+        this.user2.firstName=user.firstName;
+        this.user2.lastName=user.lastName;
+        this.user2.email=user.email;
+        this.user2.phoneNumber=user.phoneNumber;
+        this.user2.picture=user.picture;
+        this.user2.picture.imagenUrl=user.picture.imagenUrl;
+        return this.user2;
+
+
+      },error: (error: any) => {
+        console.error(error);
+          return this.user2;
+
         },
         complete: () => {
-          console.log('Complete');
+        console.log('Complete');
+          return this.user2;
+
         },
-      });
+    });
 
 
       console.log(email);
       console.log(this.user2);
-
+      return this.user2;
     }
     return this.user2;
   }

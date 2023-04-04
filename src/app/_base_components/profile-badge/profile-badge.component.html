@@ -1,0 +1,21 @@
+
+<div class="card" style="width: 20rem;">
+  <div style="position: relative;">
+    <img class="card-img-top" src="{{user.picture.imagenUrl}}" height="350px" alt="Card image cap">
+    <button style="position:absolute;bottom:0;right:0;" class="btn btn-primary btn-icon btn-round">
+      <i class="fa fa-edit"></i>
+    </button>
+  </div>
+
+
+
+  <div class="card-body">
+    <h4 class="card-title">{{user.firstName}} {{user.lastName}}</h4>
+    <div class="card-text">
+      <h6>email: </h6> {{user.email}}
+      <h6>password: </h6> ***********
+      <h6>telephone: </h6> {{user.phoneNumber}}
+    </div>
+    <a href="#" class="btn btn-primary btn-round">edit</a>
+  </div>
+</div>
