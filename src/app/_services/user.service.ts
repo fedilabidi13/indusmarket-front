@@ -73,5 +73,8 @@ export class UserService {
     }
     return this.user2;
   }
+  public verifyEmail(token: any){
+    return this.httpClient.get(this.PATH_OF_API + "/auth/confirm?token=" + token,{ responseType: 'text' });
+  }
 
 }

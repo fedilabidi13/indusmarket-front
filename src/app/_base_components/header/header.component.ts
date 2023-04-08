@@ -3,6 +3,11 @@ import {UserService} from "../../_services/user.service";
 import {User} from "../../models/user";
 import jwt_decode from "jwt-decode";
 
+
+
+
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,8 +20,11 @@ export class HeaderComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
     console.log("hrkzlejr");
     console.log(this.user.id);
+
   }
+
 
 }

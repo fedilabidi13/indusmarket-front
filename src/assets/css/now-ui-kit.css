@@ -2671,7 +2671,7 @@ fieldset[disabled] .btn-link.active {
 }
 
 .form-control:focus {
-  border: 1px solid #f96332;
+  border: 1px solid #0077B5;
   -webkit-box-shadow: none;
   box-shadow: none;
   outline: 0 !important;
@@ -2680,7 +2680,7 @@ fieldset[disabled] .btn-link.active {
 
 .form-control:focus+.input-group-text,
 .form-control:focus~.input-group-text {
-  border: 1px solid #f96332;
+  border: 1px solid #0077B5;
   border-left: none;
   background-color: transparent;
 }
@@ -6071,13 +6071,13 @@ img {
 .clear-filter[filter-color="orange"] {
   background: rgba(44, 44, 44, 0.2);
   /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+  background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(28, 145, 255, 0.65));
   /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+  background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(28, 145, 255, 0.65));
   /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+  background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(28, 145, 255, 0.65));
   /* For Firefox 3.6 to 15 */
-  background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+  background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(28, 145, 255, 0.65));
   /* Standard syntax */
 }
 

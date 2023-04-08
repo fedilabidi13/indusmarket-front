@@ -47,7 +47,7 @@ backdrop-filter: blur(5px);">
 
             </div>
             <div class="card-footer text-center">
-              <button type="submit"  class="btn btn-primary btn-round btn-outline-light btn-lg btn-block">login</button>
+              <button type="submit"  class="btn btn-info btn-round btn-outline-light btn-lg btn-block">login</button>
               <br>
               <div class="pull-left">
                 <h6>
@@ -61,10 +61,10 @@ backdrop-filter: blur(5px);">
               </div>
             <br>
             </div>
-            <div [hidden]="not_created" class="alert alert-danger" role="alert">
+            <div [hidden]="not_created" class="alert alert-info" role="alert">
               invalid credentials.
             </div>
-            <div [hidden]="created" class="alert alert-success" role="alert">
+            <div [hidden]="created" class="alert alert-info" role="alert">
               {{message}}
             </div>
           </form>
