@@ -30,12 +30,12 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/now-ui-kit.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "node_modules/primeflex/primeflex.css"
-
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -110,6 +110,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -117,5 +118,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "eabaf18a-3ebe-4eeb-9050-0f8db99eda28"
   }
 }

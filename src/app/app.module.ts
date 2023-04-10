@@ -17,30 +17,41 @@ import { ProfileComponent } from './_base_components/profile/profile.component';
 import { ProfileBadgeComponent } from './_base_components/profile-badge/profile-badge.component';
 import { BreadCrumpComponent } from './_base_components/bread-crump/bread-crump.component';
 import { Nav2Component } from './_base_components/nav2/nav2.component'
+import {ShopComponent} from "./_base_components/shop-module/shop/shop.component";
+import {NgxPaginationModule} from "ngx-pagination";
+import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.component";
+import {ProductComponent} from "./_base_components/shop-module/product/product.component";
+import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
 }
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    CarouselComponent,
-    LoginComponent,
-    RegisterComponent,
-    CartComponent,
-    HomeComponent,
-    NavComponent,
-    ProfileComponent,
-    ProfileBadgeComponent,
-    BreadCrumpComponent,
-    Nav2Component
-  ],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        CarouselComponent,
+        LoginComponent,
+        RegisterComponent,
+        CartComponent,
+        HomeComponent,
+        NavComponent,
+        ProfileComponent,
+        ProfileBadgeComponent,
+        BreadCrumpComponent,
+        Nav2Component,
+        ShopComponent,
+        ShopModuleComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule,
+    ShopModuleModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
