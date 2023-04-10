@@ -17,8 +17,6 @@ import { ProfileComponent } from './_base_components/profile/profile.component';
 import { ProfileBadgeComponent } from './_base_components/profile-badge/profile-badge.component';
 import { BreadCrumpComponent } from './_base_components/bread-crump/bread-crump.component';
 import { Nav2Component } from './_base_components/nav2/nav2.component'
-import {ClickMode, Container, Engine, HoverMode, MoveDirection, OutMode} from "tsparticles-engine";
-import {NgParticlesModule} from "ng-particles";
 import { MailVerifComponent } from './_base_components/mail-verif/mail-verif.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {GoogleMapsModule} from "@angular/google-maps";
@@ -47,7 +45,6 @@ export function tokenGetter() {
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgParticlesModule,
     BrowserAnimationsModule,
     GoogleMapsModule
   ],

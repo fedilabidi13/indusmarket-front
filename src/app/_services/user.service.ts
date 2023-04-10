@@ -51,6 +51,7 @@ export class UserService {
         this.user2.phoneNumber=user.phoneNumber;
         this.user2.picture=user.picture;
         this.user2.picture.imagenUrl=user.picture.imagenUrl;
+        this.user2.phoneNumberVerif= user.phoneNumberVerif;
         return this.user2;
 
 

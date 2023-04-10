@@ -21,7 +21,6 @@ export class ProfileBadgeComponent implements OnInit{
     this.user=this.userService.getCurrentUser()
     // @ts-ignore
     this.authToken = localStorage.getItem("currentUser")
-
     console.log(this.user)
   }
   onFileSelected(event: any): void {
