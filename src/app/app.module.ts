@@ -31,6 +31,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { PostsComponent } from './_base_components/posts/posts.component';
 import { UserShopsComponent } from './_base_components/user-shops/user-shops.component';
 import { UserProductsComponent } from './_base_components/user-products/user-products.component';
+import {PostComponent} from "./_base_components/post/post/post.component";
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -69,6 +70,8 @@ export function tokenGetter() {
     UserShopsComponent,
     UserProductsComponent,
 
+    MailVerifComponent,
+    PostComponent
   ],
 
   imports: [
