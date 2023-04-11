@@ -20,6 +20,7 @@ import { Nav2Component } from './_base_components/nav2/nav2.component'
 import { MailVerifComponent } from './_base_components/mail-verif/mail-verif.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {GoogleMapsModule} from "@angular/google-maps";
+import {PostComponent} from "./_base_components/post/post/post.component";
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -38,7 +39,8 @@ export function tokenGetter() {
     ProfileBadgeComponent,
     BreadCrumpComponent,
     Nav2Component,
-    MailVerifComponent
+    MailVerifComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
