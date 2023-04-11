@@ -15,7 +15,7 @@ import {Product} from "../../../models/product";
 export class ProductComponent implements OnInit{
   public productList:Product[]=[];
   p:number = 1;
-  itemsPerPage:number =3;
+  itemsPerPage:number =6;
   totalShop:any;
   selectedIndex =0;
   @Input() indicators = true;
@@ -26,8 +26,8 @@ export class ProductComponent implements OnInit{
   constructor(private ac:ActivatedRoute,private api:ShowProductsShopService,private api1:ShowShopsService){}
   routeSub: Subscription;
   id:any;
+  messageSuccess:string="";
   ngOnInit():void{
-    console.log('hello')
     this.routeSub = this.ac.params.subscribe((params: Params) => {
       this.id = params['id'];
 
@@ -42,7 +42,6 @@ export class ProductComponent implements OnInit{
         }
         console.log(this.productList)
       })
-    console.log('helloooooooooooooooooooooooooooo')
   }
 
   selectImage(idImage:number,index: number):void{
@@ -62,6 +61,19 @@ export class ProductComponent implements OnInit{
       this.indexImage[idImage]++;
     }
   }
+
+
+    addRating(rateValue){
+    console.log(rateValue);
+      this.messageSuccess="Shop Rated Successfully";
+    this.api.addRating(this.id,rateValue).subscribe((data)=>
+    {
+
+      setTimeout(()=>{
+        this.messageSuccess=""
+      },3000)
+      console.log(data)})
+    }
 
 
 

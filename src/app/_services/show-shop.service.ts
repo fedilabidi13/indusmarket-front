@@ -6,7 +6,10 @@ import {Shop} from "../models/shop";
 @Injectable({
   providedIn: 'root'
 })
+
 export class ShowShopsService {
+  private shopId: number;
+  averageRating = 0;
 
   constructor(private http : HttpClient) { }
   getShops(){
@@ -15,4 +18,6 @@ export class ShowShopsService {
         return res;
       }))
   }
+
+
 }

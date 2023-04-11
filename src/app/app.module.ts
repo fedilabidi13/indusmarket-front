@@ -17,12 +17,14 @@ import { ProfileComponent } from './_base_components/profile/profile.component';
 import { ProfileBadgeComponent } from './_base_components/profile-badge/profile-badge.component';
 import { BreadCrumpComponent } from './_base_components/bread-crump/bread-crump.component';
 import { Nav2Component } from './_base_components/nav2/nav2.component'
+
 import {ShopComponent} from "./_base_components/shop-module/shop/shop.component";
-import {NgxPaginationModule} from "ngx-pagination";
 import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.component";
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {GoogleMapsModule} from "@angular/google-maps";
+import {NgxPaginationModule} from "ngx-pagination";
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -42,7 +44,7 @@ export function tokenGetter() {
         BreadCrumpComponent,
         Nav2Component,
         ShopComponent,
-        ShopModuleComponent,
+        ShopModuleComponent
     ],
   imports: [
     BrowserModule,
@@ -52,8 +54,11 @@ export function tokenGetter() {
     NgxPaginationModule,
     ShopModuleModule,
     BrowserAnimationsModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

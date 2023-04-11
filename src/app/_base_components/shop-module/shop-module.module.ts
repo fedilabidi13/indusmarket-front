@@ -8,6 +8,7 @@ import { CartComponent } from './cart/cart.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import {MatSliderModule} from "@angular/material/slider";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {MatSliderModule} from "@angular/material/slider";
         CommonModule,
         ShopModuleRoutingModule,
         NgxPaginationModule,
-        MatSliderModule
+        MatSliderModule,
+        FormsModule,
     ]
 })
 export class ShopModuleModule { }

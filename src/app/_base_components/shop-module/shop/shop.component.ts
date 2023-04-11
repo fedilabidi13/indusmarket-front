@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { ShowShopsService } from 'src/app/_services/show-shop.service';
 import {Shop} from 'src/app/models/shop';
+import {HttpClient} from "@angular/common/http";
+
 
 
 @Component({
@@ -19,11 +21,14 @@ export class ShopComponent implements OnInit {
   @Input() autoSlide = false;
   @Input() slideInterval = 3000;
   public indexImage:object={};
+  averageRating =0;
 
-  constructor(private api:ShowShopsService ){}
+  shopId=1;
+  constructor(private api:ShowShopsService , private http: HttpClient){}
 
   ngOnInit():void{
-
+    // traitement qui initialize la valeur
+    this.getAverageRating();
 
     this.api.getShops()
       .subscribe(res=>{
@@ -63,5 +68,17 @@ export class ShopComponent implements OnInit {
     }
   }
 
+
+  getAverageRating() {
+    const url = `http://localhost:8085/rating/findByShop/${this.shopId}`;
+    this.http.get<number>(url).subscribe(
+      (rating) => {
+        this.averageRating = rating;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
 }
