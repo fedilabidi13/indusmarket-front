@@ -27,6 +27,7 @@ import {ShopComponent} from "./_base_components/shop-module/shop/shop.component"
 import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.component";
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
+import {NgxPaginationModule} from "ngx-pagination";
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -73,6 +74,7 @@ export function tokenGetter() {
     ShopModuleModule,
     BrowserAnimationsModule,
     GoogleMapsModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
