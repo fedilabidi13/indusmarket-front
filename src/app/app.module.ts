@@ -20,7 +20,9 @@ import { Nav2Component } from './_base_components/nav2/nav2.component'
 import { MailVerifComponent } from './_base_components/mail-verif/mail-verif.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {GoogleMapsModule} from "@angular/google-maps";
-import {PostComponent} from "./_base_components/post/post/post.component";
+import {ClaimsComponent} from "./_base_components/claims/claims.component";
+import {NgxPaginationModule} from "ngx-pagination";
+//import { ClaimsComponent } from './claims/claims.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -40,7 +42,9 @@ export function tokenGetter() {
     BreadCrumpComponent,
     Nav2Component,
     MailVerifComponent,
-    PostComponent
+    ClaimsComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,8 @@ export function tokenGetter() {
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
