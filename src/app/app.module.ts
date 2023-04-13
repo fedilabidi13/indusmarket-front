@@ -21,8 +21,13 @@ import { MailVerifComponent } from './_base_components/mail-verif/mail-verif.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {GoogleMapsModule} from "@angular/google-maps";
 import {ClaimsComponent} from "./_base_components/claims/claims.component";
-import {NgxPaginationModule} from "ngx-pagination";
 //import { ClaimsComponent } from './claims/claims.component';
+
+import {ShopComponent} from "./_base_components/shop-module/shop/shop.component";
+import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.component";
+import {ProductComponent} from "./_base_components/shop-module/product/product.component";
+import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
+import {NgxPaginationModule} from "ngx-pagination";
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -43,21 +48,35 @@ export function tokenGetter() {
     Nav2Component,
     MailVerifComponent,
     ClaimsComponent,
+    AppComponent,
+    HeaderComponent,
+    CarouselComponent,
+    LoginComponent,
+    RegisterComponent,
+    CartComponent,
+    HomeComponent,
+    NavComponent,
+    ProfileComponent,
+    ProfileBadgeComponent,
+    BreadCrumpComponent,
+    Nav2Component,
+    ShopComponent,
+    ShopModuleComponent
 
 
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ShopModuleModule,
     BrowserAnimationsModule,
     GoogleMapsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-
-}
+export class AppModule { }

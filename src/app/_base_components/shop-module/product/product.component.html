@@ -1,0 +1,71 @@
+<app-header1></app-header1>
+
+  <app-search-filter></app-search-filter>
+
+<div class="rating" >
+  <h4><b>Rate This Shop</b></h4>
+  <div class="rate">
+    <input type="radio" id="star5" name="rate" value="5" (change)="addRating(5)" />
+    <label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="rate" value="4" (change)="addRating(4)" />
+    <label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="rate" value="3" (change)="addRating(3)" />
+    <label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="rate" value="2"(change)="addRating(2)"  />
+    <label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star1" name="rate" value="1" (change)="addRating(1)" />
+    <label for="star1" title="text">1 star</label>
+  </div>
+  <h5>{{messageSuccess}}</h5>
+</div>
+
+
+  <div class="card" style="width: 20rem;" *ngFor="let item of productList| paginate:{itemsPerPage:itemsPerPage,currentPage :p}">
+    <div *ngIf="item.medias && item.medias.length>0" class="carousel-container">
+      <img
+        [src]="item.medias[indexImage[item.idProduct]].imagenUrl" alt="Card image cap"
+        class="image-active">
+
+      <div *ngIf="indicators" class="carousel-dot-container">
+        <span *ngFor="let dot of item.medias;let i=index"
+              class="dot"
+              [ngClass]="{'active':indexImage[item.idProduct]===i}"
+              (click)="selectImage(item.idProduct,i)"
+        >
+        </span>
+      </div>
+      <button *ngIf="controls" class="btn-carousel btn-prev"
+              (click)="onPrevClick(item.idProduct,item.medias.length)">
+        <i class="fas fa-arrow-circle-left icon-carousel icon-prev"></i>
+      </button>
+      <button *ngIf="controls" class="btn-carousel btn-next"
+              (click)="onNextClick(item.idProduct,item.medias.length)">
+        <i class="fas fa-arrow-circle-right icon-carousel icon-next"></i>
+      </button>
+
+    </div>
+    <div class="card-body">
+      <h6 class="card-title"><strong>Name: </strong>{{item.name}}</h6>
+<!--      <h6 class="card-text"><strong>Reference: </strong>{{item.reference}}</h6>-->
+      <h6 class="card-text"><strong>Quantity: </strong>{{item.quantity}}</h6>
+      <h6 class="card-text"><strong>Price: </strong>{{item.price}}</h6>
+      <!--    <p class="card-text">{{item.description}}</p>-->
+      <!--    <p class="card-text">{{item.discount}}</p>-->
+      <!--    <p class="card-text">{{item.PriceAfterDiscount}}</p>-->
+<!--      <h6 class="card-text"><strong>Brand: </strong>{{item.brand}}</h6>-->
+      <h6 class="card-text"><strong>Status: </strong>{{item.status}}</h6>
+<!--      <h6 class="card-text"><strong>Category: </strong>{{item.category}}</h6>-->
+<!--      <h6 class="card-text"><strong>Barcode Image: </strong></h6>-->
+      <img style="height: 80px" src="{{item.barcodeImage.imagenUrl}}">
+      <button [routerLink]='["product",item.idProduct]' class="btn btn-info btn-round  btn-lg btn-block">Add to wish-list</button>
+    </div>
+  </div>
+
+
+
+
+
+
+<div class="mt-8 py-5 flex justify-center items-center">
+  <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="" flex=""></pagination-controls>
+</div>
