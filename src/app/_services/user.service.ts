@@ -52,6 +52,7 @@ export class UserService {
         this.user2.picture=user.picture;
         this.user2.picture.imagenUrl=user.picture.imagenUrl;
         this.user2.phoneNumberVerif= user.phoneNumberVerif;
+        this.user2.role= user.role;
         return this.user2;
 
 
@@ -61,21 +62,28 @@ export class UserService {
 
         },
         complete: () => {
-        console.log('Complete');
+          console.log('Complete');
+          console.log(this.user2.role);
+
           return this.user2;
 
         },
     });
 
 
-      console.log(email);
-      console.log(this.user2);
       return this.user2;
     }
     return this.user2;
   }
+
   public verifyEmail(token: any){
     return this.httpClient.get(this.PATH_OF_API + "/auth/confirm?token=" + token,{ responseType: 'text' });
+  }
+  public getAllUsers():Observable<User[]>{
+    return this.httpClient.get<User[]>(this.PATH_OF_API+"/admin/users?role=USER").pipe();
+  }
+  public getAllMods():Observable<User[]>{
+    return this.httpClient.get<User[]>(this.PATH_OF_API+"/admin/users?role=MOD").pipe();
   }
 
 }
