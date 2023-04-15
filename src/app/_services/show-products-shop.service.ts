@@ -23,6 +23,12 @@ export class ShowProductsShopService {
     const url = "http://localhost:8085/shop/findAllProducts/"+id;
     return this.http.get<Product[]>(url);
   }
+  getProd(){
+    return this.http.get<Product[]>("http://localhost:8085/product/ShowAllProductsForUser")
+      .pipe(map((res:any)=>{
+        return res;
+      }))
+  }
 
 
   addRating(shopId,rateValue){
@@ -34,5 +40,12 @@ export class ShowProductsShopService {
     }
     const url = "http://localhost:8085/rating/add/"+shopId+"/"+rateValue;
     return this.http.post<Rating>(url, {},this.httpOptions);
+  }
+
+  deleteProduct(id:any){
+    return this.http.delete("http://localhost:8085/product/delete/"+id)
+      .pipe(map((res:any)=>{
+        return res;
+      }))
   }
 }

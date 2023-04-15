@@ -21,6 +21,7 @@ import { MailVerifComponent } from './_base_components/mail-verif/mail-verif.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {GoogleMapsModule} from "@angular/google-maps";
 import {ClaimsComponent} from "./_base_components/claims/claims.component";
+
 //import { ClaimsComponent } from './claims/claims.component';
 
 import {ShopComponent} from "./_base_components/shop-module/shop/shop.component";
@@ -28,6 +29,8 @@ import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.co
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
 import {NgxPaginationModule} from "ngx-pagination";
+import { UserShopsComponent } from './_base_components/user-shops/user-shops.component';
+import { UserProductsComponent } from './_base_components/user-products/user-products.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -61,8 +64,9 @@ export function tokenGetter() {
     BreadCrumpComponent,
     Nav2Component,
     ShopComponent,
-    ShopModuleComponent
-
+    ShopModuleComponent,
+    UserShopsComponent,
+    UserProductsComponent,
 
   ],
 
@@ -75,6 +79,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     GoogleMapsModule,
     NgxPaginationModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

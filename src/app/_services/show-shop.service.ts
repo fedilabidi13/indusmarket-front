@@ -18,6 +18,12 @@ export class ShowShopsService {
         return res;
       }))
   }
+  deleteShop(id:any){
+    return this.http.delete("http://localhost:8085/shop/delete/"+id)
+      .pipe(map((res:any)=>{
+        return res;
+      }))
+  }
 
 
 }

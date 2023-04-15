@@ -14,6 +14,9 @@ export class ProfileComponent implements OnInit{
   user!: User;
   constructor(private userService: UserService, private router: Router) {
   }
+  public  redirect(root:any){
+    this.router.navigate([root]);
+  }
 
   ngOnInit(): void {
     if(localStorage.getItem('currentUser')===null)

@@ -46,9 +46,11 @@
           <div class="tab-pane" id="Claims" role="tabpanel" aria-labelledby="Claims-tab">
             <app-claims></app-claims>
           </div>
-
         </div>
       </div>
-    </div>
+        <a class="btn btn-info btn-round  " id="shop-tab" data-toggle="tab"  role="tab" aria-controls="shops" aria-selected="false" (click)="redirect('/user-shop')">My Shops</a>
+        <a class="btn btn-info btn-round  " id="products-tab" data-toggle="tab" role="tab" aria-controls="products" aria-selected="false" (click)="redirect('/user-product')">My Products</a>
+
+      </div>
   </div>
   </div>
