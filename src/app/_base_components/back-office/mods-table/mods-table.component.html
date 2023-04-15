@@ -20,9 +20,9 @@
 <div class="wrapper">
 
 
-<app-sidebar></app-sidebar>
+  <app-sidebar></app-sidebar>
 
-<div>
+  <div>
 
 
     <div class="main-panel" id="main-panel">
@@ -37,7 +37,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">User List</a>
+            <a class="navbar-brand" href="#pablo">Moderators List</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -97,7 +97,12 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Users</h4>
+                <h4 class="card-title "> Moderators</h4>
+                <button class="button-cstm btn btn-success btn-icon btn-round" type="button"
+                        data-toggle="modal" data-target="#myModal">
+                  <i class="now-ui-icons ui-1_simple-add"></i>
+                </button>
+
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -153,8 +158,8 @@
             </div>
           </div>
 
-          </div>
         </div>
+      </div>
       <footer class="footer">
         <div class=" container-fluid ">
           <nav>
@@ -179,10 +184,10 @@
 
         </div>
       </footer>
-      </div>
-
     </div>
+
   </div>
+</div>
 
 
 <div class="modal fade modal-mini modal-info" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
@@ -222,6 +227,33 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+        <h4 class="title">Add a new moderator</h4>
+      </div>
+
+        <form class="user" (submit)="onSubmit()" >
+          <div class="form-group" style="padding: 2%">
+            <input  type="email" class="form-control btn-outline-info "
+                    [(ngModel)]="modEmail" name="email" id="email" aria-describedby="emailHelp"
+                   placeholder="Enter Email Address...">
+          </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="sumbit" class="btn btn-info">confirm</button>
+
+      </div>
+        </form>
+    </div>
+    </div>
+  </div>
 
 
 <script src="/src/assets/js/plugins/chartjs.min.js"></script>

@@ -13,9 +13,11 @@ export class LoginBackComponent {
   created = true;
   not_created = true;
   message!: string;
-  user !: User;
+  public user !: User;
 
-  constructor(private userService:UserService, private router: Router){}
+  constructor(private userService:UserService, private router: Router){
+    this.user = this.userService.getCurrentUser();
+  }
   login(loginForm: NgForm){
     this.userService.login(loginForm.value).subscribe(
       (response)=>{
@@ -25,7 +27,7 @@ export class LoginBackComponent {
         if (this.message.startsWith('ey'))
         {
           localStorage.setItem('currentUser',this.message);
-          this.user = this.userService.getCurrentUser();
+
           console.warn(this.user.role)
           console.warn(this.user.phoneNumber)
 
@@ -46,12 +48,7 @@ export class LoginBackComponent {
         console.log(error);
         this.user = this.userService.getCurrentUser();
         console.error(this.user.role)
-        if (this.user.role.startsWith('U'))
-        {
-          this.message = "you are not permitted to access such area !"
-          this.created=false;
-          this.not_created=true;
-        }
+
         this.not_created=false;
         this.message=error;
         this.created=true;

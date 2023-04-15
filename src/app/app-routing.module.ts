@@ -11,6 +11,7 @@ import {LoginBackComponent} from "./_base_components/back-office/login-back/logi
 import {SidebarComponent} from "./_base_components/back-office/sidebar/sidebar.component";
 import {DashboardComponent} from "./_base_components/back-office/dashboard/dashboard.component";
 import {UsersTableComponent} from "./_base_components/back-office/users-table/users-table.component";
+import {ModsTableComponent} from "./_base_components/back-office/mods-table/mods-table.component";
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'back-office', component: LoginBackComponent },
   { path: 'back-office/dashboard', component: DashboardComponent },
   { path: 'back-office/users', component: UsersTableComponent },
+  { path: 'back-office/mods', component: ModsTableComponent },
 
 
 ];

@@ -28,6 +28,7 @@ import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.co
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
 import {NgxPaginationModule} from "ngx-pagination";
+import { PostsComponent } from './_base_components/posts/posts.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -61,7 +62,8 @@ export function tokenGetter() {
     BreadCrumpComponent,
     Nav2Component,
     ShopComponent,
-    ShopModuleComponent
+    ShopModuleComponent,
+    PostsComponent
 
 
   ],
