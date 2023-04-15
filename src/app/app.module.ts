@@ -29,6 +29,8 @@ import {ProductComponent} from "./_base_components/shop-module/product/product.c
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
 import {NgxPaginationModule} from "ngx-pagination";
 import { PostsComponent } from './_base_components/posts/posts.component';
+import { UserShopsComponent } from './_base_components/user-shops/user-shops.component';
+import { UserProductsComponent } from './_base_components/user-products/user-products.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -63,8 +65,9 @@ export function tokenGetter() {
     Nav2Component,
     ShopComponent,
     ShopModuleComponent,
-    PostsComponent
-
+    PostsComponent,
+    UserShopsComponent,
+    UserProductsComponent,
 
   ],
 
