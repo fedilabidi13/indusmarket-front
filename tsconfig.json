@@ -1,5 +1,11 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -24,10 +30,11 @@
       "dom"
     ]
   },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
+  "compilerOptions": {
+    // ...
+    "types": [
+      "sockjs-client",
+      "@stomp/stompjs"
+    ]
   }
 }

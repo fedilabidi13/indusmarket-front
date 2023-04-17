@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<head>
+  <title>Carte de Profil</title>
+</head>
+<body>
+
+
+<nav>
+  <div class="nav-left">
+    <img src="./images/logo.png" alt="Logo">
+    <input type="text" placeholder="Search Posts">
+  </div>
+
+  <div class="nav-middle">
+    <a href="#" class="active">
+      <i class="fa fa-home"></i>
+    </a>
+
+    <a href="#">
+      <i class="fa fa-user-friends"></i>
+    </a>
+
+    <a href="#">
+      <i class="fa fa-play-circle"></i>
+    </a>
+
+    <a href="#">
+      <i class="fa fa-users"></i>
+    </a>
+  </div>
+
+  <div class="nav-right">
+    <span class="profile"></span>
+
+    <a href="#">
+      <i class="fa fa-bell"></i>
+    </a>
+
+    <a href="#">
+      <i class="fas fa-ellipsis-h"></i>
+    </a>
+  </div>
+</nav>
+<div class="profile-card">
+  <div class="profile-picture">
+    <img src="https://via.placeholder.com/150" alt="Photo de Profil">
+  </div>
+  <div class="profile-info">
+    <h2>Nom Prénom</h2>
+    <p>Numéro de téléphone : 1234567890</p>
+    <p>Adresse : 123 Rue des Fleurs, Ville, Pays</p>
+  </div>
+</div>
+
+<div class="post-container" *ngFor="let post of post" >
+  <div class="profile-picture">
+    <img src="{{post.user.picture.imagenUrl}}" alt="User Profile Picture">
+  </div>
+  <!-- Nom et prénom en petit en haut à gauche -->
+  <div class="profile-info">
+    <p>{{post.user.firstName}}&nbsp;{{post.user.lastName}}</p>
+  </div>
+  <!-- Date de création avec icône de calendrier -->
+  <div class="post-date">
+    <i class="fas fa-calendar"></i>
+    <p>{{post.createdAt |  date }}</p>
+  </div>
+
+  <!-- Titre et corps du post -->
+
+  <div class="post-title" >
+    <h2>{{post.postTitle}}</h2>
+  </div>
+  <div class="post-body">
+    <p>{{post.body}}</p>
+  </div>
+  <!-- Conteneur des images -->
+  <div class="post-images">
+    <div *ngFor="let media of post.medias">
+      <img src="{{media.imagenUrl}}" style="width: 50px; height: 50px;"
+           (mouseover)="showText = true" (mouseout)="showText = false"
+           [ngStyle]="{'position': 'relative'}"(click)="onImageClick(media)">
+      <span *ngIf="showText" style="position: absolute; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 5px; font-size: 14px;">Show</span>      </div>
+    <div class="more-images">
+      <i class="fas fa-plus"></i>
+    </div>
+  </div>
+  <td>👍&nbsp;&nbsp;</td>
+  <td>👎&nbsp;&nbsp;</td>
+  <td>😍&nbsp;&nbsp;</td>
+  <td>😔&nbsp;&nbsp;</td>
+  <td>😲&nbsp;&nbsp;</td>
+  <td>😡&nbsp;&nbsp;</td>
+  <td>😂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="comment-button">
+    <i class="fas fa-comment" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="settings" aria-selected="false"></i> Comment
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="delete-button" (click)="deletePost(post.id)">
+      <i class="fas fa-trash"></i> Delete
+    </button>
+
+  </td>
+
+</div>
+
+<div *ngIf="isImageModalOpen" class="image-modal">
+  <div class="modal-content">
+    <img [src]="selectedMedia?.imagenUrl" [style.width.px]="500" [style.height.px]="500" class="center-image">
+    <button (click)="closeImageModal()" class="close-button"><i class="fas fa-times"></i></button>
+  </div>
+</div>
+<div class="tab-pane" id="comment" role="tabpanel" aria-labelledby="comment-tab">
+  <app-comment></app-comment>
+</div>
+
+</body>
+</html>
