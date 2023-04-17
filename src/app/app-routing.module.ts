@@ -7,6 +7,14 @@ import {HomeComponent} from "./_base_components/home/home.component";
 import {ProfileComponent} from "./_base_components/profile/profile.component";
 import {MailVerifComponent} from "./_base_components/mail-verif/mail-verif.component";
 import {PostComponent} from "./_base_components/post/post/post.component";
+import {BackOfficeModule} from "./_base_components/back-office/back-office.module";
+import {LoginBackComponent} from "./_base_components/back-office/login-back/login-back.component";
+import {SidebarComponent} from "./_base_components/back-office/sidebar/sidebar.component";
+import {DashboardComponent} from "./_base_components/back-office/dashboard/dashboard.component";
+import {UsersTableComponent} from "./_base_components/back-office/users-table/users-table.component";
+import {ModsTableComponent} from "./_base_components/back-office/mods-table/mods-table.component";
+import {UserShopsComponent} from "./_base_components/user-shops/user-shops.component";
+import {UserProductsComponent} from "./_base_components/user-products/user-products.component";
 
 
 const routes: Routes = [
@@ -16,6 +24,13 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'mail-verif', component: MailVerifComponent },
   { path: 'post', component: PostComponent },
+
+  { path: 'back-office', component: LoginBackComponent },
+  { path: 'back-office/dashboard', component: DashboardComponent },
+  { path: 'back-office/users', component: UsersTableComponent },
+  { path: 'back-office/mods', component: ModsTableComponent },
+  { path: 'user-shop', component: UserShopsComponent },
+  { path: 'user-product', component: UserProductsComponent },
 
 
 
