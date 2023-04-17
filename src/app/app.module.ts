@@ -28,6 +28,11 @@ import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.co
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
 import {NgxPaginationModule} from "ngx-pagination";
+import { CartItemComponent } from './_base_components/cart-item/cart-item.component';
+import { OrderComponent } from './_base_components/order/order.component';
+import { InvoiceComponent } from './_base_components/invoice/invoice.component';
+import { ShoppingCartComponent } from './_base_components/shopping-cart/shopping-cart.component';
+import { ShoppingCartNoUserComponent } from './_base_components/shopping-cart-no-user/shopping-cart-no-user.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -61,7 +66,12 @@ export function tokenGetter() {
     BreadCrumpComponent,
     Nav2Component,
     ShopComponent,
-    ShopModuleComponent
+    ShopModuleComponent,
+    CartItemComponent,
+    OrderComponent,
+    InvoiceComponent,
+    ShoppingCartComponent,
+    ShoppingCartNoUserComponent
 
 
   ],
