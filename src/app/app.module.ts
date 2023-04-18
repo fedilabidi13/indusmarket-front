@@ -28,6 +28,9 @@ import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.co
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
 import {NgxPaginationModule} from "ngx-pagination";
+import { PostsComponent } from './_base_components/posts/posts.component';
+import { UserShopsComponent } from './_base_components/user-shops/user-shops.component';
+import { UserProductsComponent } from './_base_components/user-products/user-products.component';
 import { EventComponent } from './_base_components/event/event.component';
 import { AddClaimComponent } from './_base_components/add-claim/add-claim.component';
 
@@ -64,6 +67,9 @@ export function tokenGetter() {
     Nav2Component,
     ShopComponent,
     ShopModuleComponent,
+    PostsComponent,
+    UserShopsComponent,
+    UserProductsComponent,
     EventComponent,
     AddClaimComponent
 

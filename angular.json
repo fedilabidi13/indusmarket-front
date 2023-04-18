@@ -36,7 +36,6 @@
               "src/assets/css/now-ui-kit.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "node_modules/primeflex/primeflex.css"
-
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -47,6 +46,7 @@
               "src/assets/js/plugins/bootstrap-switch.js",
               "src/assets/js/plugins/nouislider.min.js",
               "src/assets/js/now-ui-kit.js",
+
               "node_modules/@fortawesome/fontawesome-free/js/all.js"
 
 
