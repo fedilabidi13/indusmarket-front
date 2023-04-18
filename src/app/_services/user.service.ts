@@ -60,9 +60,8 @@ export class UserService {
           this.user2.email=user.email;
           this.user2.phoneNumber=user.phoneNumber;
           this.user2.picture=user.picture;
-          this.user2.picture.imagenUrl=user.picture.imagenUrl;
           this.user2.phoneNumberVerif= user.phoneNumberVerif;
-          this.user2.role= user.role;
+
           if (user.role==="MOD")
           {
             this.user2.role="MOD"
@@ -75,6 +74,8 @@ export class UserService {
           {
             this.user2.role="ADMIN"
           }
+          console.error(user.role)
+          console.error(user.role)
           if (user.role==="DELIVERY")
           {
             this.user2.role="DELIVERY"
