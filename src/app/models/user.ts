@@ -21,5 +21,5 @@ export class User {
     phoneNumberVerif!: boolean;
     emailVerif!:boolean;
     picture!:Media ;
-    
+
 }
