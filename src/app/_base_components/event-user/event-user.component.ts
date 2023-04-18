@@ -1,31 +1,31 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
+import {Event} from "../../models/Event";
+import {EventService} from "../../_services/event.service";
 import {User} from "../../models/user";
-import {UserService} from "../../_services/user.service";
-import {Claims} from "../../models/Claims";
 import {ClaimService} from "../../_services/claim.service";
-import {DatePipe} from "@angular/common";
 
 @Component({
-  selector: 'app-claims',
-  templateUrl: './claims.component.html',
-  styleUrls: ['./claims.component.scss']
+  selector: 'app-event-user',
+  templateUrl: './event-user.component.html',
+  styleUrls: ['./event-user.component.scss']
 })
-export class ClaimsComponent implements OnInit{
- public claims:Claims[]=[];
-  pageSize = 3; // Number of items to display per page
-  currentPage = 1; // Current page number
-  user!:User;
-  constructor(private claimsService : ClaimService) {
+export class EventUserComponent {
 
+  public events:Event[]=[];
+
+  constructor(private eventService:EventService) {
   }
   ngOnInit(): void {
-    this.claimsService.GetClaims()
+    this.eventService.getUserEvents()
       .subscribe(res=>{
-        this.claims = res;
-        console.log(this.claims)
+        this.events = res;
+        console.log(this.events)
       })
 
   }
+  pageSize = 3; // Number of items to display per page
+  currentPage = 1; // Current page number
+  user!:User;
   onPageChange(event: any): void {
     this.currentPage = event; // Update current page when page changes
   }
@@ -44,11 +44,4 @@ export class ClaimsComponent implements OnInit{
     this.selectedMedia = null; // Clear the selected media object
   }
   showText: boolean = false; // Define a boolean flag to control the visibility of the "Show" text
-
-  onDeleteClick(id: number): void {
-    this.claimsService.DeleteClaim(id).subscribe(
-      () => console.log(`Claim ${id} deleted successfully`),
-      error => console.error('Error deleting claim:', error)
-    );
-  }
 }

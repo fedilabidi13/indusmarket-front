@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<button class="btn btn-info btn-sm btn-icon">
+  <i class="fas fa-plus"></i>
+</button>
+<table class="table" xmlns:paginate="http://www.w3.org/1999/xhtml"
+       xmlns:itemsPerPage="http://www.w3.org/1999/xhtml" xmlns:currentPage="http://www.w3.org/1999/xhtml"
+       xmlns:id="http://www.w3.org/1999/xhtml"*ngFor="let event of events | paginate: { itemsPerPage: pageSize, currentPage: currentPage, id: 'claim-pagination' }">
+  <thead>
+  <tr>
+    <th scope="col">Title</th>
+    <th scope="col">Description</th>
+    <th scope="col">Price</th>
+    <th scope="col">Accepted</th>
+    <th scope="col">Start date</th>
+    <th scope="col">End date</th>
+    <th scope="col">Picture</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr >
+    <td>{{event.title}}</td>
+    <td>{{event.description}}</td>
+    <td>{{event.price}}</td>
+    <td><i [ngClass]="{
+  'now-ui-icons ui-1_check': event.accepted===true,
+  'now-ui-icons ui-1_simple-remove': event.accepted===false
+}"></i></td>
+    <td>{{event.startDate|date}}</td>
+    <td>{{event.endDate|date}}</td>
+    <td>
+        <img src="{{event.medias[0].imagenUrl}}" style="width: 50px; height: 50px;"
+             (mouseover)="showText = true" (mouseout)="showText = false"
+             [ngStyle]="{'position': 'relative'}"(click)="onImageClick(event.medias[0])">
+        <span *ngIf="showText" style="position: absolute; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 5px; font-size: 14px;">Show</span>
+    </td>
+    <td>
+      <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+        <i class="now-ui-icons ui-1_simple-remove"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="pagination-container">
+  <pagination-controls (pageChange)="onPageChange($event)" id="claim-pagination"></pagination-controls>
+</div>
+<div *ngIf="isImageModalOpen" class="image-modal">
+  <div class="modal-content">
+    <img [src]="selectedMedia?.imagenUrl" [style.width.px]="500" [style.height.px]="500" class="center-image">
+    <button (click)="closeImageModal()" class="close-button"><i class="fas fa-times"></i></button>
+  </div>
+</div>
+
