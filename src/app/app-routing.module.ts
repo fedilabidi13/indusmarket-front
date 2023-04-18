@@ -12,6 +12,8 @@ import {SidebarComponent} from "./_base_components/back-office/sidebar/sidebar.c
 import {DashboardComponent} from "./_base_components/back-office/dashboard/dashboard.component";
 import {UsersTableComponent} from "./_base_components/back-office/users-table/users-table.component";
 import {ModsTableComponent} from "./_base_components/back-office/mods-table/mods-table.component";
+import {ModsConfirmComponent} from "./_base_components/back-office/mods-confirm/mods-confirm.component";
+import {ModsDashboardComponent} from "./_base_components/back-office/mods-dashboard/mods-dashboard.component";
 
 
 const routes: Routes = [
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'back-office/dashboard', component: DashboardComponent },
   { path: 'back-office/users', component: UsersTableComponent },
   { path: 'back-office/mods', component: ModsTableComponent },
+  { path: 'back-office/mod-confirm', component: ModsConfirmComponent },
+  { path: 'back-office/mod/dashboard', component: ModsDashboardComponent },
 
 
 ];

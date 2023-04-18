@@ -13,48 +13,46 @@ export class LoginBackComponent {
   created = true;
   not_created = true;
   message!: string;
-  public user !: User;
+  user !: User;
 
   constructor(private userService:UserService, private router: Router){
-    this.user = this.userService.getCurrentUser();
+
   }
   login(loginForm: NgForm){
     this.userService.login(loginForm.value).subscribe(
       (response)=>{
-
         this.message=response;
+        console.log('le message')
+        console.log(this.message)
+      }
+    );
+    if (this.message.startsWith("ey"))
+    {
+      localStorage.removeItem('currentUser')
+      localStorage.setItem('currentUser',this.message);
+      this.user = this.userService.getCurrentUser();
+      console.warn("new logged in user")
+      console.warn(this.user)
 
-        if (this.message.startsWith('ey'))
-        {
-          localStorage.setItem('currentUser',this.message);
 
-          console.warn(this.user.role)
-          console.warn(this.user.phoneNumber)
-
-          if (this.user.role.startsWith('U'))
-          {
-            this.message = "you are not permitted to access such area !"
-            this.created=false;
-            this.not_created=true;
-            return;
-          }
-          this.router.navigate(['/back-office/dashboard']);
-        }
-        this.created=false;
-        this.not_created=true;
-
-      },
-      (error)=>{
-        console.log(error);
-        this.user = this.userService.getCurrentUser();
-        console.error(this.user.role)
-
-        this.not_created=false;
-        this.message=error;
-        this.created=true;
+      if (this.user.role==="USER") {
+        this.message = "you are not permitted to access such area !"
+        this.created = false;
+        this.not_created = true;
       }
 
-    );
+      if (this.user.role==="MOD" ){
+        this.router.navigate(['/back-office/mod/dashboard']);
+      }
+
+      this.router.navigate(['/back-office/dashboard']);
+    }
+    if (this.message.includes("First Attempt detected"))
+    {
+      this.router.navigate(['/back-office/mod-confirm'])
+    }
+    this.created=false;
+    this.not_created=true;
   }
 
 
