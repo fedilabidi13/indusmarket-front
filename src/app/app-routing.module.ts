@@ -15,6 +15,8 @@ import {ModsTableComponent} from "./_base_components/back-office/mods-table/mods
 import {UserShopsComponent} from "./_base_components/user-shops/user-shops.component";
 import {UserProductsComponent} from "./_base_components/user-products/user-products.component";
 import {AddEventComponent} from "./_base_components/add-event/add-event.component";
+import {ModsConfirmComponent} from "./_base_components/back-office/mods-confirm/mods-confirm.component";
+import {ModsDashboardComponent} from "./_base_components/back-office/mods-dashboard/mods-dashboard.component";
 
 
 const routes: Routes = [
@@ -27,6 +29,8 @@ const routes: Routes = [
   { path: 'back-office/dashboard', component: DashboardComponent },
   { path: 'back-office/users', component: UsersTableComponent },
   { path: 'back-office/mods', component: ModsTableComponent },
+  { path: 'back-office/mod-confirm', component: ModsConfirmComponent },
+  { path: 'back-office/mod/dashboard', component: ModsDashboardComponent },
   { path: 'user-shop', component: UserShopsComponent },
   { path: 'user-product', component: UserProductsComponent },
   {path:'addEvent',component:AddEventComponent}

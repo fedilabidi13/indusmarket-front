@@ -6,6 +6,9 @@ import { User } from '../models/user';
 import jwt_decode from "jwt-decode";
 import {ProcessHTTPMsgService} from './process-httpmsg.service';
 import {Router} from "@angular/router";
+import {plainToClass} from "class-transformer";
+import {Media} from "../models/media";
+import {Role} from "../models/enumerations/Role";
 
 
 @Injectable({
@@ -22,6 +25,9 @@ export class UserService {
 
   constructor(private httpClient:HttpClient, private router:Router) {
     this.user2.id=0;
+    this.user2.picture= new Media();
+
+
   }
 
   public register(registerData: any){
@@ -32,7 +38,11 @@ export class UserService {
 
   }
   getUser(email: string): Observable<User>{
-     return this.httpClient.get<User>(this.PATH_OF_API + "/auth/get?email=" + email).pipe();
+     return this.httpClient.get<User>(this.PATH_OF_API + "/auth/get?email=" + email).pipe(
+       map((res:any)=>{
+         return res;
+       })
+     );
   }
   public getCurrentUser():User{
     const token = localStorage.getItem('currentUser');
@@ -42,22 +52,43 @@ export class UserService {
       const email = decodedJwt.sub;
       console.log(token);
       this.getUser(email).subscribe({
-      next: (user) => {
-        console.log(user);
-        this.user2.id=user.id
-        this.user2.firstName=user.firstName;
-        this.user2.lastName=user.lastName;
-        this.user2.email=user.email;
-        this.user2.phoneNumber=user.phoneNumber;
-        this.user2.picture=user.picture;
-        this.user2.picture.imagenUrl=user.picture.imagenUrl;
-        this.user2.phoneNumberVerif= user.phoneNumberVerif;
-        this.user2.role= user.role;
-        return this.user2;
+        next: (user) => {
+          console.log(user);
+          this.user2.id=user.id
+          this.user2.firstName=user.firstName;
+          this.user2.lastName=user.lastName;
+          this.user2.email=user.email;
+          this.user2.phoneNumber=user.phoneNumber;
+          this.user2.picture=user.picture;
+          this.user2.picture.imagenUrl=user.picture.imagenUrl;
+          this.user2.phoneNumberVerif= user.phoneNumberVerif;
+          this.user2.role= user.role;
+          if (user.role==="MOD")
+          {
+            this.user2.role="MOD"
+          }
+          if (user.role==="USER")
+          {
+            this.user2.role="USER"
+          }
+          if (user.role==="ADMIN")
+          {
+            this.user2.role="ADMIN"
+          }
+          if (user.role==="DELIVERY")
+          {
+            this.user2.role="DELIVERY"
+          }
 
 
-      },error: (error: any) => {
-        console.error(error);
+
+
+
+          return this.user2;
+
+
+        },error: (error: any) => {
+          console.error(error);
           return this.user2;
 
         },
@@ -68,7 +99,7 @@ export class UserService {
           return this.user2;
 
         },
-    });
+      });
 
 
       return this.user2;
