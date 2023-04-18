@@ -28,6 +28,8 @@ import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.co
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
 import {NgxPaginationModule} from "ngx-pagination";
+import { EventComponent } from './_base_components/event/event.component';
+import { AddClaimComponent } from './_base_components/add-claim/add-claim.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -61,7 +63,9 @@ export function tokenGetter() {
     BreadCrumpComponent,
     Nav2Component,
     ShopComponent,
-    ShopModuleComponent
+    ShopModuleComponent,
+    EventComponent,
+    AddClaimComponent
 
 
   ],

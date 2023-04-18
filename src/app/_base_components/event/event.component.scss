@@ -1,0 +1,37 @@
+.custom-img {
+  width: 750px; /* Set the desired maximum width for the image */
+  height: 1000px;
+}
+/* CSS to style the button and icon */
+.add-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  display: none; /* Hide the button by default */
+}
+
+.carousel:hover .add-button {
+  display: block; /* Show the button on hover */
+}
+.btn-participate {
+  display: none; /* Hide the Participate button by default */
+}
+
+.carousel-item:hover .btn-participate {
+  display: block; /* Show the Participate button on hover */
+}
+.event-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}
+
+.event-date {
+  font-size: 18px;
+  color: blue;
+}
