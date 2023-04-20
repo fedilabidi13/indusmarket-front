@@ -10,7 +10,7 @@ import {CartItem} from "../../models/cartItem";
 export class ShoppingCartNoUserComponent {
   shoppingCart: ShoppingCart;
   cartItems: CartItem[];
-
+  public indexImage:object={};
 
 
   ngOnInit(): void {
@@ -18,12 +18,17 @@ export class ShoppingCartNoUserComponent {
     this.cartItems = this.shoppingCart.cartItemList;
   }
 
+
+
   loadShoppingCart(): ShoppingCart {
     const shoppingCartJson = localStorage.getItem('shoppingCart');
     if (shoppingCartJson) {
       return JSON.parse(shoppingCartJson);
     } else {
-      const myShoppingCart = new ShoppingCart(1, []);
+      const myShoppingCart = new ShoppingCart();
+      myShoppingCart.id=1;
+      myShoppingCart.cartItemList=[];
+
       return myShoppingCart;
     }
   }
@@ -43,6 +48,11 @@ export class ShoppingCartNoUserComponent {
       localStorage.setItem('shoppingCart', shoppingCartJson);
     }
   }
+
+  selectImage(idImage:number,index: number):void{
+    this.indexImage[idImage]=index;
+  }
+
 
 
 }

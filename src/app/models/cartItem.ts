@@ -1,5 +1,6 @@
 import {Product} from "./product";
 import {ShoppingCart} from "./shoppingCart";
+import {Media} from "./media";
 export class CartItem {
   id: number;
   quantity: number;

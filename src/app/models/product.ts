@@ -15,4 +15,7 @@ export class Product{
   barcodeImage!:Media;
   medias!:Media[];
   status!:string;
-  validated: boolean;}
+  validated: boolean;
+
+}
+

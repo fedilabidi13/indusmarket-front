@@ -13,7 +13,7 @@ import {UserService} from "./user.service";
 export class ShoppingCartService {
   token!:string;
   user!:User;
-  private apiUrl = 'http://localhost:8085/shoppingCart';
+  private apiUrl = 'http://localhost:8085/shoppingCart/load-items';
   constructor(private userService : UserService , private http : HttpClient) { }
 
 
@@ -21,8 +21,9 @@ export class ShoppingCartService {
     this.user=this.userService.getCurrentUser()
     this.token = localStorage.getItem("currentUser")
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    return this.http.get<CartItem[]>(`${this.apiUrl}/load-items`,{headers}).pipe(map((res:any)=>{
+    return this.http.get<CartItem[]>('http://localhost:8085/shoppingCart/load-items',{headers : headers}).pipe(map((res:any)=>{
       return res;
+
     }));
   }
 

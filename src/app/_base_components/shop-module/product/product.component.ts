@@ -41,7 +41,9 @@ export class ProductComponent implements OnInit{
     if (shoppingCartJson) {
       return JSON.parse(shoppingCartJson);
     } else {
-      const myShoppingCart = new ShoppingCart(1, []);
+      const myShoppingCart = new ShoppingCart();
+      myShoppingCart.cartItemList=[];
+      myShoppingCart.id=1;
       return myShoppingCart;
     }
   }
