@@ -11,6 +11,8 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { ModsTableComponent } from './mods-table/mods-table.component';
 import { ModsConfirmComponent } from './mods-confirm/mods-confirm.component';
 import { ModsDashboardComponent } from './mods-dashboard/mods-dashboard.component';
+import { ModsSidebarComponent } from './mods-sidebar/mods-sidebar.component';
+import {AppModule} from "../../app.module";
 
 
 @NgModule({
@@ -21,13 +23,15 @@ import { ModsDashboardComponent } from './mods-dashboard/mods-dashboard.componen
     DashboardComponent,
     ModsTableComponent,
     ModsConfirmComponent,
-    ModsDashboardComponent
+    ModsDashboardComponent,
+    ModsSidebarComponent
   ],
-  imports: [
-    CommonModule,
-    BackOfficeRoutingModule,
-    FormsModule,
-    NgxPaginationModule
-  ]
+    imports: [
+        CommonModule,
+        BackOfficeRoutingModule,
+        FormsModule,
+        NgxPaginationModule,
+        AppModule
+    ]
 })
 export class BackOfficeModule { }

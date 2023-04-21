@@ -13,9 +13,10 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class ProfileComponent implements OnInit{
   user!: User;
+  loading = true;
 
   private fileToUpload: File | null = null;
-
+  //TODO add condition for empty file on upload
   message!:string;
   created = true;
   not_created = true;
@@ -37,6 +38,7 @@ export class ProfileComponent implements OnInit{
   }
 
   onUpload(): void {
+    this.loading = false;
     console.log("begining upload!")
     if (!this.fileToUpload) {
       return;
@@ -57,15 +59,18 @@ export class ProfileComponent implements OnInit{
     {
       this.http.post("http://localhost:8085/profile/picture/update",formData, {headers}).subscribe(() => {
 
+        this.loading = true;
         this.message = "profile picture added successfully! "
         this.created=false;
 
         window.location.reload();
       }, error => {
+        this.loading = true;
         this.created=false;
         this.message = "profile picture added successfully! "
       });
     }
+
 
   }
   isImageFile(file: File): boolean {

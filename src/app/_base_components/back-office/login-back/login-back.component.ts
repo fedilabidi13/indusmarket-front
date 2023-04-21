@@ -56,6 +56,9 @@ export class LoginBackComponent {
         }
         this.created=false;
         this.not_created=true;
+      },
+      error => {
+        this.not_created =  false;
       }
     );
 

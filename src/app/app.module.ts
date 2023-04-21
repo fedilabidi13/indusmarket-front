@@ -29,56 +29,63 @@ import {ProductComponent} from "./_base_components/shop-module/product/product.c
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
 import {NgxPaginationModule} from "ngx-pagination";
 import { PostsComponent } from './_base_components/posts/posts.component';
+import { LoadingComponent } from './_base_components/loading/loading.component';
+import { CameraComponent } from './_base_components/camera/camera.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
 }
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    CarouselComponent,
-    LoginComponent,
-    RegisterComponent,
-    CartComponent,
-    HomeComponent,
-    NavComponent,
-    ProfileComponent,
-    ProfileBadgeComponent,
-    BreadCrumpComponent,
-    Nav2Component,
-    MailVerifComponent,
-    ClaimsComponent,
-    AppComponent,
-    HeaderComponent,
-    CarouselComponent,
-    LoginComponent,
-    RegisterComponent,
-    CartComponent,
-    HomeComponent,
-    NavComponent,
-    ProfileComponent,
-    ProfileBadgeComponent,
-    BreadCrumpComponent,
-    Nav2Component,
-    ShopComponent,
-    ShopModuleComponent,
-    PostsComponent
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        CarouselComponent,
+        LoginComponent,
+        RegisterComponent,
+        CartComponent,
+        HomeComponent,
+        NavComponent,
+        ProfileComponent,
+        ProfileBadgeComponent,
+        BreadCrumpComponent,
+        Nav2Component,
+        MailVerifComponent,
+        ClaimsComponent,
+        AppComponent,
+        HeaderComponent,
+        CarouselComponent,
+        LoginComponent,
+        RegisterComponent,
+        CartComponent,
+        HomeComponent,
+        NavComponent,
+        ProfileComponent,
+        ProfileBadgeComponent,
+        BreadCrumpComponent,
+        Nav2Component,
+        ShopComponent,
+        ShopModuleComponent,
+        PostsComponent,
+        LoadingComponent,
+        CameraComponent
 
 
-  ],
+    ],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ShopModuleModule,
-    BrowserAnimationsModule,
-    GoogleMapsModule,
-    NgxPaginationModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ShopModuleModule,
+        BrowserAnimationsModule,
+        GoogleMapsModule,
+        NgxPaginationModule,
+    ],
+    providers: [],
+    exports: [
+        LoadingComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
