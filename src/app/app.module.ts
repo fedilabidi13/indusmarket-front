@@ -31,6 +31,11 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { PostsComponent } from './_base_components/posts/posts.component';
 import { LoadingComponent } from './_base_components/loading/loading.component';
 import { CameraComponent } from './_base_components/camera/camera.component';
+import { UserShopsComponent } from './_base_components/user-shops/user-shops.component';
+import { UserProductsComponent } from './_base_components/user-products/user-products.component';
+import { EventComponent } from './_base_components/event/event.component';
+import { AddClaimComponent } from './_base_components/add-claim/add-claim.component';
+import { EventUserComponent } from './_base_components/event-user/event-user.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -67,25 +72,28 @@ export function tokenGetter() {
         ShopModuleComponent,
         PostsComponent,
         LoadingComponent,
-        CameraComponent
+        CameraComponent,
+    PostsComponent,
+    UserShopsComponent,
+    UserProductsComponent,
+    EventComponent,
+    AddClaimComponent,
+    EventUserComponent
 
 
-    ],
+  ],
 
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        ShopModuleModule,
-        BrowserAnimationsModule,
-        GoogleMapsModule,
-        NgxPaginationModule,
-    ],
-    providers: [],
-    exports: [
-        LoadingComponent
-    ],
-    bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ShopModuleModule,
+    BrowserAnimationsModule,
+    GoogleMapsModule,
+    NgxPaginationModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

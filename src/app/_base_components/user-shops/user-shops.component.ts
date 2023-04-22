@@ -1,47 +1,46 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../_services/user.service";
-import {User} from "../../models/user";
-import {Router} from "@angular/router";
-import {DatePipe} from "@angular/common";
+import {Shop} from "../../models/shop";
+import {ShowShopsService} from "../../_services/show-shop.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
-  providers: [DatePipe]
+  selector: 'app-user-shops',
+  templateUrl: './user-shops.component.html',
+  styleUrls: ['./user-shops.component.scss']
 })
-export class ProfileComponent implements OnInit{
-  user!: User;
-  loading = true;
-  public  redirect(root:any){
-    this.router.navigate([root]);
-  }
 
+export class UserShopsComponent implements OnInit{
   private fileToUpload: File | null = null;
-  //TODO add condition for empty file on upload
   message!:string;
   created = true;
   not_created = true;
   authToken !: string;
-  constructor(private userService:UserService, private http:HttpClient, private router: Router){}
-  ngOnInit(): void {
-    if(localStorage.getItem('currentUser')===null)
-    {
-      this.router.navigate(['/login'])
-    }
-    this.user=this.userService.getCurrentUser()
-    // @ts-ignore
-    this.authToken = localStorage.getItem("currentUser")
-    console.log(this.user)
+  constructor(private shop:ShowShopsService, private http:HttpClient) {
   }
+  public shops: Shop[]=[];
+  id:any;
+  pageSize = 10; // Number of items to display per page
+  currentPage = 1; //
+  onPageChange(event: any): void {
+    this.currentPage = event; // Update current page when page changes
+  }
+  delete(){
+    this.shop.deleteShop(this.id).subscribe();
+    window.location.reload();
+  }
+ getId(id:any){
+    this.id=id;
+ }
+  ngOnInit(): void {
+    this.shop.getShops().subscribe(data=>this.shops=data)
+  }
+
 
   onFileSelected(event: any): void {
     this.fileToUpload = event.target.files.item(0);
   }
 
   onUpload(): void {
-    this.loading = false;
     console.log("begining upload!")
     if (!this.fileToUpload) {
       return;
@@ -62,18 +61,15 @@ export class ProfileComponent implements OnInit{
     {
       this.http.post("http://localhost:8085/profile/picture/update",formData, {headers}).subscribe(() => {
 
-        this.loading = true;
-        this.message = "profile picture added successfully! "
+        this.message = "shop picture added successfully! "
         this.created=false;
 
         window.location.reload();
       }, error => {
-        this.loading = true;
         this.created=false;
-        this.message = "profile picture added successfully! "
+        this.message = "shop picture added successfully! "
       });
     }
-
 
   }
   isImageFile(file: File): boolean {
@@ -81,4 +77,6 @@ export class ProfileComponent implements OnInit{
     const fileName = file.name.toLowerCase();
     return allowedExtensions.some(ext => fileName.endsWith(ext));
   }
+
 }
+
