@@ -37,6 +37,7 @@ import { EventUserComponent } from './_base_components/event-user/event-user.com
 import { AddEventComponent } from './_base_components/add-event/add-event.component';
 import { LoadingComponent } from './_base_components/loading/loading.component';
 import { CameraComponent } from './_base_components/camera/camera.component';
+import { AddEventComponent } from './_base_components/add-event/add-event.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -77,7 +78,6 @@ export function tokenGetter() {
     EventComponent,
     AddClaimComponent,
     EventUserComponent,
-    AddEventComponent,
         AppComponent,
         HeaderComponent,
         CarouselComponent,
@@ -109,24 +109,24 @@ export function tokenGetter() {
         PostsComponent,
         LoadingComponent,
         CameraComponent
+    LoadingComponent,
+    CameraComponent,
+    AddEventComponent
 
 
     ],
 
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        ShopModuleModule,
-        BrowserAnimationsModule,
-        GoogleMapsModule,
-        NgxPaginationModule,
-    ],
-    providers: [],
-    exports: [
-        LoadingComponent
-    ],
-    bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ShopModuleModule,
+    BrowserAnimationsModule,
+    GoogleMapsModule,
+    NgxPaginationModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
