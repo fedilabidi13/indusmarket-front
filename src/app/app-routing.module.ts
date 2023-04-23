@@ -14,6 +14,8 @@ import {UsersTableComponent} from "./_base_components/back-office/users-table/us
 import {ModsTableComponent} from "./_base_components/back-office/mods-table/mods-table.component";
 import {UserShopsComponent} from "./_base_components/user-shops/user-shops.component";
 import {UserProductsComponent} from "./_base_components/user-products/user-products.component";
+import {ModsConfirmComponent} from "./_base_components/back-office/mods-confirm/mods-confirm.component";
+import {ModsDashboardComponent} from "./_base_components/back-office/mods-dashboard/mods-dashboard.component";
 
 
 const routes: Routes = [
@@ -29,6 +31,8 @@ const routes: Routes = [
   { path: 'user-shop', component: UserShopsComponent },
   { path: 'user-product', component: UserProductsComponent },
 
+  { path: 'back-office/mod-confirm', component: ModsConfirmComponent },
+  { path: 'back-office/mod/dashboard', component: ModsDashboardComponent },
 
 
 ];
