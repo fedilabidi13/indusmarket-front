@@ -34,6 +34,7 @@ import { UserProductsComponent } from './_base_components/user-products/user-pro
 import { EventComponent } from './_base_components/event/event.component';
 import { AddClaimComponent } from './_base_components/add-claim/add-claim.component';
 import { EventUserComponent } from './_base_components/event-user/event-user.component';
+import { AddEventComponent } from './_base_components/add-event/add-event.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -73,7 +74,8 @@ export function tokenGetter() {
     UserProductsComponent,
     EventComponent,
     AddClaimComponent,
-    EventUserComponent
+    EventUserComponent,
+    AddEventComponent
 
 
   ],
