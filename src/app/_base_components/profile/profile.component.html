@@ -221,6 +221,9 @@
         <div class="alert alert-info" role="alert" [hidden]="created">
           {{message}}
         </div>
+        <div [hidden]="loading">
+          <app-loading></app-loading>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -279,5 +282,26 @@
         </div>
       </div>
     </div>
+
+    <!---- Camera -->
+    <div class="modal fade" id="exampleCam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <button type="button" class="btn btn-round btn-info" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+         <app-camera></app-camera>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-info" (click)="onUpload()"
+            >Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </div>
 </div></div>
