@@ -13,7 +13,9 @@
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
                   <div>
-                    <p class="mb-0">You have 1 items in your cart</p>
+
+                    <p>You have {{getTotalItems()}} item(s) in your cart.</p>
+
                   </div>
                 </div>
 
@@ -26,7 +28,6 @@
                         <div  style="width: 65px;" >
                           <img src="{{ item.product.medias[0].imagenUrl}}" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                         </div>
-<p>{{item.product.name}}</p>
                         <div class="ms-3">
                           <h5>{{ item.product.name }}</h5>
                           <p class="small mb-0">{{ item.product.category }}</p>
@@ -42,46 +43,56 @@
                         <div style="width: 80px;">
                           <h5 class="mb-0">{{ item.product.price * item.quantity }} dt</h5>
                         </div>
-                        <a href="#!"  style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+
+                        <a (click)="onDeleteCartItem(item.id)" style="color: #cecece;">
+                            <span class="delete-icon">
+                            <i class="fas fa-trash-alt"></i>
+                            <span>Delete</span>
+                            </span>
+                        </a>
                       </div>
                     </div>
                   </div>
               </div>
               </div>
 
-
-
               <div class="col-lg-5">
-
                 <div class="card bg-primary text-white rounded-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0" style="color: #00bbff;">Cart Summary</h5>
-                      <img src="https://cdn-icons-png.flaticon.com/512/69/69881.png"
-                           class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
+                      <h5 class="mb-0" style="color: #00bbff;">Product you may like</h5>
                     </div>
+                    <div *ngIf="recommendedProduct">
 
-                    <hr class="my-4" style="color: lightgray"  >
-
-
-                    <div class="d-flex justify-content-between mb-4">
-                      <p class="mb-2" style="color: black;">Total(Without. taxes)</p>
-                      <p style="color: black">Total price: 1500000 dt</p>
+                      <h6 style="color: black">{{ recommendedProduct.name }}</h6>
+                      <p style="color: black">{{ recommendedProduct.medias}</p>
+                      <p style="color: black">{{ recommendedProduct.description }}</p>
+                      <p style="color: black">Price: {{ recommendedProduct.price }}</p>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <button type="button" class="btn btn-info btn-block btn-lg">
-                          <div class="d-flex justify-content-between">
-                            <span> My Order <i class="fa-regular fa-newspaper" style="margin-left: 5px;"></i></span>
-                          </div>
-                        </button>
-                        </div>
-                    </div>
-
                   </div>
                 </div>
-
               </div>
+
+
+              <div class="col-lg-4 col-xl-7">
+                <div class="card-body">
+                  <hr class="my-4">
+
+                  <div class="d-flex justify-content-between mb-6">
+                    <p class="mb-2" style="color: black;">Total (Without Taxes)</p>
+                    <p style="color: black">Total price: {{ ShoppingCartNoUserComponent.calculateTotalPrice(cartItems) }} dt</p>
+                  </div>
+
+
+                  <div class="col-md-6">
+                    <a class="btn btn-info btn-round btn-lg btn-block" (click)="onCreateOrder()" routerLink="/Orders">Create Order</a>
+
+                  </div>
+
+                </div>
+              </div>
+
+
 
             </div>
 

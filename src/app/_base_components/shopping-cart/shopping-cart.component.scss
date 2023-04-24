@@ -3,3 +3,24 @@
     height: 100vh !important;
   }
 }
+
+
+
+.delete-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.delete-icon:hover {
+  color: red;
+}
+
+.delete-icon:hover > span {
+  display: block;
+  margin-left: 5px;
+}
+
+.delete-icon > span {
+  display: none;
+}
+

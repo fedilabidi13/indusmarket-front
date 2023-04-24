@@ -7,6 +7,7 @@ import {User} from "../models/user";
 import {UserService} from "./user.service";
 import {Claims} from "../models/Claims";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +23,7 @@ export class CartItemService {
     this.user = this.userService.getCurrentUser();
     this.token = localStorage.getItem('currentUser');
   }
-  addAndAssignToCart(productId: number, quantity): Observable<string> {
+  addAndAssignToCart(productId: number, quantity : number): Observable<string> {
     const url = `${this.cartItemUrl}/add`;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.post<string>(url, { productId, quantity }, { headers });
@@ -36,10 +37,11 @@ export class CartItemService {
   }
 
   deleteCartItemAndRemoveFromCart(cartItemId: number): Observable<void> {
-    const url = `${this.cartItemUrl}/deleteCartItemAndRemoveFromShoppingCart?idCartItem=${cartItemId}`;
+    const url = `${this.cartItemUrl}/deleteCartItemAndRemoveFromCart?idCartItem=${cartItemId}`;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.delete<void>(url, { headers });
   }
+
 
   getCartItemById(idCartItem: number): Observable<CartItem> {
     const url = `${this.cartItemUrl}/AfficherCartItem?idCartItem=${idCartItem}`;

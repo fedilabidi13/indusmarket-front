@@ -10,6 +10,7 @@ import {ShoppingCartComponent} from "./_base_components/shopping-cart/shopping-c
 import {ShoppingCart} from "./models/shoppingCart";
 import {ShoppingCartNoUserComponent} from "./_base_components/shopping-cart-no-user/shopping-cart-no-user.component";
 import {ShopComponent} from "./_base_components/shop-module/shop/shop.component";
+import {OrderComponent} from "./_base_components/order/order.component";
 
 
 const routes: Routes = [
@@ -20,7 +21,9 @@ const routes: Routes = [
   { path: 'mail-verif', component: MailVerifComponent },
   { path: 'shoppingCart', component: ShoppingCartComponent },
   { path: 'shoppingCartNoUser', component: ShoppingCartNoUserComponent },
-  { path: 'shop', component: ShopComponent}
+  { path: 'shop', component: ShopComponent},
+  { path: 'Orders', component: OrderComponent }
+
 
 
 ];

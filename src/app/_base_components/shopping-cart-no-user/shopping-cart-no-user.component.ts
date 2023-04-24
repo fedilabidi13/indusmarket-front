@@ -54,5 +54,20 @@ export class ShoppingCartNoUserComponent {
   }
 
 
+  //this is used in my shoppingCart with user
+
+  static calculateTotalPrice(cartItemList: CartItem[]): number {
+    let totalPrice = 0;
+    for (const cartItem of cartItemList) {
+      totalPrice += cartItem.product.price * cartItem.quantity;
+    }
+    return totalPrice;
+  }
+
+
+
+
+
+
 
 }
