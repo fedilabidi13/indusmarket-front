@@ -6,7 +6,10 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
+  />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -109,11 +112,7 @@
                   <table class="table">
                     <thead>
                     <tr>
-                      <th class="text-center">#</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
                       <th>Email</th>
-                      <th class>Phone Number</th>
                       <th class>Account Status</th>
                       <th >Country</th>
                       <th class="text-right">Actions</th>
@@ -121,11 +120,9 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let user of users | paginate: { itemsPerPage: pageSize, currentPage: currentPage, id: 'claim-pagination' }">
-                      <td class="text-center">{{user.id}}</td>
-                      <td>{{user.firstName}}</td>
-                      <td>{{user.lastName}}</td>
+
                       <td>{{user.email}}</td>
-                      <td>{{user.phoneNumber}}</td>
+
                       <td>
                         <span *ngIf="user.banType.startsWith('SUSPENSION')" class="badge badge-default">Suspended</span>
                         <span *ngIf="user.banType.startsWith('LOCK')" class="badge badge-primary">Locked</span>
@@ -133,7 +130,10 @@
                         <span *ngIf="user.banType.startsWith('IP')" class="badge badge-info">Locked-IP</span>
                         <span *ngIf="user.banType.startsWith('PERMA')" class="badge badge-danger">Banned</span>
                       </td>
-                      <td >{{user.country}}</td>
+
+                      <td >
+                        <span class="fi fi-{{user.country | lowercase}}"></span>
+                      </td>
                       <td class="td-actions text-right">
                         <button type="button" rel="tooltip" class="btn btn-warning btn-sm btn-round btn-icon" (click)="getUserEmail(user.email)" data-toggle="modal" data-target="#myModal2">
                           <i class="now-ui-icons arrows-1_minimal-down"></i>
@@ -243,6 +243,22 @@
             <input  type="email" class="form-control btn-outline-info "
                     [(ngModel)]="modEmail" name="email" id="email" aria-describedby="emailHelp"
                    placeholder="Enter Email Address...">
+          </div>
+          <div [hidden]="created" class="alert alert-info" role="alert">
+            <div class="container">
+              <div class="alert-icon">
+                <i class="now-ui-icons travel_info"></i>
+              </div>
+              <strong>Success!</strong> Moderator added. An email was sent with account credentials.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </span>
+              </button>
+            </div>
+            <div [hidden]="loading">
+              <app-loading></app-loading>
+            </div>
           </div>
 
       <div class="modal-footer">
