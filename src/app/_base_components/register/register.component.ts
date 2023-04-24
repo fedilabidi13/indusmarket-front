@@ -8,22 +8,26 @@ import { UserService } from 'src/app/_services/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  loading = true;
   created = true;
   not_created = true;
   message!: String;
   constructor(private userService:UserService){}
 
   register(registerForm: NgForm){
+    this.loading=false;
     this.userService.register(registerForm.value).subscribe(
       (response)=>{
         this.created=false;
-        this.message=response
+        this.message=response;
+        this.loading=true;
       },
       (error)=>{
         console.log(error);
         this.not_created=false;
         this.message=error;
         this.created=true;
+        this.loading=true;
             }
 
     );

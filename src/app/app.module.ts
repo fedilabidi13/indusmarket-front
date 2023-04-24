@@ -34,6 +34,8 @@ import { UserProductsComponent } from './_base_components/user-products/user-pro
 import { EventComponent } from './_base_components/event/event.component';
 import { AddClaimComponent } from './_base_components/add-claim/add-claim.component';
 import { EventUserComponent } from './_base_components/event-user/event-user.component';
+import { LoadingComponent } from './_base_components/loading/loading.component';
+import { CameraComponent } from './_base_components/camera/camera.component';
 import { AddEventComponent } from './_base_components/add-event/add-event.component';
 
 export function tokenGetter() {
@@ -75,22 +77,27 @@ export function tokenGetter() {
     EventComponent,
     AddClaimComponent,
     EventUserComponent,
+    LoadingComponent,
+    CameraComponent,
     AddEventComponent
 
 
   ],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ShopModuleModule,
-    BrowserAnimationsModule,
-    GoogleMapsModule,
-    NgxPaginationModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ShopModuleModule,
+        BrowserAnimationsModule,
+        GoogleMapsModule,
+        NgxPaginationModule,
+    ],
+    providers: [],
+    exports: [
+        LoadingComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
