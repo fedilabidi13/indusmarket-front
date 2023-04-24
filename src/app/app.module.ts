@@ -33,6 +33,12 @@ import { OrderComponent } from './_base_components/order/order.component';
 import { InvoiceComponent } from './_base_components/invoice/invoice.component';
 import { ShoppingCartComponent } from './_base_components/shopping-cart/shopping-cart.component';
 import { ShoppingCartNoUserComponent } from './_base_components/shopping-cart-no-user/shopping-cart-no-user.component';
+import { PostsComponent } from './_base_components/posts/posts.component';
+import { UserShopsComponent } from './_base_components/user-shops/user-shops.component';
+import { UserProductsComponent } from './_base_components/user-products/user-products.component';
+import { EventComponent } from './_base_components/event/event.component';
+import { AddClaimComponent } from './_base_components/add-claim/add-claim.component';
+import { EventUserComponent } from './_base_components/event-user/event-user.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -67,6 +73,12 @@ export function tokenGetter() {
     Nav2Component,
     ShopComponent,
     ShopModuleComponent,
+    PostsComponent,
+    UserShopsComponent,
+    UserProductsComponent,
+    EventComponent,
+    AddClaimComponent,
+    EventUserComponent,
     CartItemComponent,
     OrderComponent,
     InvoiceComponent,

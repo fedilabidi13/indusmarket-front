@@ -8,8 +8,7 @@ import {DatePipe} from "@angular/common";
 @Component({
   selector: 'app-claims',
   templateUrl: './claims.component.html',
-  styleUrls: ['./claims.component.scss'],
-  providers: [DatePipe]
+  styleUrls: ['./claims.component.scss']
 })
 export class ClaimsComponent implements OnInit{
  public claims:Claims[]=[];
@@ -46,5 +45,10 @@ export class ClaimsComponent implements OnInit{
   }
   showText: boolean = false; // Define a boolean flag to control the visibility of the "Show" text
 
-
+  onDeleteClick(id: number): void {
+    this.claimsService.DeleteClaim(id).subscribe(
+      () => console.log(`Claim ${id} deleted successfully`),
+      error => console.error('Error deleting claim:', error)
+    );
+  }
 }

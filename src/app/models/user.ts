@@ -24,4 +24,5 @@ export class User {
     picture!:Media ;
     shoppingCart!: ShoppingCart ;
 
+
 }
