@@ -68,16 +68,40 @@ backdrop-filter: blur(5px);">
             <button type="submit" class="btn btn-info btn-round btn-outline-light btn-lg btn-block">Submit</button>
 
             <div [hidden]="not_created" class="alert alert-info" role="alert">
-              Error when submitting form.
+              <div class="container">
+                <div class="alert-icon">
+                  <i class="now-ui-icons travel_info"></i>
+                </div>
+                <strong>Error!</strong> There was a problem when creating account.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </span>
+                </button>
+              </div>
             </div>
-            <div [hidden]="created" class="alert alert-info" role="alert">
-              {{message}}
+              <div [hidden]="created" class="alert alert-info" role="alert">
+                <div class="container">
+                  <div class="alert-icon">
+                    <i class="now-ui-icons travel_info"></i>
+                  </div>
+                  <strong>Info!</strong> {{message}}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </span>
+                  </button>
+                </div>
+                </div>
+            <div [hidden]="loading">
+              <app-loading></app-loading>
             </div>
             <div style="padding-left: 85%">
               <h6>
                 <a routerLink="/login" class="link-light">login</a>
               </h6>
             </div>
+
           </form>
         </div>
       </div>

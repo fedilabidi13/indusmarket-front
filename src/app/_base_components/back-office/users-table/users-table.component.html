@@ -104,7 +104,6 @@
                   <table class="table">
                     <thead>
                     <tr>
-                      <th class="text-center">#</th>
                       <th>First Name</th>
                       <th>Last Name</th>
                       <th>Email</th>
@@ -116,7 +115,6 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let user of users | paginate: { itemsPerPage: pageSize, currentPage: currentPage, id: 'claim-pagination' }">
-                      <td class="text-center">{{user.id}}</td>
                       <td>{{user.firstName}}</td>
                       <td>{{user.lastName}}</td>
                       <td>{{user.email}}</td>
@@ -128,7 +126,12 @@
                         <span *ngIf="user.banType.startsWith('IP')" class="badge badge-info">Locked-IP</span>
                         <span *ngIf="user.banType.startsWith('PERMA')" class="badge badge-danger">Banned</span>
                       </td>
-                      <td >{{user.country}}</td>
+                      <td >
+                        {{user.country}}
+                        <span class="fi fi-{{user.country | lowercase}}"></span>
+                        <span class="fi fi-us"></span>
+
+                      </td>
                       <td class="td-actions text-right">
                         <button type="button" rel="tooltip" class="btn btn-warning btn-sm btn-round btn-icon" (click)="getUserEmail(user.email)" data-toggle="modal" data-target="#myModal2">
                           <i class="now-ui-icons arrows-1_minimal-down"></i>
