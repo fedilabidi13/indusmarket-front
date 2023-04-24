@@ -36,6 +36,7 @@ import { AddClaimComponent } from './_base_components/add-claim/add-claim.compon
 import { EventUserComponent } from './_base_components/event-user/event-user.component';
 import { LoadingComponent } from './_base_components/loading/loading.component';
 import { CameraComponent } from './_base_components/camera/camera.component';
+import { AddEventComponent } from './_base_components/add-event/add-event.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -77,7 +78,8 @@ export function tokenGetter() {
     AddClaimComponent,
     EventUserComponent,
     LoadingComponent,
-    CameraComponent
+    CameraComponent,
+    AddEventComponent
 
 
   ],
