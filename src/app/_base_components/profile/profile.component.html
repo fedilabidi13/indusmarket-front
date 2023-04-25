@@ -84,11 +84,11 @@
           </div>
         </div>
         <div class="tab-content">
-          <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="tab-pane active" id="home1" role="tabpanel" aria-labelledby="home-tab">
             fghfj
           </div>
-          <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">..jyuf.</div>
-          <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">..srq.</div>
+          <div class="tab-pane" id="profile1" role="tabpanel" aria-labelledby="profile-tab">..jyuf.</div>
+          <div class="tab-pane" id="messages1" role="tabpanel" aria-labelledby="messages-tab">..srq.</div>
           <div class="tab-pane" id="event" role="tabpanel" aria-labelledby="Event-tab">
             <app-event-user></app-event-user>
           </div>
@@ -168,6 +168,49 @@
 <!--        </table>-->
         </div>
   </div>
+        <div class="row">
+          <div class="col-md-6 ml-auto mr-auto">
+            <h4 class="title text-center">My Portfolio</h4>
+            <div class="nav-align-center">
+              <ul class="nav nav-pills nav-pills-info nav-pills-just-icons" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#profile" role="tablist">
+                    <i class="now-ui-icons design_image"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#home" role="tablist">
+                    <i class="now-ui-icons design_app"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#messages" role="tablist">
+                    <i class="now-ui-icons shopping_shop"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Tab panes -->
+          <div class="tab-content gallery">
+            <div class="tab-pane active" id="home" role="tabpanel">
+              <app-user-products></app-user-products>
+
+            </div>
+            <div class="tab-pane" id="profile" role="tabpanel">
+              <div>
+
+
+              </div>
+            </div>
+            <div class="tab-pane" id="messages" role="tabpanel">
+              <div class="col-md-10 ml-auto mr-auto">
+                <app-user-shops></app-user-shops>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
   <footer class="footer footer-default">
     <div class=" container ">
       <nav>
@@ -220,9 +263,6 @@
         </div>
         <div class="alert alert-info" role="alert" [hidden]="created">
           {{message}}
-        </div>
-        <div [hidden]="loading">
-          <app-loading></app-loading>
         </div>
       </div>
       <div class="modal-footer">
@@ -304,4 +344,44 @@
     </div>
 
 </div>
-</div></div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+        <h4 class="title title-up">Add a new shop</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Name</label>
+            <input class="form-control"   placeholder="Enter shop name" [(ngModel)]="shop.name">
+          </div>
+          <div class="form-group">
+            <label>Phone number</label>
+            <input  class="form-control"   placeholder="Enter shop phone number"  [(ngModel)]="shop.phoneNumber">
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input  class="form-control"   placeholder="Enter shop Adress"  [(ngModel)]="shop.adresse">
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Enter shop email"  [(ngModel)]="shop.mail">
+          </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label"> Images </label>
+            <input multiple class="form-control" type="file"  (change)="onFilesSelected($event)">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button (click)="uploadFiles()" type="button" class="btn btn-info">Add shop</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
