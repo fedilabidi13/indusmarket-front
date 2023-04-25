@@ -3,7 +3,7 @@ import {User} from "./user";
 
 export class Rating{
   id!:number;
-  value!:number;
+  value!:string;
   ratedAt!:Date;
   shop!:Shop;
   user!:User;

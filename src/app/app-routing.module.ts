@@ -14,6 +14,7 @@ import {UsersTableComponent} from "./_base_components/back-office/users-table/us
 import {ModsTableComponent} from "./_base_components/back-office/mods-table/mods-table.component";
 import {UserShopsComponent} from "./_base_components/user-shops/user-shops.component";
 import {UserProductsComponent} from "./_base_components/user-products/user-products.component";
+import {ShopDetailsComponent} from "./_base_components/shop-details/shop-details.component";
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'back-office/mods', component: ModsTableComponent },
   { path: 'user-shop', component: UserShopsComponent },
   { path: 'user-product', component: UserProductsComponent },
+  { path: 'shop-details/:id', component: ShopDetailsComponent },
 
 
 

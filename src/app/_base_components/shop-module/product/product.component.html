@@ -5,33 +5,95 @@
 <div class="rating" >
   <h4><b>Rate This Shop</b></h4>
   <div class="rate">
-    <input type="radio" id="star5" name="rate" value="5" (change)="addRating(5)" />
+    <input type="radio" id="star5" name="rate" value="5" [checked]="myRating == 5" (change)="addRating(5)" />
     <label for="star5" title="text">5 stars</label>
-    <input type="radio" id="star4" name="rate" value="4" (change)="addRating(4)" />
+    <input type="radio" id="star4" name="rate" value="4" [checked]="myRating == 4"  (change)="addRating(4)" />
     <label for="star4" title="text">4 stars</label>
-    <input type="radio" id="star3" name="rate" value="3" (change)="addRating(3)" />
+    <input type="radio" id="star3" name="rate" value="3" [checked]="myRating == 3"  (change)="addRating(3)" />
     <label for="star3" title="text">3 stars</label>
-    <input type="radio" id="star2" name="rate" value="2"(change)="addRating(2)"  />
+    <input type="radio" id="star2" name="rate" value="2" [checked]="myRating == 2" (change)="addRating(2)"  />
     <label for="star2" title="text">2 stars</label>
-    <input type="radio" id="star1" name="rate" value="1" (change)="addRating(1)" />
+    <input type="radio" id="star1" name="rate" value="1" [checked]="myRating == 1"  (change)="addRating(1)" />
     <label for="star1" title="text">1 star</label>
   </div>
   <h5>{{messageSuccess}}</h5>
 </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 col-sm-6 mb-3">
+      <button class="btn btn-info btn-round" (click)="confirm()"><strong>Show discounted products</strong></button>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <button class="btn btn-info btn-round" (click)="allProd(this.id)"><strong>Show all shop products</strong></button>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <button class="btn btn-info btn-round" (click)="showdiv()"><strong>Sort products by category</strong></button>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <button class="btn btn-info btn-round" (click)="showdiv1()"><strong>Find products by price</strong></button>
+    </div>
 
 
-  <div class="card" style="width: 20rem;" *ngFor="let item of productList| paginate:{itemsPerPage:itemsPerPage,currentPage :p}">
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-sm-12 mb-3">
+      <button class="btn btn-info btn-round"><strong>Compare products</strong></button>
+    </div>
+    <div class="col-md-4 col-sm-12 mb-3">
+      <button class="btn btn-info btn-round" (click)="mostSold()"><strong>Show most 10 selled products in the top</strong></button>
+    </div>
+    <div class="col-md-4 col-sm-12 mb-3">
+      <button class="btn btn-info btn-round" (click)="searchedFirst()"><strong>Show my searched products in the top</strong></button>
+    </div>
+
+  </div>
+</div>
+
+<div style="width: 500px ; position: center" *ngIf="divShow">
+  <div class="form-group">
+    <label for="exampleFormControlSelect1"><strong>Category</strong></label>
+    <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="cat" >
+      <option>MECHANIC</option>
+      <option>ELECTRIC</option>
+      <option>HYDRAULIC</option>
+    </select>
+  </div>
+  <button style="width: 500px;margin-left: 260px" (click)="sortByCatg()" class="btn btn-info btn-round  btn-lg btn-block">Sort  </button>
+
+</div>
+<div style="width: 500px ; position: center" *ngIf="divShow1">
+  <div class="form-group">
+    <div class="form-group mx-sm-3">
+      <label for="min" class="sr-only">min</label>
+      <input type="min" class="form-control" id="min" placeholder="Min price" [(ngModel)]="min"pattern="[0-9]+" required
+             title="Please enter a number">
+    </div>
+    <div class="form-group mx-sm-3">
+      <label for="max" class="sr-only">max</label>
+      <input type="max" class="form-control" id="max" placeholder="Max price" [(ngModel)]="max" pattern="[0-9]+" required
+             title="Please enter a number" >
+      <div class="text-danger" *ngIf="error">
+        <p><strong>Please enter a valid number</strong></p>
+      </div>
+    </div>
+  </div>
+  <button style="width: 500px;margin-left: 260px" (click)="sortByprix()" class="btn btn-info btn-round  btn-lg btn-block">Sort  </button>
+</div>
+
+
+
+
+<div class="card" style="width: 20rem;" *ngFor="let item of productList| paginate:{itemsPerPage:itemsPerPage,currentPage :p}">
     <div *ngIf="item.medias && item.medias.length>0" class="carousel-container">
       <img
         [src]="item.medias[indexImage[item.idProduct]].imagenUrl" alt="Card image cap"
-        class="image-active">
+        class="image-active1">
 
       <div *ngIf="indicators" class="carousel-dot-container">
         <span *ngFor="let dot of item.medias;let i=index"
               class="dot"
               [ngClass]="{'active':indexImage[item.idProduct]===i}"
-              (click)="selectImage(item.idProduct,i)"
-        >
+              (click)="selectImage(item.idProduct,i)">
         </span>
       </div>
       <button *ngIf="controls" class="btn-carousel btn-prev"
@@ -47,7 +109,7 @@
     <div class="card-body">
       <h6 class="card-title"><strong>Name: </strong>{{item.name}}</h6>
 <!--      <h6 class="card-text"><strong>Reference: </strong>{{item.reference}}</h6>-->
-      <h6 class="card-text"><strong>Quantity: </strong>{{item.quantity}}</h6>
+      <h6 class="card-text"><strong>Quantity: </strong>{{item.stock.currentQuantity}}</h6>
       <h6 class="card-text"><strong>Price: </strong>{{item.price}}</h6>
       <!--    <p class="card-text">{{item.description}}</p>-->
       <!--    <p class="card-text">{{item.discount}}</p>-->

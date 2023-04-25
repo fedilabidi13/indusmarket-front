@@ -23,6 +23,7 @@ import {GoogleMapsModule} from "@angular/google-maps";
 import {ClaimsComponent} from "./_base_components/claims/claims.component";
 //import { ClaimsComponent } from './claims/claims.component';
 
+
 import {ShopComponent} from "./_base_components/shop-module/shop/shop.component";
 import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.component";
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
@@ -31,6 +32,10 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { PostsComponent } from './_base_components/posts/posts.component';
 import { UserShopsComponent } from './_base_components/user-shops/user-shops.component';
 import { UserProductsComponent } from './_base_components/user-products/user-products.component';
+import { ShopDetailsComponent } from './_base_components/shop-details/shop-details.component';
+import { FilterPipe } from './search/filter.pipe';
+import {ReactiveFormsModule} from "@angular/forms";
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -68,19 +73,24 @@ export function tokenGetter() {
     PostsComponent,
     UserShopsComponent,
     UserProductsComponent,
+    ShopDetailsComponent,
+    FilterPipe,
 
   ],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ShopModuleModule,
-    BrowserAnimationsModule,
-    GoogleMapsModule,
-    NgxPaginationModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ShopModuleModule,
+        BrowserAnimationsModule,
+        GoogleMapsModule,
+        NgxPaginationModule,
+        ReactiveFormsModule,
+        PdfViewerModule,
+
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

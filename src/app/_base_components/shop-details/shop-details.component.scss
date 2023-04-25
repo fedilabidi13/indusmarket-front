@@ -32,10 +32,20 @@
 }
 .carousel-container img.image-active{
   display: block;
-  width: 40%;
+  width: 50%;
   height: 200px;
 }
 .carousel-dot-container{
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  margin-left: 100px;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+.carousel-dot-container1{
   position: absolute;
   right: 0;
   left: 0;
@@ -50,6 +60,17 @@
   height: 13px;
   width: 13px;
   margin: 0 5px;
+  background-color: #2CA8FF !important;
+  border-radius: 50%;
+  display: inline-block;
+  transition: opacity 0.3s ease;
+  opacity: 0.5;
+}
+.dot1{
+  cursor: pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 50px;
   background-color: #2CA8FF !important;
   border-radius: 50%;
   display: inline-block;
@@ -106,9 +127,11 @@
   font-size: 35px;
 }
 .btn-next{
-  right: 425px;
+  right: 325px;
 }
-
+.btn-next1{
+  right: 205px;
+}
 .rating{
   width: 100%;
   text-align: center;
@@ -140,4 +163,11 @@
   color: #ffc700;
 }
 
+.search-icon{
+  position: absolute;
+  z-index: 10;
+  right: 32%;
+  top: 1200px;
+  color: blue;
+}
 
