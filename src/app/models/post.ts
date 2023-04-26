@@ -12,7 +12,7 @@ export class Post {
   postTitle!: string;
   postComment!: PostComment[];
   user!: User;
-  media!: Media[];
+  medias!: Media[];
   react!:React[];
 
 }

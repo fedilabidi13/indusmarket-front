@@ -31,10 +31,10 @@
     ]
   },
   "compilerOptions": {
-    // ...
+    // ... other options ...
     "types": [
-      "sockjs-client",
-      "@stomp/stompjs"
+      // ... other type libraries ...
+      "sockjs-client"
     ]
   }
 }
