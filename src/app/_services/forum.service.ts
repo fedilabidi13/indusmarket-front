@@ -6,6 +6,7 @@ import {PostComment} from "../models/postComment";
 import {Router} from "@angular/router";
 import {UserService} from "./user.service";
 import {User} from "../models/user";
+import {React} from "../models/react";
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +23,11 @@ export class ForumService {
   GetPosts(){
     // this.user=this.userService.getCurrentUser()
     // // @ts-ignore
-    // this.token = localStorage.getItem("currentUser")
-    // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    this.token = localStorage.getItem("currentUser")
+     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     // // @ts-ignore
-    return this.http.get<Post[]>("http://localhost:8085/post/findAll")
-      .pipe(map((res:any)=>{
-        return res;
-      }))
+    return this.http.get<Post[]>("http://localhost:8085/post/findAll",{ headers: headers} )
+
   }
   getCommentsByPostId(postId: number): Observable<any[]> {
     const authToken = localStorage.getItem("currentUser");
@@ -36,41 +35,62 @@ export class ForumService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
     return this.http.get<any[]>(url , {headers});
   }
+  addPost(post: Post, files?: FileList): Observable<Post> {
+    const formData = new FormData();
+    formData.append('postTitle', post.postTitle);
+    formData.append('body', post.body);
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+      }
+    }
 
-  addPost(post: Post): Observable<Post> {
-    // @ts-ignore
-    this.token = localStorage.getItem("currentUser");
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-
-    // Make sure to update the URL to the appropriate endpoint for adding posts
-    const url = 'http://localhost:8085/post/add';
-
-    // Use the HttpClient POST method to send the post object to the API
-    return this.http.post<Post>(url, post, { headers }).pipe(
-      map((res: any) => {
-        return res; // You can return the response or any other custom data here
-      })
-    );
+    const token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<Post>("http://localhost:8085/post/add", formData, {
+      headers: headers
+    });
   }
-  getComments(id: string): Observable<Comment[]> {
+
+  addComment(comment: PostComment, idPost: string, files?: FileList): Observable<Post> {
+    const formData = new FormData();
+    formData.append('commentBody', comment.commentBody);
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+      }
+    }
+
+    const token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<Post>(`http://localhost:8085/comment/add?idPost=${idPost}`, formData, {
+      headers: headers
+    });
+  }
+  updatePost(post: Post, files: FileList, id: number): Observable<Post> {
+    const formData = new FormData();
+    formData.append('postTitle', post.postTitle);
+    formData.append('body', post.body);
+    formData.append('user', post.user.id.toString());
+    formData.append('id', id.toString());
+    for (let i = 0; i < files.length; i++) {
+      formData.append('medias', files[i], files[i].name);
+    }
+    const token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    return this.http.put<Post>("http://localhost:8085/post/update", formData, { headers });
+  }
+
+  getComments(idPost: number) {
     this.user=this.userService.getCurrentUser()
     // @ts-ignore
     this.token = localStorage.getItem("currentUser")
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    // @ts-ignore
-    return this.http.get<Comment[]>('http://localhost:8085/comment/get/' + id, {headers: this.getHeaders});
+    return this.http.get<any[]>('http://localhost:8085/comment/getAll?idPost='+idPost, {headers: headers});
   }
 
-
-
-  addCommentPst(idPost: string, postComment: PostComment) {
-    this.user=this.userService.getCurrentUser()
-    // @ts-ignore
-    this.token = localStorage.getItem("currentUser")
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    // @ts-ignore
-    return this.http.post<Comment>('http://localhost:8085/SpringMVC/comment/add/' + idPost + '/1', postComment, {headers: this.getHeaders});
-  }
   addCommentReply(idComm: string, postComment: PostComment) {
     this.user=this.userService.getCurrentUser()
     // @ts-ignore
@@ -131,7 +151,10 @@ export class ForumService {
     return this.http.get<Post>('http://localhost:8085/post/findById/' + id , {headers: this.getHeaders});
   }
 
-
+  addReactToPost(idPost: number, reactType: string): Observable<React> {
+    const url = `'http://localhost:8085/post/add?idPost=${idPost}&reactType=${reactType}`;
+    return this.http.post<React>(url, {});
+  }
 
 
 

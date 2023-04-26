@@ -10,7 +10,7 @@ export class PostComment {
   user!: User;
   postComments!: PostComment[];
   post!: Post;
-  media!: Media[];
+  medias!: Media[];
 
 
 }
