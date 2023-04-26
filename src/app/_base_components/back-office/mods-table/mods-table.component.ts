@@ -9,6 +9,8 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./mods-table.component.scss']
 })
 export class ModsTableComponent implements OnInit{
+  loading = true;
+  created = true;
   email!: string;
   modEmail!: string;
   public users: User[]=[];
@@ -28,6 +30,11 @@ export class ModsTableComponent implements OnInit{
 
     })
   }
+  getFlagIcon(countryCode: string): string {
+    const iconPrefix = 'fa'; // Use `far` if you imported `faFlagRegular`
+    const iconClass = `fa-flag-${countryCode.toLowerCase()}`;
+    return `${iconPrefix} ${iconClass}`;
+  }
   getUserEmail(email: string)
   {
     this.email=email;
@@ -35,11 +42,14 @@ export class ModsTableComponent implements OnInit{
   }
   onSubmit()
   {
+    this.loading=false;
       this.httpClient.get("http://localhost:8085/admin/addMod?email="+this.modEmail, { responseType: 'text' })
         .subscribe(res =>
         {
           console.log(res)
-        })
+        });
+      this.loading= true;
+      this.created=false;
   }
   banUser(email: string){
     this.httpClient.get("http://localhost:8085/admin/ban?email="+email, { responseType: 'text' }).subscribe(

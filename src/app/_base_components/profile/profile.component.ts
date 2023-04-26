@@ -18,14 +18,14 @@ export class ProfileComponent implements OnInit{
   public  redirect(root:any){
     this.router.navigate([root]);
   }
+  loading = true;
 
   private fileToUpload: File | null = null;
-
+  //TODO add condition for empty file on upload
   message!:string;
   created = true;
   not_created = true;
   authToken !: string;
-
   ngOnInit(): void {
     if(localStorage.getItem('currentUser')===null)
     {
@@ -42,6 +42,7 @@ export class ProfileComponent implements OnInit{
   }
 
   onUpload(): void {
+    this.loading = false;
     console.log("begining upload!")
     if (!this.fileToUpload) {
       return;
@@ -62,11 +63,13 @@ export class ProfileComponent implements OnInit{
     {
       this.http.post("http://localhost:8085/profile/picture/update",formData, {headers}).subscribe(() => {
 
+        this.loading = true;
         this.message = "profile picture added successfully! "
         this.created=false;
 
         window.location.reload();
       }, error => {
+        this.loading = true;
         this.created=false;
         this.message = "profile picture added successfully! "
       });
