@@ -2,10 +2,12 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ShowShopsService} from "../../../_services/show-shop.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {ShowProductsShopService} from "../../../_services/show-products-shop.service";
-
+import { CartItemComponent } from "../../cart-item/cart-item.component";
+import {ShoppingCart} from "../../../models/shoppingCart";
 import {map} from "rxjs/operators";
 import {Subscription} from "rxjs";
 import {Product} from "../../../models/product";
+import {CartItem} from "../../../models/cartItem";
 
 @Component({
   selector: 'app-prod',
@@ -22,8 +24,40 @@ export class ProductComponent implements OnInit{
   @Input() controls = true;
   @Input() autoSlide = false;
   @Input() slideInterval = 3000;
+  @Input() product: Product;
+  shoppingCart: ShoppingCart;
+  quantity = 1
+
+  public addToCart( item: any ): void {
+    const cartItem = new CartItem(item.idProduct, 1, item, this.loadShoppingCart());
+    this.shoppingCart.cartItemList.push(cartItem);
+
+    // Store the shopping cart in local storage
+    const shoppingCartJson = JSON.stringify(this.shoppingCart);
+    localStorage.setItem('shoppingCart', shoppingCartJson);
+  }
+  loadShoppingCart(): ShoppingCart {
+    const shoppingCartJson = localStorage.getItem('shoppingCart');
+    if (shoppingCartJson) {
+      return JSON.parse(shoppingCartJson);
+    } else {
+      const myShoppingCart = new ShoppingCart();
+      myShoppingCart.cartItemList=[];
+      myShoppingCart.id=1;
+      return myShoppingCart;
+    }
+  }
+
+
+
+
+
+
   public indexImage:object={};
-  constructor(private ac:ActivatedRoute,private api:ShowProductsShopService,private api1:ShowShopsService){}
+  constructor(private ac:ActivatedRoute,private api:ShowProductsShopService,private api1:ShowShopsService){
+    this.shoppingCart = this.loadShoppingCart();
+
+  }
   routeSub: Subscription;
   id:any;
   messageSuccess:string="";

@@ -6,6 +6,11 @@ import { RegisterComponent } from './_base_components/register/register.componen
 import {HomeComponent} from "./_base_components/home/home.component";
 import {ProfileComponent} from "./_base_components/profile/profile.component";
 import {MailVerifComponent} from "./_base_components/mail-verif/mail-verif.component";
+import {ShoppingCartComponent} from "./_base_components/shopping-cart/shopping-cart.component";
+import {ShoppingCart} from "./models/shoppingCart";
+import {ShoppingCartNoUserComponent} from "./_base_components/shopping-cart-no-user/shopping-cart-no-user.component";
+import {ShopComponent} from "./_base_components/shop-module/shop/shop.component";
+import {OrderComponent} from "./_base_components/order/order.component";
 import {BackOfficeModule} from "./_base_components/back-office/back-office.module";
 import {LoginBackComponent} from "./_base_components/back-office/login-back/login-back.component";
 import {SidebarComponent} from "./_base_components/back-office/sidebar/sidebar.component";
@@ -27,6 +32,11 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'mail-verif', component: MailVerifComponent },
+  { path: 'shoppingCart', component: ShoppingCartComponent },
+  { path: 'shoppingCartNoUser', component: ShoppingCartNoUserComponent },
+  { path: 'shop', component: ShopComponent},
+  { path: 'Orders', component: OrderComponent },
+
   { path: 'back-office', component: LoginBackComponent },
   { path: 'back-office/dashboard', component: DashboardComponent },
   { path: 'back-office/users', component: UsersTableComponent },

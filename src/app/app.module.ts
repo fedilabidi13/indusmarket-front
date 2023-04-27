@@ -28,6 +28,11 @@ import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.co
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
 import {NgxPaginationModule} from "ngx-pagination";
+import { CartItemComponent } from './_base_components/cart-item/cart-item.component';
+import { OrderComponent } from './_base_components/order/order.component';
+import { InvoiceComponent } from './_base_components/invoice/invoice.component';
+import { ShoppingCartComponent } from './_base_components/shopping-cart/shopping-cart.component';
+import { ShoppingCartNoUserComponent } from './_base_components/shopping-cart-no-user/shopping-cart-no-user.component';
 import { PostsComponent } from './_base_components/posts/posts.component';
 import { UserShopsComponent } from './_base_components/user-shops/user-shops.component';
 import { UserProductsComponent } from './_base_components/user-products/user-products.component';
@@ -78,6 +83,11 @@ export function tokenGetter() {
     EventComponent,
     AddClaimComponent,
     EventUserComponent,
+    CartItemComponent,
+    OrderComponent,
+    InvoiceComponent,
+    ShoppingCartComponent,
+    ShoppingCartNoUserComponent,
     LoadingComponent,
     CameraComponent,
     AddEventComponent,
