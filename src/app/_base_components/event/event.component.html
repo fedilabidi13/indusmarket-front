@@ -8,13 +8,16 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img class="custom-img" src="https://res.cloudinary.com/dh3co0nj3/image/upload/v1681441129/Our_Event_hvb2s0.png" alt="First slide">
+        <a class="btn btn-info btn-round  btn-lg " routerLink="/addEvent">
+          <i class="fas fa-plus"></i>
+        </a>
       </div>
       <div class="carousel-item" *ngFor="let event of events">
         <img class="custom-img" src="{{event.medias[0].imagenUrl}}" alt="Second slide">
         <div class="carousel-caption d-none d-md-block">
           <h5 class="event-title">{{event.title}}</h5>
           <p class="event-date">{{event.startDate|date}}</p>
-          <a href="#" class="btn btn-primary btn-participate">Participate</a> <!-- Add Participate button here -->
+          <a href="#" class="btn btn-primary btn-participate" (click)="OnParticipate(event.id)">Participate</a> <!-- Add Participate button here -->
         </div>
       </div>
     </div>
@@ -25,9 +28,6 @@
     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
-    </a>
-    <a class="add-button" routerLink="/addEvent">
-      <i class="fas fa-plus"></i> <!-- Replace with the appropriate icon class based on the icon library you are using, e.g. Font Awesome -->
     </a>
   </div>
 </div>

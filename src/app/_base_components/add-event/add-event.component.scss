@@ -33,21 +33,6 @@ input[type="file"] {
   width: 100%;
   max-width: 500px;
 }
-
-button[type="submit"] {
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-button[type="submit"]:disabled {
-  background-color: gray;
-  cursor: default;
-}
 .form-container {
   max-width: 800px;
   margin: 0 auto;
@@ -79,18 +64,27 @@ button[type="submit"]:disabled {
   border-radius: 5px;
   width: 100%;
 }
-
-.form-container button {
-  background-color: blue;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.form-container button:disabled {
+body {
+  backdrop-filter: blur(5px);
   opacity: 0.5;
-  cursor: not-allowed;
 }
+
+.form-container {
+  position: relative;
+  backdrop-filter: none;
+  opacity: 1;
+}
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: grey;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  line-height: 30px;
+}
+

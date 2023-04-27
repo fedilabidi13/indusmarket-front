@@ -41,6 +41,15 @@
   display: block;
   margin: 0 auto;
 }
+td img {
+  vertical-align: middle;
+}
+
+td span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .arrow-button {
   position: absolute;
   top: 50%;
@@ -65,6 +74,5 @@
 .arrow-button.right {
   right: 1rem;
 }
-
 
 

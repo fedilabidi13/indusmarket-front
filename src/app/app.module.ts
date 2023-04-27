@@ -37,6 +37,7 @@ import { EventUserComponent } from './_base_components/event-user/event-user.com
 import { LoadingComponent } from './_base_components/loading/loading.component';
 import { CameraComponent } from './_base_components/camera/camera.component';
 import { AddEventComponent } from './_base_components/add-event/add-event.component';
+import { TicketUserComponent } from './_base_components/ticket-user/ticket-user.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -79,7 +80,8 @@ export function tokenGetter() {
     EventUserComponent,
     LoadingComponent,
     CameraComponent,
-    AddEventComponent
+    AddEventComponent,
+    TicketUserComponent,
 
 
   ],

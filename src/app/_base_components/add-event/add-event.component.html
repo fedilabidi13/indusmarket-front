@@ -1,4 +1,5 @@
 <div class="form-container">
+  <button type="button" class="close-button" (click)="closeForm()">X</button>
 <form (ngSubmit)="onSubmit(eventForm)" #eventForm="ngForm" enctype="multipart/form-data">
   <div>
     <label for="eventName">Event Name</label>
@@ -24,6 +25,6 @@
     <label for="eventImage">Images</label>
     <input type="file" id="eventImage" accept="image/*" (change)="onFileSelected($event)" multiple required>
   </div>
-  <button type="submit" [disabled]="eventForm.invalid">Submit</button>
+  <button class="btn btn-info btn-round btn-lg" type="submit" [disabled]="eventForm.invalid">Submit</button>
 </form>
 </div>

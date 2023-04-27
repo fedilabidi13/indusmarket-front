@@ -13,6 +13,8 @@ import { ModsConfirmComponent } from './mods-confirm/mods-confirm.component';
 import { ModsDashboardComponent } from './mods-dashboard/mods-dashboard.component';
 import { ModsSidebarComponent } from './mods-sidebar/mods-sidebar.component';
 import {AppModule} from "../../app.module";
+import { ClaimModComponent } from './claim-mod/claim-mod.component';
+import { EvantModComponent } from './evant-mod/evant-mod.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import {AppModule} from "../../app.module";
     ModsTableComponent,
     ModsConfirmComponent,
     ModsDashboardComponent,
-    ModsSidebarComponent
+    ModsSidebarComponent,
+    ClaimModComponent,
+    EvantModComponent
   ],
     imports: [
         CommonModule,
