@@ -1,1 +1,18 @@
-<p>add-claim works!</p>
+<div class="form-container">
+  <button type="button" class="close-button" (click)="closeForm()">X</button>
+  <form (ngSubmit)="onSubmit(claimForm)" #claimForm="ngForm" enctype="multipart/form-data">
+    <div>
+      <label for="eventName">Title</label>
+      <input type="text" id="eventName" name="title" [(ngModel)]="claim.title" required>
+    </div>
+    <div>
+      <label for="eventDescription">Description</label>
+      <textarea id="eventDescription" name="description" [(ngModel)]="claim.description" required></textarea>
+    </div>
+    <div>
+      <label for="eventImage">Images</label>
+      <input type="file" id="eventImage" accept="image/*" (change)="onFileSelected($event)" multiple required>
+    </div>
+    <button class="btn btn-info btn-round btn-lg" type="submit" [disabled]="claimForm.invalid">Submit</button>
+  </form>
+</div>

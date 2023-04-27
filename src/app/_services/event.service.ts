@@ -41,4 +41,16 @@ export class EventService {
 
     return this.http.post<Event>(`${this.apiUrl}/addEvent`, formData, { headers });
   }
+  acceptEvent(id : number){
+    const url = `${this.apiUrl}/accepEvent/${id}`;
+    return this.http.put(url,{});
+  }
+  deleteEvent(id:number){
+    const url = `${this.apiUrl}/modDeleteEvent/${id}`;
+    return this.http.delete(url);
+  }
+  UserdeleteEvent(id:number){
+    const url = `${this.apiUrl}/deleteEvent/${id}`;
+    return this.http.delete(url);
+  }
 }

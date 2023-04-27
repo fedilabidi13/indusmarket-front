@@ -22,6 +22,8 @@ import {UserProductsComponent} from "./_base_components/user-products/user-produ
 import {ModsConfirmComponent} from "./_base_components/back-office/mods-confirm/mods-confirm.component";
 import {ModsDashboardComponent} from "./_base_components/back-office/mods-dashboard/mods-dashboard.component";
 import {AddEventComponent} from "./_base_components/add-event/add-event.component";
+import {ClaimModComponent} from "./_base_components/back-office/claim-mod/claim-mod.component";
+import {EvantModComponent} from "./_base_components/back-office/evant-mod/evant-mod.component";
 
 
 const routes: Routes = [
@@ -46,6 +48,8 @@ const routes: Routes = [
   { path: 'back-office/mod-confirm', component: ModsConfirmComponent },
   { path: 'back-office/mod/dashboard', component: ModsDashboardComponent },
 
+  {path:'mod/claim-mod',component:ClaimModComponent},
+  {path:'mod/event-mod',component:EvantModComponent},
 
 ];
 @NgModule({

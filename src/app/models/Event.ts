@@ -1,5 +1,7 @@
 import {Media} from "./media";
 import {Address} from "./adresse";
+import {User} from "./user";
+import {Ticket} from "./Ticket";
 export class Event{
   id!:number;
   title!:string;
@@ -11,4 +13,6 @@ export class Event{
   medias!:Media[];
   price!:number;
   addres!:Address;
+  user!:User;
+  tickets!:Ticket[];
 }
