@@ -17,20 +17,16 @@ import {React} from "../../../models/react";
 export class ForumComponent implements OnInit{
   public post:Post[]=[];
   public comment:PostComment[]=[];
-  selectedPostId!: number;
+  selectedPost : Post = new Post();
   user!:User;
-  indexImage:any=0;
-  public indexImageP:object={};
   @Input() indicators = true;
   @Input() controls = true;
-  totalPost:any;
   posts : Post = new Post();
   postId: number;
   commentForm: FormGroup;
   files: FileList;
   reactType: string;
   react: React;
-  posth: Post;
   public allcomments:any[] = [];
 
   constructor(private forumService : ForumService , private router:Router ,private userService: UserService , private routers: ActivatedRoute ,private fb: FormBuilder ) {
@@ -42,15 +38,14 @@ export class ForumComponent implements OnInit{
       .subscribe(res=>{
         this.post = res;
 
-       /* res.forEach((element)=>
+        res.forEach((element)=>
         {
           this.allcomments.push(this.getComments(element.id))
         })
 
-        */
-
 
       });
+
 
 
     this.routers.paramMap.subscribe(params => {
@@ -63,11 +58,63 @@ export class ForumComponent implements OnInit{
     this.routers.paramMap.subscribe(params => {
       this.postId = +params.get('postId');
     });
-    console.warn(this.post)
 
   }
 
+  onFileSelected(event): void {
+    this.files = event.target.files;
+  }
 
+
+///////Post CRUD
+  showPost(id:number){
+    this.router.navigate(['forum/post-details/'+id])
+
+  }
+  deletePost(postId: number) {
+    this.forumService.DeletePost(postId).subscribe(() => {
+        // Update the posts array after successful deletion
+        this.post = this.post.filter(post => post.id !== postId);
+        //this.router.navigate(['/forumDetails']).then(r => )
+      },
+
+      error => {
+        window.location.reload();
+      });
+  }
+  initPostUpdate()
+  {
+    const element = document.getElementById('postId')as HTMLInputElement | null;
+    this.forumService.getpostByiD(element.value).subscribe(response =>
+    {
+      this.selectedPost.postTitle = response.postTitle;
+      this.selectedPost.id = response.id;
+      this.selectedPost.body = response.body;
+      this.selectedPost.medias = response.medias;
+      this.selectedPost.user = response.user;
+      this.selectedPost.createdAt = response.createdAt
+
+    })
+  }
+  updatePost()
+  {
+
+    return this.forumService.addPost(this.selectedPost).subscribe(
+      response => {
+        console.log(response);
+        window.location.reload();
+        // Do something with the response, e.g. redirect to the new post's page
+      },
+      error => {
+        console.log(error);
+        // Handle any errors that occurred during the POST request
+      }
+    );
+  }
+
+
+
+  //////Comment CRUD
   getComments(id: number){
     return this.forumService.getComments(id)
       .subscribe(res=>{
@@ -80,38 +127,7 @@ export class ForumComponent implements OnInit{
   }
 
   protected readonly Post = Post;
-  // Function to delete a post
-  deletePost(postId: number) {
-    this.forumService.DeletePost(postId).subscribe(() => {
-      // Update the posts array after successful deletion
-      this.post = this.post.filter(post => post.id !== postId);
-      //this.router.navigate(['/forumDetails']).then(r => )
-    },
-      error => {
-      window.location.reload();
-      });
-  }
 
-  onPrevClick(idImage: number,longeur:number):void{
-    if(this.indexImage===0){
-    }else {
-      this.indexImage--;
-    }
-  }
-  onNextClick(idImage:number,longeur:number ):void {
-    if (this.indexImage === longeur - 1) {
-      this.indexImage = 0;
-    } else {
-      this.indexImage++;
-    }
-  }
-  selectImage(idImage:number,index: number):void{
-
-    this.indexImage=index;
-  }
-  onFileSelected(event): void {
-    this.files = event.target.files;
-  }
 
   addComments(): void {
     const element = document.getElementById('postId')as HTMLInputElement | null;
@@ -123,14 +139,17 @@ export class ForumComponent implements OnInit{
       },
       error => {
         // Handle any errors that occurred during the POST request
+        window.location.reload();
       }
     );
   }
 
-  addReactToPost(like: string, id: number): void {
-    this.forumService.addReactToPost(this.posth.id, this.reactType).subscribe(react => {
+  ////React CRUD
+  addReactToPost(id: number ,reactType: string): void {
+    this.forumService.addReactToPost(id, reactType).subscribe(react => {
       console.log(`Added ${react.react} reaction to post ${react.post.id}`);
       // You could also update the UI to show the new reaction here
     });
   }
+
 }

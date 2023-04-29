@@ -27,7 +27,9 @@ export class ForumService {
      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     // // @ts-ignore
     return this.http.get<Post[]>("http://localhost:8085/post/findAll",{ headers: headers} )
-
+      .pipe(map((res:any)=>{
+        return res;
+      }))
   }
   getCommentsByPostId(postId: number): Observable<any[]> {
     const authToken = localStorage.getItem("currentUser");
@@ -80,7 +82,7 @@ export class ForumService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
-    return this.http.put<Post>("http://localhost:8085/post/update", formData, { headers });
+    return this.http.post<Post>("http://localhost:8085/post/update", formData, { headers });
   }
 
   getComments(idPost: number) {
@@ -91,15 +93,27 @@ export class ForumService {
     return this.http.get<any[]>('http://localhost:8085/comment/getAll?idPost='+idPost, {headers: headers});
   }
 
-  addCommentReply(idComm: string, postComment: PostComment) {
+  addCommentReply(id: number, comment: PostComment, files: FileList) {
     this.user=this.userService.getCurrentUser()
     // @ts-ignore
     this.token = localStorage.getItem("currentUser")
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     // @ts-ignore
-    return this.http.post<Comment>('http://localhost:8085/comment/add-Com-to-Com/' + idComm + '/1', postComment, {headers: this.getHeaders});
+    const formData = new FormData();
+    formData.append('commentBody', comment.commentBody);
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+      }
+    }
+    return this.http.post<Comment>('http://localhost:8085/comment/addResponse?idComment='+id, formData, {headers: headers});
   }
-
+  getCommentReplies(id: number)
+  {
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.get<any[]>("http://localhost:8085/comment/getReply?idComment="+id, { headers : headers})
+  }
   DeletePost(idPost: number) {
     this.user=this.userService.getCurrentUser()
     // @ts-ignore
@@ -111,32 +125,15 @@ export class ForumService {
     return this.http.post<Post>(url ,new FormData(),{headers: headers});
 
   }
-
-  DeleteCom(idCom: string) {
+  DeleteComment(idComment: number) {
     this.user=this.userService.getCurrentUser()
     // @ts-ignore
     this.token = localStorage.getItem("currentUser")
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    // @ts-ignore
-    return this.http.delete<PostComment>('http://localhost:8085/comment/delete/' + idCom , {headers: this.getHeaders});
+    const url = `http://localhost:8085/comment/delete?idComment=${idComment}`;
 
-  }
-  UpdateCom(idCom: string , c: PostComment) {
-    this.user=this.userService.getCurrentUser()
     // @ts-ignore
-    this.token = localStorage.getItem("currentUser")
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    // @ts-ignore
-    return this.http.put<PostComment>('http://localhost:8085/comment/update/' + idCom + '/' , c , {headers: this.getHeaders});
-
-  }
-  UpdatePost(idCom: string , c: Post) {
-    this.user=this.userService.getCurrentUser()
-    // @ts-ignore
-    this.token = localStorage.getItem("currentUser")
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    // @ts-ignore
-    return this.http.put<PostComment>('http://localhost:8085/post/update/' + idCom + '/' , c , {headers: this.getHeaders});
+    return this.http.post<PostComment>(url ,new FormData(),{headers: headers});
 
   }
 
@@ -148,17 +145,21 @@ export class ForumService {
     this.token = localStorage.getItem("currentUser")
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     // @ts-ignore
-    return this.http.get<Post>('http://localhost:8085/post/findById/' + id , {headers: this.getHeaders});
+    return this.http.get<any>('http://localhost:8085/post/findById?idPost=' + id , {headers: this.getHeaders});
   }
 
   addReactToPost(idPost: number, reactType: string): Observable<React> {
-    const url = `'http://localhost:8085/post/add?idPost=${idPost}&reactType=${reactType}`;
-    return this.http.post<React>(url, {});
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    const url = `http://localhost:8085/react/post/add?idPost=${idPost}&reactType=${reactType}`;
+    return this.http.post<React>(url, {}, { headers: headers});
   }
-
-
-
-
+  addReactToComment(idComment: number, reactType: string): Observable<React> {
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    const url = `http://localhost:8085/react/comment/add?idComment=${idComment}&reactType=${reactType}`;
+    return this.http.post<React>(url, {}, { headers: headers});
+  }
 
 
 }

@@ -1,26 +1,27 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../../models/user";
-import {UserService} from "../../../_services/user.service";
-import {HttpClient} from "@angular/common/http";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Post} from "../../../models/post";
+import {UserService} from "../../../_services/user.service";
+import {HttpClient} from "@angular/common/http";
 import {ForumService} from "../../../_services/forum.service";
 import {ActivatedRoute} from "@angular/router";
+import {PostComment} from "../../../models/postComment";
 
 @Component({
-  selector: 'app-posts-tab',
-  templateUrl: './posts-tab.component.html',
-  styleUrls: ['./posts-tab.component.scss']
+  selector: 'app-comments-tab',
+  templateUrl: './comments-tab.component.html',
+  styleUrls: ['./comments-tab.component.scss']
 })
-export class PostsTabComponent implements OnInit{
+export class CommentsTabComponent implements OnInit{
   email!: string;
   public users: User[]=[];
   pageSize = 10; // Number of items to display per page
   currentPage = 1; //
   user !: User;
-  postForm: FormGroup;
+  commentForm: FormGroup;
   files: FileList;
-  public post:Post[]=[];
+  public comment:PostComment[]=[];
   onPageChange(event: any): void {
     this.currentPage = event; // Update current page when page changes
   }
@@ -33,16 +34,10 @@ export class PostsTabComponent implements OnInit{
       console.log(this.users)
 
     })
-    this.postForm = this.fb.group({
-      postTitle: '',
-      body: ''
+    this.commentForm = this.fb.group({
+      commentBody: '',
     });
-    this.user= this.userService.getCurrentUser()
-    this.forumService.GetPosts()
-      .subscribe(res=>{
-        this.post = res;
-        console.log(this.post)
-      })
+
 
 
 
@@ -53,10 +48,10 @@ export class PostsTabComponent implements OnInit{
   }
 
 
-  deletePost(postId: number) {
-    this.forumService.DeletePost(postId).subscribe(() => {
+  deleteComment(commentId: number) {
+    this.forumService.DeleteComment(commentId).subscribe(() => {
         // Update the posts array after successful deletion
-        this.post = this.post.filter(post => post.id !== postId);
+        this.comment = this.comment.filter(comment => comment.id !== commentId);
         //this.router.navigate(['/forumDetails']).then(r => )
       },
 
@@ -64,5 +59,6 @@ export class PostsTabComponent implements OnInit{
         window.location.reload();
       });
   }
+
 
 }
