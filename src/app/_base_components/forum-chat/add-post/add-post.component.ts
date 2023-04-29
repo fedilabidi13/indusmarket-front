@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {PostComment} from "../../../models/postComment";
 import {User} from "../../../models/user";
 import {ForumService} from "../../../_services/forum.service";
-import {Router} from "@angular/router";
 import {Post} from "../../../models/post";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {UserService} from "../../../_services/user.service";
 
 @Component({
@@ -18,7 +15,9 @@ export class AddPostComponent implements OnInit{
   files: FileList;
   user!:User;
   public post:Post[]=[];
-  constructor(private userService:UserService, private fb: FormBuilder,private forumService : ForumService , private router:Router , private http:HttpClient ) {
+  errorMessage: string = 'null';
+
+  constructor(private userService:UserService, private fb: FormBuilder,private forumService : ForumService) {
   }
   ngOnInit(): void {
     this.postForm = this.fb.group({
@@ -37,13 +36,15 @@ export class AddPostComponent implements OnInit{
     this.forumService.addPost(post, this.files).subscribe(
       response => {
         console.log(response);
-        window.location.reload();
-        // Do something with the response, e.g. redirect to the new post's page
+        this.errorMessage = 'Post Added successfully';
+      window.location.reload();
       },
       error => {
-        console.log(error);
-        // Handle any errors that occurred during the POST request
+        if (error?.status === 424) {
+          this.errorMessage = 'Bad Word used';
+        }
       }
+
     );
   }
 }

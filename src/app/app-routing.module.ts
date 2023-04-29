@@ -22,7 +22,10 @@ import {ChatComponent} from "./_base_components/forum-chat/chat/chat.component";
 import {CommentComponent} from "./_base_components/forum-chat/comment/comment.component";
 import {ReactComponent} from "./_base_components/forum-chat/react/react.component";
 import {AddCommentComponent} from "./_base_components/forum-chat/add-comment/add-comment.component";
+import {PostDetailsComponent} from "./_base_components/forum-chat/post-details/post-details.component";
 import {PostsTabComponent} from "./_base_components/back-office/posts-tab/posts-tab.component";
+import {CommentsTabComponent} from "./_base_components/back-office/comments-tab/comments-tab.component";
+import {ReactsTabComponent} from "./_base_components/back-office/reacts-tab/reacts-tab.component";
 
 
 const routes: Routes = [
@@ -45,7 +48,11 @@ const routes: Routes = [
   { path: 'forum/comment', component: CommentComponent },
   { path: 'forum/react', component: ReactComponent },
   { path: 'forum/add-comment', component: AddCommentComponent },
+  { path: 'forum/post-details/:id', component: PostDetailsComponent },
   { path: 'back-office/posts-tab', component: PostsTabComponent },
+  { path: 'back-office/comments-tab', component: CommentsTabComponent },
+  { path: 'back-office/reacts-tab', component: ReactsTabComponent },
+
 
 
 

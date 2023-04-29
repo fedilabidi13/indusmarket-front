@@ -37,7 +37,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Posts List</a>
+            <a class="navbar-brand" href="#pablo">Comments List</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -97,7 +97,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title "> Posts</h4>
+                <h4 class="card-title "> Comments</h4>
 
               </div>
               <div class="card-body" >
@@ -106,23 +106,23 @@
                     <thead>
                     <tr>
                       <th class="text-center">#</th>
-                      <th>Post Title</th>
-                      <th>Post Body</th>
-                      <th>Posted At</th>
-                      <th>Post Pictures</th>
+                      <th>Comment</th>
+                      <th>Commented At</th>
+                      <th>Comment Pictures</th>
+                      <th>PostId</th>
                       <th class="text-right">Actions</th>
                     </tr>
                     </thead>
-                    <tbody *ngFor="let posts of post">
+                    <tbody >
                     <tr >
-                      <td class="text-center">{{posts.id}}</td>
-                      <td>{{posts.postTitle}}</td>
-                      <td>{{posts.body}}</td>
-                      <td>{{posts.createdAt}}</td>
-                      <td><div *ngFor="let media of posts.medias" class="carousel-item active">
-                        <img class="d-block" src="{{media.imagenUrl}}" alt="Third slide" style="width: 300px;">
+                      <td class="text-center">1</td>
+                      <td>un commentaire</td>
+                      <td>30/03/2000</td>
+                      <td><div  class="carousel-item active">
+                        <img class="d-block" src="" alt="Third slide" style="width: 300px;">
 
                       </div></td>
+                      <td>3</td>
 
                       <td class="td-actions text-right">
                         <button type="button" rel="tooltip" class="btn btn-warning btn-sm btn-round btn-icon"  data-toggle="modal" data-target="#myModal2">
@@ -141,6 +141,62 @@
                   </table>
                   <div class="pagination pagination-success justify-content-end">
                     <pagination-controls class="page-item" (pageChange)="onPageChange($event)" id="claim-pagination"></pagination-controls>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title "> Replies</h4>
+
+              </div>
+              <div class="card-body" >
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th>Reply</th>
+                      <th>Replyed At</th>
+                      <th>Reply Pictures</th>
+                      <th>CommentId</th>
+                      <th class="text-right">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody >
+                    <tr >
+                      <td class="text-center">1</td>
+                      <td>un commentaire</td>
+                      <td>30/03/2000</td>
+                      <td><div  class="carousel-item active">
+                        <img class="d-block" src="" alt="Third slide" style="width: 300px;">
+
+                      </div></td>
+                      <td>3</td>
+
+                      <td class="td-actions text-right">
+                        <button type="button" rel="tooltip" class="btn btn-warning btn-sm btn-round btn-icon"  data-toggle="modal" data-target="#myModal2">
+                          <i class="now-ui-icons arrows-1_minimal-down"></i>
+                        </button>
+                        &nbsp;
+                        <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon"  data-toggle="modal" data-target="#myModal1" >
+                          <i class="now-ui-icons ui-1_simple-delete"></i>
+                        </button>
+
+
+                      </td>
+                    </tr>
+
+                    </tbody>
+                  </table>
+                  <div class="pagination pagination-success justify-content-end">
+                    <pagination-controls class="page-item" (pageChange)="onPageChange($event)" id="reply-pagination"></pagination-controls>
                   </div>
 
                 </div>
@@ -180,7 +236,7 @@
 </div>
 
 
-<div class="modal fade modal-mini modal-info" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true" *ngFor="let posts of post">
+<div class="modal fade modal-mini modal-info" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header justify-content-center">
@@ -192,14 +248,14 @@
         <p>Are you sure you want to delete this post ? </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-link btn-neutral" (click)="deletePost(posts.id)" >Yes</button>
+        <button type="button" class="btn btn-link btn-neutral"  >Yes</button>
         <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade modal-mini modal-info" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true" *ngFor="let posts of post">
+<div class="modal fade modal-mini modal-info" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header justify-content-center">

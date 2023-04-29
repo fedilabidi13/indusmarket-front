@@ -40,6 +40,8 @@ import { ChatComponent } from './_base_components/forum-chat/chat/chat.component
 import {CommentComponent} from "./_base_components/forum-chat/comment/comment.component";
 import {ReactComponent} from "./_base_components/forum-chat/react/react.component";
 import {AddCommentComponent} from "./_base_components/forum-chat/add-comment/add-comment.component";
+import { PostDetailsComponent } from './_base_components/forum-chat/post-details/post-details.component';
+import {BackOfficeModule} from "./_base_components/back-office/back-office.module";
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -88,7 +90,9 @@ export function tokenGetter() {
     CommentComponent,
     ReactComponent,
     AddCommentComponent,
+    PostDetailsComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -99,6 +103,7 @@ export function tokenGetter() {
     GoogleMapsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    BackOfficeModule,
   ],
   providers: []
 })

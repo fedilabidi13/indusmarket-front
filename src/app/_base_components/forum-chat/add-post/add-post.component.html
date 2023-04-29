@@ -6,8 +6,8 @@
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link href="/src/assets/demo.css" rel="stylesheet" />
 <div class="profile-page sidebar-collapse">
-<div style="display: flex; align-items: center; justify-content: center; " xmlns="http://www.w3.org/1999/html">
-<div class="col-12 col-lg-6 pb-5">
+<div  xmlns="http://www.w3.org/1999/html">
+<div class="col-12  " style="padding-right: 38%">
   <div
     class="d-flex flex-column justify-content-center w-100 mx-auto    "
     style="padding-top: 56px; max-width: 680px "
@@ -41,6 +41,27 @@
             <div class="modal-header align-items-center">
               <h5 class="text-dark text-center w-100 m-0" id="exampleModalLabel">Create Post</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Alert BadWord Detected-->
+            <div class="row">
+              <div class="alert alert-primary alert-dismissible fade show text-white font-weight-bold" role="alert" *ngIf="errorMessage != 'Post Added successfully' && errorMessage != 'null'">
+                <i class="fas fa-exclamation-circle mr-2"></i>
+                {{errorMessage}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+            <!-- Alert Post Added Successfully-->
+            <div class="row">
+              <div class="alert alert-success alert-dismissible fade show text-white font-weight-bold" role="alert" *ngIf="errorMessage == 'Post Added successfully'">
+                <i class="fas fa-check-circle mr-2"></i>
+                {{errorMessage}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
             </div>
             <!-- body -->
             <div class="modal-body" >
@@ -76,7 +97,7 @@
                 <div class="modal-footer">
                   <div class="d-grid gap-2 col-6 mx-auto">
 
-                  <button class="btn btn-info btn-round btn-lg" type="submit" >Add Post</button>
+                  <button class="btn  w-100  btn-info btn-round btn-lg" type="submit" >Add Post</button>
                   </div>
                 </div>
               </form>
