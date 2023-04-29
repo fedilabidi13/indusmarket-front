@@ -24,6 +24,7 @@ import {ModsDashboardComponent} from "./_base_components/back-office/mods-dashbo
 import {AddEventComponent} from "./_base_components/add-event/add-event.component";
 import {ClaimModComponent} from "./_base_components/back-office/claim-mod/claim-mod.component";
 import {EvantModComponent} from "./_base_components/back-office/evant-mod/evant-mod.component";
+import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
 
 
 const routes: Routes = [
@@ -36,18 +37,16 @@ const routes: Routes = [
   { path: 'shoppingCartNoUser', component: ShoppingCartNoUserComponent },
   { path: 'shop', component: ShopComponent},
   { path: 'Orders', component: OrderComponent },
-
   { path: 'back-office', component: LoginBackComponent },
   { path: 'back-office/dashboard', component: DashboardComponent },
   { path: 'back-office/users', component: UsersTableComponent },
   { path: 'back-office/mods', component: ModsTableComponent },
   { path: 'user-shop', component: UserShopsComponent },
   { path: 'user-product', component: UserProductsComponent },
+  { path: 'verif-location', component: IpVerifComponent },
   {path:'addEvent',component:AddEventComponent},
-
   { path: 'back-office/mod-confirm', component: ModsConfirmComponent },
   { path: 'back-office/mod/dashboard', component: ModsDashboardComponent },
-
   {path:'mod/claim-mod',component:ClaimModComponent},
   {path:'mod/event-mod',component:EvantModComponent},
 

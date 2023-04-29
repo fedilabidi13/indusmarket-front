@@ -43,6 +43,7 @@ import { LoadingComponent } from './_base_components/loading/loading.component';
 import { CameraComponent } from './_base_components/camera/camera.component';
 import { AddEventComponent } from './_base_components/add-event/add-event.component';
 import { TicketUserComponent } from './_base_components/ticket-user/ticket-user.component';
+import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -92,6 +93,8 @@ export function tokenGetter() {
     CameraComponent,
     AddEventComponent,
     TicketUserComponent,
+    RegisterComponent,
+    IpVerifComponent
 
 
   ],
