@@ -19,21 +19,22 @@ export class CartItemService {
   constructor(
     private http: HttpClient,
     private userService: UserService
+
   ) {
     this.user = this.userService.getCurrentUser();
     this.token = localStorage.getItem('currentUser');
   }
-  addAndAssignToCart(productId: number, quantity : number): Observable<string> {
-    const url = `${this.cartItemUrl}/add`;
+
+
+
+  addAndAssignToCart(idproduct: number, qte : number): Observable<string> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    return this.http.post<string>(url, { productId, quantity }, { headers });
+    return this.http.post<string>(`http://localhost:8085/cartItem/add?idproduct=${idproduct}&qte=${1}`, { }, { headers :headers });
   }
 
   updateCartItemQuantity(cartItemId: number, counterValue: number): Observable<void> {
-    const url = `${this.cartItemUrl}/updateCartItemQuantity?cartItemId=${cartItemId}&counterValue=${counterValue}`;
-    const token = localStorage.getItem('currentUser');
-    const headers = { Authorization: `Bearer ${token}` };
-    return this.http.put<void>(url, {}, { headers });
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.post<void>(`http://localhost:8085/cartItem/updateCartItemQuantity?cartItemId=${cartItemId}&counterValue=${counterValue}`, { }, { headers :headers });
   }
 
   deleteCartItemAndRemoveFromCart(cartItemId: number): Observable<void> {

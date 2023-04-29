@@ -5,110 +5,151 @@ import {ShowProductsShopService} from "../../../_services/show-products-shop.ser
 import { CartItemComponent } from "../../cart-item/cart-item.component";
 import {ShoppingCart} from "../../../models/shoppingCart";
 import {map} from "rxjs/operators";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {Product} from "../../../models/product";
 import {CartItem} from "../../../models/cartItem";
+import {HttpHeaders} from "@angular/common/http";
+import {CartItemService} from "../../../_services/cart-item.service";
+import {ShoppingCartService} from "../../../_services/shopping-cart.service";
+
+
 
 @Component({
   selector: 'app-prod',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
+  providers: [CartItemService]
 })
-export class ProductComponent implements OnInit{
-  public productList:Product[]=[];
-  p:number = 1;
-  itemsPerPage:number =6;
-  totalShop:any;
-  selectedIndex =0;
+
+
+export class ProductComponent implements OnInit {
+
+
+  public productList: Product[] = [];
+  p: number = 1;
+  itemsPerPage: number = 6;
+  totalShop: any;
+  selectedIndex = 0;
   @Input() indicators = true;
   @Input() controls = true;
   @Input() autoSlide = false;
   @Input() slideInterval = 3000;
   @Input() product: Product;
   shoppingCart: ShoppingCart;
-  quantity = 1
+  quantity = 1;
+  errorMessage: string;
 
-  public addToCart( item: any ): void {
+  idProd: any
+
+
+  public addToCart(item: any): void {
     const cartItem = new CartItem(item.idProduct, 1, item, this.loadShoppingCart());
     this.shoppingCart.cartItemList.push(cartItem);
-
     // Store the shopping cart in local storage
     const shoppingCartJson = JSON.stringify(this.shoppingCart);
     localStorage.setItem('shoppingCart', shoppingCartJson);
   }
+
   loadShoppingCart(): ShoppingCart {
     const shoppingCartJson = localStorage.getItem('shoppingCart');
     if (shoppingCartJson) {
       return JSON.parse(shoppingCartJson);
     } else {
       const myShoppingCart = new ShoppingCart();
-      myShoppingCart.cartItemList=[];
-      myShoppingCart.id=1;
+      myShoppingCart.cartItemList = [];
+      myShoppingCart.id = 1;
       return myShoppingCart;
     }
   }
 
 
+  public indexImage: object = {};
 
-
-
-
-  public indexImage:object={};
-  constructor(private ac:ActivatedRoute,private api:ShowProductsShopService,private api1:ShowShopsService){
+  constructor( private shoppingCartService: ShoppingCartService, private ac: ActivatedRoute, private api: ShowProductsShopService, private api1: ShowShopsService, private CartItemService: CartItemService) {
     this.shoppingCart = this.loadShoppingCart();
 
   }
+
   routeSub: Subscription;
-  id:any;
-  messageSuccess:string="";
-  ngOnInit():void{
+  id: any;
+  messageSuccess: string = "";
+
+  ngOnInit(): void {
     this.routeSub = this.ac.params.subscribe((params: Params) => {
       this.id = params['id'];
 
     });
 
     this.api.getProduct(this.id)
-      .subscribe(res=>{
+      .subscribe(res => {
         this.productList = res;
-        for(let shop of this.productList){
+        for (let shop of this.productList) {
 
-          this.indexImage[shop.idProduct]=0;
+          this.indexImage[shop.idProduct] = 0;
         }
         console.log(this.productList)
       })
   }
 
-  selectImage(idImage:number,index: number):void{
-    this.indexImage[idImage]=index;
+  selectImage(idImage: number, index: number): void {
+    this.indexImage[idImage] = index;
   }
 
-  onPrevClick(idImage: number,longeur:number):void{
-    if(this.indexImage[idImage]===0){
-    }else {
+  onPrevClick(idImage: number, longeur: number): void {
+    if (this.indexImage[idImage] === 0) {
+    } else {
       this.indexImage[idImage]--;
     }
   }
-  onNextClick(idImage:number,longeur:number ):void{
-    if(this.indexImage[idImage] === longeur -1){
+
+  onNextClick(idImage: number, longeur: number): void {
+    if (this.indexImage[idImage] === longeur - 1) {
       this.indexImage[idImage] = 0;
-    }else{
+    } else {
       this.indexImage[idImage]++;
     }
   }
 
 
-    addRating(rateValue){
+  addRating(rateValue) {
     console.log(rateValue);
-      this.messageSuccess="Shop Rated Successfully";
-    this.api.addRating(this.id,rateValue).subscribe((data)=>
-    {
+    this.messageSuccess = "Shop Rated Successfully";
+    this.api.addRating(this.id, rateValue).subscribe((data) => {
 
-      setTimeout(()=>{
-        this.messageSuccess=""
-      },3000)
-      console.log(data)})
-    }
+      setTimeout(() => {
+        this.messageSuccess = ""
+      }, 3000)
+      console.log(data)
+    })
+  }
+
+
+  addProductToCart(productId: number, quantity: number) {
+    this.CartItemService.addAndAssignToCart(productId, quantity).subscribe(
+      (response) => {
+        console.log('New cart item created:', response);
+        this.errorMessage = 'Post Added successfully';
+        window.location.reload();
+
+      })
+
+
+  }
+
+  checkCurrentQuantity(idProd: number): void {
+    this.api.checkCurrentQuantity(idProd).subscribe(
+      (response) => {
+        console.log('Current quantity:', response);
+      },
+      (error) => {
+        console.log('Error checking current quantity:', error);
+      }
+    );
+  }
 
 
 
 }
+
+
+

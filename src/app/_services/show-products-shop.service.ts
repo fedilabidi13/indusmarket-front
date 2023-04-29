@@ -6,11 +6,15 @@ import {Shop} from "../models/shop";
 import {Observable} from "rxjs";
 import {Product} from "../models/product";
 import {Rating} from "../models/rating";
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShowProductsShopService {
+  private  cartItemUrl = "http://localhost:8085/cartItem";
+  private user: User;
+  private token: string;
   private shopId: number;
   private httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json','Authorization':""})
@@ -23,6 +27,16 @@ export class ShowProductsShopService {
     const url = "http://localhost:8085/shop/findAllProducts/"+id;
     return this.http.get<Product[]>(url);
   }
+
+
+
+  checkCurrentQuantity(idProd: number): Observable<number>{
+const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.get<number>(`http://localhost:8085/product/checkCurrentQuantity?idProd=${idProd}`,{headers: headers});
+  }
+
+
+
   getProd(){
     return this.http.get<Product[]>("http://localhost:8085/product/ShowAllProductsForUser")
       .pipe(map((res:any)=>{
@@ -48,4 +62,12 @@ export class ShowProductsShopService {
         return res;
       }))
   }
+
+  addAndAssignToCart(productId: number, quantity : number): Observable<string> {
+    const url = `${this.cartItemUrl}/add`;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.post<string>(url, { productId, quantity }, { headers });
+  }
+
+
 }

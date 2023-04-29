@@ -2,6 +2,8 @@ import { Address } from "./adresse";
 import { BanType } from "./enumerations/BanType";
 import { Role } from "./enumerations/Role";
 import { Media } from "./media";
+import {Expose} from "class-transformer";
+import {Type} from "@angular/core";
 import {ShoppingCart} from "./shoppingCart";
 
 export class User {
@@ -11,7 +13,7 @@ export class User {
     email!: string;
     password!: string;
     address!: Address ;
-    role!: Role ;
+    role!: string ;
     enabled!: boolean;
     firstAttempt!: boolean;
     phoneNumber!: number;
@@ -22,7 +24,7 @@ export class User {
     phoneNumberVerif!: boolean;
     emailVerif!:boolean;
     picture!:Media ;
-    shoppingCart!: ShoppingCart ;
+    shoppingCart!:ShoppingCart;
 
 
 }

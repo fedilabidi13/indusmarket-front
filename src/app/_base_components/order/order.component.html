@@ -26,8 +26,8 @@
                     <th scope="col">Total Amount</th>
                     <th scope="col">Status</th>
                     <th scope="col">Paiment</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">annuler</th>
+                    <th scope="col">show</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -36,6 +36,7 @@
                     <td>{{ order.creationDate }}</td>
                     <td>{{ order.totalAmount }}</td>
                     <td>{{ order.ordersStatus }}</td>
+
                     <td>
                       <ng-container *ngIf="!order.paid; else paid">
                         <button class="btn btn-warning btn-round" type="button">Checkout</button>
@@ -45,13 +46,17 @@
                         <button class="btn btn-warning btn-round" type="button" disabled>Checkout</button>
                       </ng-template>
                     </td>
-                    <td style="color:black"> <a (click)="onDeleteOrder(order.id)" style="color: black;">
-                            <span class="delete-icon">
-                            <i class="fas fa-trash-alt"></i>
-                            <span>Delete</span>
-                            </span>
-                    </a></td>
-                    <td style="color:black"><i class="now-ui-icons ui-1_zoom-bold"></i></td>
+                    <td>
+                      <button class="btn btn-warning btn-round" type="button" (click)="onDeleteOrder(order.id)">Cancel
+                      </button>
+
+                    </td>
+                    <td>
+                    <div>
+                      <button class="btn btn-warning btn-round" type="button" (click)="fetchProducts(order.id)">Show</button>
+                    </div>
+
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -62,30 +67,57 @@
               <div class="col-lg-5">
                 <div class="card bg-primary text-white rounded-3">
                   <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0" style="color: #00bbff;">Your informations</h5>
-                      <img src="https://icon-library.com/images/consistent-icon/consistent-icon-23.jpg" alt="Your Image" style="width: 70px; height: 70px; border-radius: 50%; margin-left: auto;">
+
+
+                    <div class="cart" *ngIf=" showProducts && products && products.length > 0">
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0" style="color: #00bbff;">Your orderd products</h5>
+                        <img src="https://icon-library.com/images/consistent-icon/consistent-icon-23.jpg" alt="Your Image" style="width: 70px; height: 70px; border-radius: 50%; margin-left: auto;">
+                      </div>
+                      <div class="table-container d-flex align-items-center justify-content-center">
+                        <table class="table table-striped">
+                          <thead>
+                          <tr>
+                            <th scope="col">Picture</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let product of products">
+                            <td>
+                              <img src="{{ product.medias[0].imagenUrl }}" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                            </td>
+                            <td >{{ product.name }}</td>
+                            <td >{{ product.price }}</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+
                     </div>
 
 
-                    <p style="color: black">Name: {{ currentUser.firstName }} {{ currentUser.lastName }}</p>
-                    <p style="color: black">Email: {{ currentUser.email }}</p>
-                    <p style="color: black">Phone Number: {{ currentUser.phoneNumber }}</p>
-                    <p style="color: black">Adresse: {{ currentUser.address }}</p>
-                    <hr class="my-4" style="color: #005cbf">
+                    <p *ngIf="products && products.length === 0">No products found for order ID {{ orderId }}.</p>
 
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0" style="color: black;">UpDate your delivery adresse</h5>
-                      <button class=" btn btn-round btn-info" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">update</button>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0" style="color:black;">Check out your profile</h5>
-                      <button class="btn btn-round btn-info">profil</button>
+
+
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img class="custom-img" src="https://res.cloudinary.com/dh3co0nj3/image/upload/v1681441129/Our_Event_hvb2s0.png" alt="First slide">
+                      </div>
+                      <div class="carousel-item" *ngFor="let event of events">
+                        <img [style.width.px]="50" [style.height.px]="50" class="custom-img" src="{{event.medias[0].imagenUrl}}" alt="Second slide">
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5 class="event-title">{{event.title}}</h5>
+                          <p class="event-date">{{event.startDate|date}}</p>
+                          <a href="#" class="btn btn-primary btn-participate">Participate</a> <!-- Add Participate button here -->
+                        </div>
+                      </div>
+
                     </div>
                   </div>
-
-
-
 
 
                 </div>

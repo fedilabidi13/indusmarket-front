@@ -5,6 +5,7 @@ import { Orders} from "../models/order";
 import {CartItem} from "../models/cartItem";
 import {UserService} from "./user.service";
 import {User} from "../models/user";
+import {Product} from "../models/product";
 
 @Injectable({
   providedIn: 'root'
@@ -33,9 +34,8 @@ export class OrderService {
 
 
   deleteOrder(orderId: number): Observable<void> {
-    const url = `${this.orderUrl}/delete?orderId=${orderId}`;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    return this.http.delete<void>(url, { headers });
+    return this.http.post<void>(`http://localhost:8085/order/delete?orderId=${orderId}`, {  }, {headers: headers});
   }
 
 
@@ -46,6 +46,16 @@ export class OrderService {
     return this.http.get<Orders[]>('http://localhost:8085/order/orderList', {headers: headers});
 
     };
+
+
+  getProductsForOrder(orderId: number): Observable<Product[]> {
+    this.user = this.userService.getCurrentUser()
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    // @ts-ignore
+    return this.http.get<Product[]>(`http://localhost:8085/order/TheOrder?orderId=${orderId}`, {}, {headers: headers});
+  }
+
 
 
 }

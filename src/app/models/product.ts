@@ -1,10 +1,12 @@
 import {Category} from "./enumerations/Category";
 import {Media} from "./media";
 import {Shop} from "./shop";
+import {Orders} from "./order";
 
 export class Product{
   idProduct!:number;
   reference!:string;
+  order!:Orders[];
   name!:string;
   quantity!:number;
   price!:number;

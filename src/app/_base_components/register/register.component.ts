@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/_services/user.service';
-import {ShoppingCart} from "../../models/shoppingCart";
 import {CartItemService} from "../../_services/cart-item.service";
 
 
@@ -13,17 +12,20 @@ import {CartItemService} from "../../_services/cart-item.service";
 
 })
 export class RegisterComponent {
+  loading = true;
   created = true;
   not_created = true;
   message!: String;
-  constructor(private userService:UserService, private CartItemService: CartItemService){}
-
+  constructor(private CartItemService: CartItemService ,private userService:UserService){}
 
   register(registerForm: NgForm){
+    this.loading=false;
     this.userService.register(registerForm.value).subscribe(
       (response)=>{
         this.created=false;
         this.message=response
+        this.loading=true;
+
         const shoppingCartJSON = localStorage.getItem('shoppingCart');
 
 
@@ -43,8 +45,10 @@ export class RegisterComponent {
         this.not_created=false;
         this.message=error;
         this.created=true;
+        this.loading=true;
 
-            }
+
+      }
 
     );
 }

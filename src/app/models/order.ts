@@ -1,6 +1,7 @@
 import { OrdersStatus } from "./enumerations/ordersStatus";
 import {User} from "./user";
 import {CartItem} from "./cartItem";
+import {Product} from "./product";
 
 export class Orders {
   id: number;
@@ -11,5 +12,6 @@ export class Orders {
   creationDate: Date;
   secondCartItemList: CartItem[];
   dilevryAdresse: string;
+  Product:Product[];
 }
 

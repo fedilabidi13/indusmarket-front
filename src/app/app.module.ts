@@ -23,6 +23,7 @@ import {GoogleMapsModule} from "@angular/google-maps";
 import {ClaimsComponent} from "./_base_components/claims/claims.component";
 //import { ClaimsComponent } from './claims/claims.component';
 
+
 import {ShopComponent} from "./_base_components/shop-module/shop/shop.component";
 import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.component";
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
@@ -42,6 +43,7 @@ import { EventUserComponent } from './_base_components/event-user/event-user.com
 import { LoadingComponent } from './_base_components/loading/loading.component';
 import { CameraComponent } from './_base_components/camera/camera.component';
 import { AddEventComponent } from './_base_components/add-event/add-event.component';
+import {from} from "rxjs";
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -103,6 +105,7 @@ export function tokenGetter() {
         BrowserAnimationsModule,
         GoogleMapsModule,
         NgxPaginationModule,
+
     ],
     providers: [],
     exports: [

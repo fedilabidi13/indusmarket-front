@@ -1,4 +1,5 @@
 <app-nav2></app-nav2>
+<ng-container *ngIf = "cartItems.length !=0">
 <section class="h-100 h-custom" style="background-color: #eee; margin-top: 50px;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -7,8 +8,8 @@
           <div class="card-body p-4">
             <div class="row">
               <div class="col-lg-7">
-                <h5 class="mb-3"><a href="#!" class="text-body"><i
-                  class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
+                <h5 class="mb-3"><a href="/profile" class="text-body"><i
+                  class="fas fa-long-arrow-alt-left me-2"></i> Go to your profile</a></h5>
                 <hr>
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -21,7 +22,7 @@
 
 
                 <div class="card mb-3" *ngFor="let item of cartItems">
-                  <div class="card-body">
+                  <div class="card-body" >
                     <div class="d-flex justify-content-between">
 
                       <div class="d-flex flex-row align-items-center">
@@ -34,44 +35,100 @@
                         </div>
                       </div>
 
+
+
                       <div class="d-flex justify-content-between align-items-center">
-                        <div style="margin-right: 20px;">
-                          <div style="width: 85px;">
-                            <input type="number" class="form-control" [(ngModel)]="item.quantity" id="input1" placeholder="quantity">
+                        <div style="margin-right: 35px;">
+                          <div style="width: 60px;">
+                            <input type="number" class="form-control" [(ngModel)]="item.quantity" id="input1" placeholder="Q" min="1" max="900" (input)="updateCartItemQuantity(item.id , item.quantity)">
                           </div>
                         </div>
                         <div style="width: 80px;">
                           <h5 class="mb-0">{{ item.product.price * item.quantity }} dt</h5>
                         </div>
-
+                        <div style="margin-right: 15px;">
                         <a (click)="onDeleteCartItem(item.id)" style="color: #cecece;">
                             <span class="delete-icon">
                             <i class="fas fa-trash-alt"></i>
                             <span>Delete</span>
                             </span>
                         </a>
+
+                        </div>
+
+                        <div>
+                           <div style="margin-right: 35px;">
+                           <a  style="color: #cecece;" data-bs-toggle="modal" [attr.data-bs-target]="'#productDetailsModal'+item.id">
+                                <span class="show-icon">
+                                <i class="now-ui-icons gestures_tap-01"></i>
+                                   <span>show</span>
+                            </span>
+                           </a>
+                             </div>
+
+
+                           <div class="modal fade" [id]="'productDetailsModal'+item.id" tabindex="-1" aria-labelledby="productDetailsModalLabel" aria-hidden="true">
+
+                             <div class="modal-dialog modal-dialog-centered">
+                               <div class="modal-content">
+                                 <div class="modal-header bg-light">
+                                   <h5 class="modal-title" id="productDetailsModalLabel">{{ item.product.name }} Details</h5>
+                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                 </div>
+                                 <div class="modal-body">
+                                   <div class="row">
+                                     <div class="col-md-6">
+                                       <img class="img-fluid rounded" [src]="item.product.medias[0].imagenUrl" alt="Product image">
+                                     </div>
+                                     <div class="col-md-6">
+                                       <p class="fw-bold fs-5 mb-0">{{ item.product.name }}</p>
+                                       <p class="text-muted">{{ item.product.description }}</p>
+                                       <hr>
+                                       <p class="fw-bold fs-5 mb-0"> Price: {{ item.product.price }} TD</p>
+                                       <p class="text-muted" style="color: #3aaf85">In Stock: {{ item.product.quantity }}</p>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+
+
+                           </div>
+                        </div>
+
+
                       </div>
+
+
                     </div>
                   </div>
               </div>
               </div>
 
-              <div class="col-lg-5">
+
+
+              <div class="col-lg-5"  style="width: 450px">
                 <div class="card bg-primary text-white rounded-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0" style="color: #00bbff;">Product you may like</h5>
+                      <h5 class="mb-0" style="color: #00bbff;">Products You May Like</h5>
+                      <i  style="color: red" class="now-ui-icons ui-2_favourite-28"></i>
                     </div>
-                    <div *ngIf="recommendedProduct">
+                    <div *ngIf="recommendedProduct" class="text-center">
 
-                      <h6 style="color: black">{{ recommendedProduct.name }}</h6>
-                      <p style="color: black">{{ recommendedProduct.medias}</p>
-                      <p style="color: black">{{ recommendedProduct.description }}</p>
-                      <p style="color: black">Price: {{ recommendedProduct.price }}</p>
+                      <img src="{{recommendedProduct.medias[0].imagenUrl}}" alt="Raised Image" class="rounded img-raised">
+                       <hr>
+                      <h3 class="mb-1" style="color: black"> Name: {{ recommendedProduct.name }}</h3>
+                      <p class="mb-3" style="color: black" > Descriptio: {{ recommendedProduct.description }}</p>
+                      <p class="mb-0" style="color: black" >Price: {{ recommendedProduct.price }}</p>
+                      <a class="btn btn-info btn-round btn-lg btn-block" routerLink="/shop" [queryParams]="{shopId: recommendedProduct.shop.idShop}">Go to Shop</a>
+
                     </div>
+
                   </div>
                 </div>
               </div>
+
 
 
               <div class="col-lg-4 col-xl-7">
@@ -86,7 +143,6 @@
 
                   <div class="col-md-6">
                     <a class="btn btn-info btn-round btn-lg btn-block" (click)="onCreateOrder()" routerLink="/Orders">Create Order</a>
-
                   </div>
 
                 </div>
@@ -102,3 +158,29 @@
     </div>
   </div>
 </section>
+</ng-container>
+
+<ng-container *ngIf="cartItems.length==0">
+  <div class="d-flex align-items-center justify-content-center vh-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center mb-5">
+          <p class="lead">Browse our collection of products</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card">
+            <div class="card-body text-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSebsaqxu9d6UFSTitU-XvcTFVaE1mEDbXgVQ&usqp=CAU" alt="" class="mb-4">
+              <h4 class="card-title">Your Cart is Empty</h4>
+              <p class="card-text">Please add items to your cart to continue shopping</p>
+              <button class="btn btn-info btn-round" type="button" routerLink="/shop">Shop now !</button>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</ng-container>
