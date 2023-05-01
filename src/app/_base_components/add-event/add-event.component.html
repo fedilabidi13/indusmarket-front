@@ -1,48 +1,53 @@
 <div class="modal-dialog modal-xl">
   <div class="modal-content">
+
     <div class="container py-5" style="position: absolute; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col">
           <div class="card my-4 shadow-3">
             <div class="row g-0">
-
-        <div class="col-xl-6 d-xl-block bg-image">
-          <img src="https://res.cloudinary.com/dh3co0nj3/image/upload/v1681441129/Our_Event_hvb2s0.png" alt="Sample photo"
+              <div class="col-xl-6 d-xl-block bg-image">
+          <img src="https://res.cloudinary.com/dh3co0nj3/image/upload/v1681441129/Our_Event_hvb2s0.png" style="height: 100%;" alt="Sample photo"
                class="img-fluid" />
         </div>
         <div class="col-xl-6">
           <div class="card-body p-md-5 text-black">
             <h3 class="mb-4 text-uppercase">Add event</h3>
-<form (ngSubmit)="onSubmit(eventForm)" #eventForm="ngForm" enctype="multipart/form-data">
-  <div class="form-outline">
-    <label class="form-label" for="form3Example81">Event Name</label>
-    <input class="form-control form-control-lg" type="text" id="form3Example81" name="title" [(ngModel)]="event.title" required>
+<form (ngSubmit)="onSubmit(eventForm)" #eventForm="ngForm"enctype="multipart/form-data">
+  <div class="row">
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form3Example1m">Event Name</label>
+    <input class="form-control " type="text" id="form3Example1m" name="title" [(ngModel)]="event.title" required>
+  </div>
   </div>
   <div class="row">
-  <div class="form-outline">
+  <div class="form-outline mb-4">
     <label class="form-label" for="form3Example82">Event Description</label>
-    <textarea class="form-control form-control-lg" id="form3Example82" name="description" [(ngModel)]="event.description" required></textarea>
+    <textarea class="form-control" id="form3Example82" name="description" [(ngModel)]="event.description" required></textarea>
   </div>
   </div>
   <div class="row">
   <div class="col-md-6 mb-4">
     <label class="form-label" for="form3Example83">Start Date</label>
-    <input class="form-control form-control-lg" type="datetime-local" id="form3Example83" name="startDate" [ngModel]="event.startDate | date:'yyyy-MM-ddTHH:mm:ss'" (ngModelChange)="event.startDate=$event" required>
+    <input class="form-control" type="datetime-local" id="form3Example83" name="startDate" [ngModel]="event.startDate | date:'yyyy-MM-ddTHH:mm:ss'" (ngModelChange)="event.startDate=$event" required>
   </div>
   <div class="col-md-6 mb-4">
     <label class="form-label" for="form3Example84">End Date</label>
-    <input class="form-control form-control-lg" type="datetime-local" id="form3Example84" name="endDate" [ngModel]="event.endDate | date:'yyyy-MM-ddTHH:mm:ss'" (ngModelChange)="event.endDate=$event" required>
+    <input class="form-control " type="datetime-local" id="form3Example84" name="endDate" [ngModel]="event.endDate | date:'yyyy-MM-ddTHH:mm:ss'" (ngModelChange)="event.endDate=$event" required>
   </div>
   </div>
   <div class="form-outline mb-4">
-    <label class="form-label" for="form3Example85">Address</label>
-    <input class="form-control form-control-lg" type="text" id="form3Example85" name="adresse" [(ngModel)]="event.adresse" required>
+    <label class="form-label" for="form3Example1n">Address</label>
+    <input class="form-control" type="text" id="form3Example1n" name="adresse" [(ngModel)]="event.adresse" required>
   </div>
+  <div class="row">
   <div class="form-outline mb-4">
-    <label class="form-label" for="form3Example86">Images</label>
-    <input class="form-control form-control-lg" type="file" id="form3Example86" accept="image/*" (change)="onFileSelected($event)" multiple required>
+    <label class="mb-3" for="form3Example86">Images</label>
+    <input class="form-control" type="file" id="form3Example86" accept="image/*" (change)="onFileSelected($event)" multiple required>
   </div>
-  <button class="btn btn-success btn-lg ms-2 btn-round" type="submit" style="background-color: hsl(210, 100%, 50%);" [disabled]="eventForm.invalid">Submit</button>
+  </div>
+  <button class="btn btn-info btn-round  btn-lg" type="submit"  [disabled]="eventForm.invalid">   Add   </button>
 </form>
 </div>
 </div>

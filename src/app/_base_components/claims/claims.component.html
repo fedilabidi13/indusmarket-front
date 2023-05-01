@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<button class="btn btn-info btn-sm btn-icon" data-bs-toggle="modal" data-bs-target="#exampleModalClaim">
+<button class="btn btn-info btn-round  btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModalClaim">
   <i class="fas fa-plus"></i>
 </button>
 <div class="modal fade" id="exampleModalClaim" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,8 +41,8 @@
         <div class="modal-content">
           <img [src]="selectedMedia?.imagenUrl" [style.width.px]="500" [style.height.px]="500" class="center-image">
           <button (click)="closeImageModal()" class="close-button"><i class="fas fa-times"></i></button>
-          <button style="color: red" class="arrow-button left" (click)="onPreviousClick(claim)" [hidden]="claim.medias.length<=1" ><i class="fas fa-chevron-left"></i></button>
-          <button style="color: red" class="arrow-button right" (click)="onNextClick(claim)" [hidden]="claim.medias.length<=1"><i class="fas fa-chevron-right"></i></button>
+          <button style="color: black" class="arrow-button left" (click)="onPreviousClick(claim)" [hidden]="claim.medias.length<=1" ><i class="fas fa-chevron-left"></i></button>
+          <button style="color: black" class="arrow-button right" (click)="onNextClick(claim)" [hidden]="claim.medias.length<=1"><i class="fas fa-chevron-right"></i></button>
         </div>
       </div>
     </td>

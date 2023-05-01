@@ -22,15 +22,11 @@ export class EventUserComponent {
   public isImageModalOpen = false;
   showText = false;
   public isAddModalOpen=false;
-  private refreshSubscription: Subscription;
   id: number;
   constructor(private eventService: EventService) {}
     ngOnInit(): void {
     this.getEvents(); // Get claims on component init
-    this.refreshSubscription = interval(1000).subscribe(() => {
-      // Refresh claims array every 5 seconds
-      this.getEvents();
-    });
+
   }
 
   private getEvents(): void {
@@ -39,10 +35,6 @@ export class EventUserComponent {
     });
   }
 
-  ngOnDestroy(): void {
-    // Unsubscribe from refresh subscription on component destroy
-    this.refreshSubscription.unsubscribe();
-  }
   onPageChange(event: any): void {
     this.currentPage = event;
   }
