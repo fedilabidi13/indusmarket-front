@@ -1,0 +1,204 @@
+<app-nav2></app-nav2>
+<section class="h-100 h-custom" style="background-color: #eee; margin-top: 50px;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-lg-7">
+                <h5 class="mb-3"><a href="#!" class="text-body"><i
+                  class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
+                <hr>
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                  <div>
+
+                    <p>You have {{getUnpaidOrdersCount()}} Order(s) not pay</p>
+
+                  </div>
+                </div>
+                <table class="table table-sm table-active text-center">
+                  <thead>
+                  <tr>
+
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Total Amount</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Paiment</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let order of orders" class="align-middle" >
+
+                    <td>{{ order.creationDate }}</td>
+                    <td>{{ order.totalAmount }}</td>
+                    <td>{{ order.ordersStatus }}</td>
+                    <td>
+                      <ng-container *ngIf="!order.paid; else paid">
+                        <button class="btn btn-warning btn-round" type="button">Checkout</button>
+
+                      </ng-container>
+                      <ng-template #paid>
+                        <button class="btn btn-warning btn-round" type="button" disabled>Checkout</button>
+                      </ng-template>
+                    </td>
+                    <td style="color:black"> <a (click)="onDeleteOrder(order.id)" style="color: black;">
+                            <span class="delete-icon">
+                            <i class="fas fa-trash-alt"></i>
+                            <span>Delete</span>
+                            </span>
+                    </a></td>
+                    <td style="color:black"><i class="now-ui-icons ui-1_zoom-bold"></i></td>
+                  </tr>
+                  </tbody>
+                </table>
+
+
+              </div>
+
+              <div class="col-lg-5">
+                <div class="card bg-primary text-white rounded-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                      <h5 class="mb-0" style="color: #00bbff;">Your informations</h5>
+                      <img src="https://icon-library.com/images/consistent-icon/consistent-icon-23.jpg" alt="Your Image" style="width: 70px; height: 70px; border-radius: 50%; margin-left: auto;">
+                    </div>
+
+
+                    <p style="color: black">Name: {{ currentUser.firstName }} {{ currentUser.lastName }}</p>
+                    <p style="color: black">Email: {{ currentUser.email }}</p>
+                    <p style="color: black">Phone Number: {{ currentUser.phoneNumber }}</p>
+                    <p style="color: black">Adresse: {{ currentUser.address }}</p>
+                    <hr class="my-4" style="color: #005cbf">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                      <h5 class="mb-0" style="color: black;">UpDate your delivery adresse</h5>
+                      <button class=" btn btn-round btn-info" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">update</button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                      <h5 class="mb-0" style="color:black;">Check out your profile</h5>
+                      <button class="btn btn-round btn-info">profil</button>
+                    </div>
+                  </div>
+
+
+
+
+
+                </div>
+              </div>
+
+
+              <div class="col-lg-4 col-xl-7">
+                <div class="card-body">
+                  <hr class="my-4">
+
+                  <div class="d-flex justify-content-between mb-6">
+                    <p class="mb-2" style="color: black;"> If you wish to file a claim for an order, please click on the 'Claim' </p>
+                  </div>
+
+
+
+                </div>
+              </div>
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                  <div class="modal-content">
+
+                    <div class="container py-5" style="position: absolute; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;">
+                      <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col">
+                          <div class="card my-4 shadow-3">
+                            <div class="row g-0">
+                              <div class="col-xl-6 d-xl-block bg-image">
+                                <img src="https://mdbcdn.b-cdn.net/img/Others/extended-example/delivery.webp" alt="Sample photo"
+                                     class="img-fluid" />
+                              </div>
+                              <div class="col-xl-6">
+                                <div class="card-body p-md-5 text-black">
+                                  <h3 class="mb-4 text-uppercase">Delivery Info</h3>
+
+                                  <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                      <div class="form-outline">
+                                        <input type="text" id="form3Example1m" class="form-control form-control-lg" />
+                                        <label class="form-label" for="form3Example1m">First name</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                      <div class="form-outline">
+                                        <input type="text" id="form3Example1n" class="form-control form-control-lg" />
+                                        <label class="form-label" for="form3Example1n">Last name</label>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example8" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example8">Address</label>
+                                  </div>
+
+
+
+                                  <div class="row">
+                                    <div class="col-md-6 mb-4">
+
+                                      <select class="select">
+                                        <option value="1">State</option>
+                                        <option value="2">Option 1</option>
+                                        <option value="3">Option 2</option>
+                                        <option value="4">Option 3</option>
+                                      </select>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                      <select class="select">
+                                        <option value="1">City</option>
+                                        <option value="2">Option 1</option>
+                                        <option value="3">Option 2</option>
+                                        <option value="4">Option 3</option>
+                                      </select>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example3" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example3">Zip</label>
+                                  </div>
+
+                                  <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example2" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example2">Email</label>
+                                  </div>
+
+                                  <div class="d-flex justify-content-end pt-3">
+                                    <button type="button" class="btn btn-success btn-lg ms-2"
+                                            style="background-color:hsl(210, 100%, 50%) ">Place order</button>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -57,7 +57,6 @@
 
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto">
-          <h4 class="title text-center">My Shops</h4>
           <div class="nav-align-center">
             <ul class="nav nav-pills nav-pills-info nav-pills-just-icons" role="tablist">
               <li class="nav-item">
@@ -71,83 +70,112 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#messages" role="tablist">
+                <a class="nav-link" id="Event-tab" data-toggle="tab" href="#event" role="tablist" aria-controls="profile" aria-selected="false">
                   <i class="now-ui-icons sport_user-run"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " id="Claims-tab" data-toggle="tab" href="#Claims" role="tablist" aria-controls="profile" aria-selected="false">
+                  <i class="now-ui-icons emoticons_satisfied"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " id="Ticket-tab" data-toggle="tab" href="#Ticket" role="tablist" aria-controls="profile" aria-selected="false">
+                    <i class="now-ui-icons media-1_album"></i>
                 </a>
               </li>
             </ul>
           </div>
         </div>
+        <div class="tab-content">
+          <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            fghfj
+          </div>
+          <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">..jyuf.</div>
+          <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">..srq.</div>
+          <div class="tab-pane" id="event" role="tabpanel" aria-labelledby="Event-tab">
+            <h4 class="title text-center">My Events</h4>
+            <app-event-user></app-event-user>
+          </div>
+          <div class="tab-pane" id="Claims" role="tabpanel" aria-labelledby="Claims-tab">
+            <h4 class="title text-center">My Claims</h4>
+            <app-claims></app-claims>
+          </div>
+          <div class="tab-pane" id="Ticket" role="tabpanel" aria-labelledby="Ticket-tab">
+            <h4 class="title text-center">My Tickets</h4>
+            <app-ticket-user></app-ticket-user>
+          </div>
+        </div>
         <!-- Tab panes -->
         <div class="card bg-gray-50 ">
-        <table class="table text-white">
-          <thead>
-          <tr>
-            <th class="text-center">#</th>
-            <th>Name</th>
-            <th>Job Position</th>
-            <th>Since</th>
-            <th class="text-right">Salary</th>
-            <th class="text-right">Actions</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td class="text-center">1</td>
-            <td>Andrew Mike</td>
-            <td>Develop</td>
-            <td>2013</td>
-            <td class="text-right">&euro; 99,225</td>
-            <td class="td-actions text-right">
-              <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
-                <i class="now-ui-icons users_single-02"></i>
-              </button>
-              <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                <i class="now-ui-icons ui-2_settings-90"></i>
-              </button>
-              <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
-                <i class="now-ui-icons ui-1_simple-remove"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center">2</td>
-            <td>John Doe</td>
-            <td>Design</td>
-            <td>2012</td>
-            <td class="text-right">&euro; 89,241</td>
-            <td class="td-actions text-right">
-              <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">
-                <i class="now-ui-icons users_single-02"></i>
-              </button>
-              <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
-                <i class="now-ui-icons ui-2_settings-90"></i>
-              </button>
-              <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
-                <i class="now-ui-icons ui-1_simple-remove"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center">3</td>
-            <td>Alex Mike</td>
-            <td>Design</td>
-            <td>2010</td>
-            <td class="text-right">&euro; 92,144</td>
-            <td class="td-actions text-right">
-              <button type="button" rel="tooltip" class="btn btn-info btn-simple btn-icon btn-sm">
-                <i class="now-ui-icons users_single-02"></i>
-              </button>
-              <button type="button" rel="tooltip" class="btn btn-success btn-simple btn-icon btn-sm">
-                <i class="now-ui-icons ui-2_settings-90"></i>
-              </button>
-              <button type="button" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm">
-                <i class="now-ui-icons ui-1_simple-remove"></i>
-              </button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+<!--        <table class="table text-white">-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th class="text-center">#</th>-->
+<!--            <th>Name</th>-->
+<!--            <th>Job Position</th>-->
+<!--            <th>Since</th>-->
+<!--            <th class="text-right">Salary</th>-->
+<!--            <th class="text-right">Actions</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--          <tr>-->
+<!--            <td class="text-center">1</td>-->
+<!--            <td>Andrew Mike</td>-->
+<!--            <td>Develop</td>-->
+<!--            <td>2013</td>-->
+<!--            <td class="text-right">&euro; 99,225</td>-->
+<!--            <td class="td-actions text-right">-->
+<!--              <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">-->
+<!--                <i class="now-ui-icons users_single-02"></i>-->
+<!--              </button>-->
+<!--              <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">-->
+<!--                <i class="now-ui-icons ui-2_settings-90"></i>-->
+<!--              </button>-->
+<!--              <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">-->
+<!--                <i class="now-ui-icons ui-1_simple-remove"></i>-->
+<!--              </button>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td class="text-center">2</td>-->
+<!--            <td>John Doe</td>-->
+<!--            <td>Design</td>-->
+<!--            <td>2012</td>-->
+<!--            <td class="text-right">&euro; 89,241</td>-->
+<!--            <td class="td-actions text-right">-->
+<!--              <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">-->
+<!--                <i class="now-ui-icons users_single-02"></i>-->
+<!--              </button>-->
+<!--              <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">-->
+<!--                <i class="now-ui-icons ui-2_settings-90"></i>-->
+<!--              </button>-->
+<!--              <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">-->
+<!--                <i class="now-ui-icons ui-1_simple-remove"></i>-->
+<!--              </button>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td class="text-center">3</td>-->
+<!--            <td>Alex Mike</td>-->
+<!--            <td>Design</td>-->
+<!--            <td>2010</td>-->
+<!--            <td class="text-right">&euro; 92,144</td>-->
+<!--            <td class="td-actions text-right">-->
+<!--              <button type="button" rel="tooltip" class="btn btn-info btn-simple btn-icon btn-sm">-->
+<!--                <i class="now-ui-icons users_single-02"></i>-->
+<!--              </button>-->
+<!--              <button type="button" rel="tooltip" class="btn btn-success btn-simple btn-icon btn-sm">-->
+<!--                <i class="now-ui-icons ui-2_settings-90"></i>-->
+<!--              </button>-->
+<!--              <button type="button" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm">-->
+<!--                <i class="now-ui-icons ui-1_simple-remove"></i>-->
+<!--              </button>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
         </div>
   </div>
   <footer class="footer footer-default">
@@ -202,6 +230,9 @@
         </div>
         <div class="alert alert-info" role="alert" [hidden]="created">
           {{message}}
+        </div>
+        <div [hidden]="loading">
+          <app-loading></app-loading>
         </div>
       </div>
       <div class="modal-footer">
@@ -261,5 +292,26 @@
         </div>
       </div>
     </div>
+
+    <!---- Camera -->
+    <div class="modal fade" id="exampleCam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <button type="button" class="btn btn-round btn-info" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+         <app-camera></app-camera>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-info" (click)="onUpload()"
+            >Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </div>
 </div></div>

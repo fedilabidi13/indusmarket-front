@@ -28,9 +28,22 @@ import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.co
 import {ProductComponent} from "./_base_components/shop-module/product/product.component";
 import {ShopModuleModule} from "./_base_components/shop-module/shop-module.module";
 import {NgxPaginationModule} from "ngx-pagination";
+import { CartItemComponent } from './_base_components/cart-item/cart-item.component';
+import { OrderComponent } from './_base_components/order/order.component';
+import { InvoiceComponent } from './_base_components/invoice/invoice.component';
+import { ShoppingCartComponent } from './_base_components/shopping-cart/shopping-cart.component';
+import { ShoppingCartNoUserComponent } from './_base_components/shopping-cart-no-user/shopping-cart-no-user.component';
 import { PostsComponent } from './_base_components/posts/posts.component';
 import { UserShopsComponent } from './_base_components/user-shops/user-shops.component';
 import { UserProductsComponent } from './_base_components/user-products/user-products.component';
+import { EventComponent } from './_base_components/event/event.component';
+import { AddClaimComponent } from './_base_components/add-claim/add-claim.component';
+import { EventUserComponent } from './_base_components/event-user/event-user.component';
+import { LoadingComponent } from './_base_components/loading/loading.component';
+import { CameraComponent } from './_base_components/camera/camera.component';
+import { AddEventComponent } from './_base_components/add-event/add-event.component';
+import { TicketUserComponent } from './_base_components/ticket-user/ticket-user.component';
+import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -68,20 +81,38 @@ export function tokenGetter() {
     PostsComponent,
     UserShopsComponent,
     UserProductsComponent,
+    EventComponent,
+    AddClaimComponent,
+    EventUserComponent,
+    CartItemComponent,
+    OrderComponent,
+    InvoiceComponent,
+    ShoppingCartComponent,
+    ShoppingCartNoUserComponent,
+    LoadingComponent,
+    CameraComponent,
+    AddEventComponent,
+    TicketUserComponent,
+    RegisterComponent,
+    IpVerifComponent
+
 
   ],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ShopModuleModule,
-    BrowserAnimationsModule,
-    GoogleMapsModule,
-    NgxPaginationModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ShopModuleModule,
+        BrowserAnimationsModule,
+        GoogleMapsModule,
+        NgxPaginationModule,
+    ],
+    providers: [],
+    exports: [
+        LoadingComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

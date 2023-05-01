@@ -2,6 +2,7 @@ import { StatusClaims } from "./enumerations/StatusClaims";
 import { TypeClaim } from "./enumerations/TypeClaim";
 import { Media } from "./media";
 import { ClaimProductRef } from "./ClaimProductRef";
+import {User} from "./user";
 
 export class Claims {
   idClaims!: number;
@@ -13,5 +14,6 @@ export class Claims {
   CreatedAt!: Date;
   ConsultAt!: Date;
   claimProductRefs!: ClaimProductRef[];
+  user!:User;
 }
 

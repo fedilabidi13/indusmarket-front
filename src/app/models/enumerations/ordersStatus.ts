@@ -1,0 +1,4 @@
+export enum OrdersStatus{
+  AVECLIVRAISON = 'AVECLIVRAISON',
+  SANSLIVRAISON = 'SANSLIVRAISON'
+}

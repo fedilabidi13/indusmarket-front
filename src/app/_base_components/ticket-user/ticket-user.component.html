@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<div  *ngIf="tickets.length>=1">
+  <table class="table" xmlns:paginate="http://www.w3.org/1999/xhtml"
+         xmlns:itemsPerPage="http://www.w3.org/1999/xhtml" xmlns:currentPage="http://www.w3.org/1999/xhtml"
+         xmlns:id="http://www.w3.org/1999/xhtml">
+    <thead>
+    <tr>
+      <th scope="col">Reference</th>
+      <th scope="col">Description</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ticket of tickets | paginate: { itemsPerPage: pageSize, currentPage: currentPage, id: 'claim-pagination' }" >
+      <td>{{ticket.reference}}</td>
+      <td>{{ticket.descreption}}</td>
+      <td>
+        <button  class="btn btn-success btn-round btn-primary" (click)="showTicket(ticket)">
+          <i class="fa fa-print"></i>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-danger btn-round btn-sm btn-icon" (click)="onDeleteClick(ticket.id)">
+          <i class="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="pagination-container" *ngIf="tickets.length>3">
+    <pagination-controls (pageChange)="onPageChange($event)" id="claim-pagination"></pagination-controls>
+  </div>
+</div>
+

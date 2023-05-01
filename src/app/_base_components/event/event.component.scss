@@ -1,0 +1,35 @@
+.custom-img {
+  width: 100%;
+  height: 500px;
+}
+
+/* CSS to style the button and icon */
+.carousel-inner .active .btn {
+  position: absolute;
+  down: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+body {
+  background: linear-gradient(to bottom right, #87CEEB, #4169E1);
+}
+
+.btn-participate {
+  display: none; /* Hide the Participate button by default */
+}
+
+.carousel-item:hover .btn-participate {
+  display: block; /* Show the Participate button on hover */
+}
+
+.event-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}
+
+.event-date {
+  font-size: 18px;
+  color: blue;
+}
