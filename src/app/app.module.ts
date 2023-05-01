@@ -61,6 +61,7 @@ import { ShopDetailsComponent } from './_base_components/shop-details/shop-detai
 import { FilterPipe } from './search/filter.pipe';
 import {BackOfficeModule} from "./_base_components/back-office/back-office.module";
 import {MapComponent} from "./_base_components/profile/map/map.component";
+import { MsgComponent } from './_base_components/forum-chat/msg/msg.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -130,7 +131,9 @@ export function tokenGetter() {
     AddCommentComponent,
     PostDetailsComponent,
     ChatBoxComponent,
-    ChatPriveComponent
+    ChatPriveComponent,
+    MsgComponent,
+
   ],
 
     imports: [

@@ -9,6 +9,8 @@ import {UserService} from "../../../_services/user.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {React} from "../../../models/react";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {Event} from "../../../models/Event";
+import {Media} from "../../../models/media";
 
 @Component({
   selector: 'app-forum',
@@ -33,7 +35,17 @@ export class ForumComponent implements OnInit{
   reacts: React;
   public allcomments:any[] = [];
   public allreacts:any[] = [];
-
+  nbr_like : number;
+  nbr_dislike : number;
+  nbr_love : number;
+  nbr_sad : number;
+  nbr_angry : number;
+  nbr_laugh : number;
+  nbr_wow : number;
+  public selectedMedia: Media; // declare the selectedMedia property with type Media
+  public selectedMediaIndex = 0;
+  public isImageModalOpen = false;
+  showText = false;
   constructor(private forumService : ForumService , private router:Router ,private userService: UserService , private routers: ActivatedRoute ,private fb: FormBuilder ) {
   }
   ngOnInit(): void {
@@ -145,13 +157,62 @@ export class ForumComponent implements OnInit{
 
   }
   getReacts(id: number){
-    return this.forumService.getReacts(id)
+    this.nbr_like=0;
+    this.nbr_dislike=0;
+    this.nbr_love=0;
+    this.nbr_sad=0;
+    this.nbr_angry=0;
+    this.nbr_laugh=0;
+    this.nbr_wow=0;
+
+    this.forumService.getReacts(id)
       .subscribe(res=>{
         this.react = res;
 
 
-
+        console.warn('/////////////////////////////')
+        console.warn(this.react)
+        for (let i=0; i<this.react.length; i++)
+        {
+          console.log(this.react[i].type)
+          if (this.react[i].type.startsWith('LIKE'))
+          {
+            console.log('found match')
+            this.nbr_like++;
+          }
+          if (this.react[i].type.startsWith('DISLIKE'))
+          {
+            console.log('found match')
+            this.nbr_dislike++;
+          }
+          if (this.react[i].type.startsWith('LOVE'))
+          {
+            console.log('found match')
+            this.nbr_love++;
+          }
+          if (this.react[i].type.startsWith('SAD'))
+          {
+            console.log('found match')
+            this.nbr_sad++;
+          }
+          if (this.react[i].type.startsWith('ANGRY'))
+          {
+            console.log('found match')
+            this.nbr_angry++;
+          }
+          if (this.react[i].type.startsWith('LAUGH'))
+          {
+            console.log('found match')
+            this.nbr_laugh++;
+          }
+          if (this.react[i].type.startsWith('WOW'))
+          {
+            console.log('found match')
+            this.nbr_wow++;
+          }
+        }
       });
+
 
   }
 
@@ -188,6 +249,30 @@ export class ForumComponent implements OnInit{
         console.error(error1)
       }
     )
+  }
+  public closeImageModal(): void {
+    this.isImageModalOpen = false;
+    this.selectedMedia = null;
+  }
+
+  public onPreviousClick(post : Post): void {
+    if (this.selectedMediaIndex > 0) {
+      this.selectedMediaIndex--;
+      this.selectedMedia = post.medias[this.selectedMediaIndex];
+    }
+  }
+
+  public onNextClick(post :Post): void {
+    if (this.selectedMediaIndex < post.medias.length - 1) {
+      this.selectedMediaIndex++;
+      this.selectedMedia = post.medias[this.selectedMediaIndex];
+    }
+  }
+
+  public onImageClick(medias: any[]): void {
+    this.selectedMediaIndex = 0;
+    this.selectedMedia = medias[0];
+    this.isImageModalOpen = true;
   }
 
 

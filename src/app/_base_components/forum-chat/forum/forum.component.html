@@ -110,6 +110,12 @@ background-size: cover;">
             <i class="fas fa-trash">></i> Delete Post
           </button>
         </li>
+        <li class="d-flex align-items-center">
+          <button type="button" rel="tooltip"  class="dropdown-item d-flex justify-content-around align-items-center fs-7 delete-button form-control pointer"
+                  data-toggle="modal" data-target="#myModal1gggg"    >
+            <i class="fas fa-trash">></i> Report Post
+          </button>
+        </li>
       </ul>
           <div class="modal fade modal-mini modal-info" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true" *ngFor="let posts of post">
             <div class="modal-dialog">
@@ -156,31 +162,19 @@ background-size: cover;">
       </p>
       <div class="row justify-content-center">
         <div class="col-lg-8 col-md-12">
-          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2" class="active"></li>
-            </ol>
-            <div  class="carousel-inner" role="listbox">
-              <div class="carousel-item">
-                <img class="d-block" src="{{posts.medias[0].imagenUrl}}" alt="First slide">
-
-              </div>
-              </div>
-              <div *ngFor="let media of posts.medias" class="carousel-item active">
-                <img class="d-block" src="{{media.imagenUrl}}" alt="Third slide">
-
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <i class="now-ui-icons arrows-1_minimal-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <i class="now-ui-icons arrows-1_minimal-right"></i>
-            </a>
-          </div>
+          <img src="{{posts.medias[0]?.imagenUrl}}" style="width: 500px; height: 500px;" (mouseover)="showText = true" (mouseout)="showText = false" [ngStyle]="{'position': 'relative'}" (click)="onImageClick(posts.medias)">
+        <span *ngIf="posts.medias.length>1"  style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 5px; font-size: 80px;">
++{{posts.medias.length-1}}    </span>
         </div>
+      </div>
+      <div *ngIf="isImageModalOpen" class="image-modal">
+        <div class="modal-content">
+          <img [src]="selectedMedia?.imagenUrl" [style.width.px]="500" [style.height.px]="500" class="center-image">
+          <button (click)="closeImageModal()" class="close-button"><i class="fas fa-times"></i></button>
+          <button style="color: red" class="arrow-button left" (click)="onPreviousClick(posts)" [hidden]="posts.medias.length<=1" ><i class="fas fa-chevron-left"></i></button>
+          <button style="color: red" class="arrow-button right" (click)="onNextClick(posts)" [hidden]="posts.medias.length<=1"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
       </div>
     </div>
     <!-- React & comments -->
@@ -203,9 +197,9 @@ background-size: cover;">
       <!-- comments start-->
       <div class="accordion" id="accordionExample">
         <div class="accordion-item border-0">
-          <button class="dropdown-item d-flex justify-content-around align-items-center fs-7  btn-react form-control pointer"
+          <button class="btn btn-neutral btn-round bg-default text-white" (click)="getReacts(posts.id)"
                   data-toggle="modal"
-                  data-target="#exampleModalReact">👍😍😡...</button>
+                  data-target="#exampleModalReact">reacts section</button>
           <!-- comment collapse -->
           <h2 class="accordion-header" id="headingTwo">
             <div
@@ -306,7 +300,6 @@ background-size: cover;">
 </div>
 </div>
 
-<app-chat></app-chat>
   <!-- create update modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -484,19 +477,15 @@ background-size: cover;">
           </div>
           <!-- body -->
           <div class="modal-body">
-            <div class="my-1 p-1">
-              <div class="d-flex" *ngFor="let reacts of react">
-                <img
-                  src="{{reacts.user.picture.imagenUrl}}"
-                  alt="avatar"
-                  class="rounded-circle me-2"
-                  style="width: 38px; height: 38px; object-fit: cover"
-                />
-                <div>
-                  <p class="m-0 fw-bold">{{reacts.user.firstName}}{{reacts.user.lastName}}</p>
-                  <p class="m-0 fw-bold">{{reacts.react}}</p>
-                </div>
-              </div>
+            <div>
+              <div>&nbsp;&nbsp;👍&nbsp;&nbsp;:  {{nbr_like}}</div>
+              <div>&nbsp;&nbsp;👎&nbsp;&nbsp;:  {{nbr_dislike}}</div>
+              <div>😍:  {{nbr_love}}</div>
+              <div>😡:  {{nbr_angry}}</div>
+              <div>😔:  {{nbr_sad}}</div>
+              <div>😲:  {{nbr_wow}}</div>
+              <div>😂:  {{nbr_laugh}}</div>
+
             </div>
 
           </div>
@@ -511,3 +500,4 @@ background-size: cover;">
 </div>
 </div>
 </div>
+<app-msg></app-msg>

@@ -4,10 +4,7 @@
 
 </head>
 
-<body  style="background-image: url(./assets/img/header.jpg);
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover;">
+<body  >
 <app-nav2></app-nav2>
 
 
@@ -308,7 +305,7 @@ background-size: cover;">
                         <button
                           class="dropdown-item d-flex justify-content-around align-items-center fs-7 delete-button form-control pointer"
                           data-toggle="modal"
-                          data-target="#exampleModal25"
+                          data-target="#exampleModal25" (click)="selectCommentId(comment); initCommentUpdate()"
                         >
 
                           <i class="fas fa-pencil-alt"></i>update Comment
@@ -344,72 +341,8 @@ background-size: cover;">
                   </div>
                   </div>
                   <!-- reply and commentReact -->
-                      <div class="d-flex justify-content-around">
-
-                        <div
-                          class="
-                            dropdown-item
-                            rounded
-                            d-flex
-                            justify-content-center
-                            align-items-center
-                            pointer
-                            text-muted
-                            p-1
-                          "
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapsePost12"
-                          aria-expanded="false"
-                          aria-controls="collapsePost12"
-                        >
-                          <i class="fas fa-comment-alt me-3"></i>
-                          <p class="m-0">reply</p>
-                        </div>
-                        <!--affichage reply-->
-                        <div
-                          id="collapsePost12"
-                          class="accordion-collapse collapse"
-                          aria-labelledby="headingTwo"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <hr />
-                          <div class="d-flex align-items-center my-1" *ngFor="let reply of replies">
-                            <!-- avatar -->
-                            <img
-                              src="{{reply.user.picture.imagenUrl}}"
-                              alt="avatar"
-                              class="rounded-circle me-2"
-                              style="
-                                width: 38px;
-                                height: 38px;
-                                object-fit: cover;
-                              "
-                            />
-                            <!-- comment text -->
-                            <div class="p-3 rounded comment__input w-100" >
-                              <p class="fw-bold m-0"></p>
-                              <span class="text-muted fs-7">{{reply.user.firstName}} {{reply.user.lastName}} at {{reply.commentedAt}}</span>
-                              <p class="m-0 fs-7 p-2 rounded"
-                              >
-                                {{reply.commentBody}}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
 
 
-
-
-                      </div>
-                      <input (click)="selectCommentId(comment)"
-                        type="text"
-                        class="form-control border-0 rounded-pill bg-gray pointer"
-                        placeholder="Write a reply"
-                        style="background-color: #e7e7ea"
-
-                        data-bs-toggle="modal"
-                        data-bs-target="#createReply"
-                      />
                     </div>
                   </div>
                 </div>
@@ -506,7 +439,6 @@ background-size: cover;">
       <!-- end -->
 
 
-<app-chat></app-chat>
 <div class="modal fade" id="createReply" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true" data-bs-backdrop="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -589,7 +521,7 @@ background-size: cover;">
 
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Comment Body</label>
-                <input type="email" class="form-control" id="exaddmpleFormControlInput1"  [value]="selectedComment.commentBody"  [(ngModel)]="selectedComment.commentBody" placeholder="update Comment">
+                <input type="email" class="form-control" id="exaddmpleFormControlInput1"    [(ngModel)]="selectedComment.commentBody" placeholder="update Comment">
               </div>
 
               <div class="mb-3">

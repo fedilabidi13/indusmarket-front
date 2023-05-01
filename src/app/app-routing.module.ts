@@ -38,6 +38,7 @@ import {ChatBoxComponent} from "./_base_components/WS/chat-box/chat-box.componen
 import {ChatPriveComponent} from "./_base_components/WS/chat-prive/chat-prive.component";
 import {ShopDetailsComponent} from "./_base_components/shop-details/shop-details.component";
 import {MapComponent} from "./_base_components/profile/map/map.component";
+import {MsgComponent} from "./_base_components/forum-chat/msg/msg.component";
 
 
 const routes: Routes = [
@@ -68,12 +69,6 @@ const routes: Routes = [
   { path: 'back-office/posts-tab', component: PostsTabComponent },
   {path: 'chat', component: ChatBoxComponent},
   {path: 'chatP', component: ChatPriveComponent},
-
-
-
-
-
-
   { path: 'verif-location', component: IpVerifComponent },
   {path:'addEvent',component:AddEventComponent},
   { path: 'map', component: MapComponent },
@@ -82,6 +77,7 @@ const routes: Routes = [
   { path: 'back-office/mod/dashboard', component: ModsDashboardComponent },
   {path:'mod/claim-mod',component:ClaimModComponent},
   {path:'mod/event-mod',component:EvantModComponent},
+  {path:'msg',component:MsgComponent},
 
 
 

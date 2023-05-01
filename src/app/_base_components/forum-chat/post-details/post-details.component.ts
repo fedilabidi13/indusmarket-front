@@ -93,6 +93,7 @@ export class PostDetailsComponent implements OnInit{
 
     })
   }
+
   updatePost()
   {
 
@@ -111,20 +112,19 @@ export class PostDetailsComponent implements OnInit{
 
   selectCommentId(comment : any)
   {
-    this.selectedCommentId= comment.id;
-    console.warn(this.selectedCommentId)
+    this.selectedComment.id= comment.id;
+    console.warn(this.selectedComment.id)
   }
   addComments(): void {
-    const element = document.getElementById('postId')as HTMLInputElement | null;
-    const comment: PostComment = this.commentForm.value;
-    this.forumService.addComment(comment,element.value, this.files).subscribe(
+
+    this.forumService.addComment(this.commentForm.value, this.itemId, this.files).subscribe(
       response => {
-        window.location.reload();
+        //window.location.reload();
         // Do something with the response, e.g. redirect to the new post's page
       },
       error => {
         console.log(error)
-        window.location.reload()
+        //window.location.reload()
         // Handle any errors that occurred during the POST request
       }
     );
@@ -164,7 +164,6 @@ export class PostDetailsComponent implements OnInit{
   }
   addReactToPost(id: number ,reactType: string): void {
     this.forumService.addReactToPost(id, reactType).subscribe(react => {
-      console.log(`Added ${react.react} reaction to post ${react.post.id}`);
       localStorage.setItem(`post_${id}_react`, reactType);
 
       // You could also update the UI to show the new reaction here
