@@ -41,11 +41,11 @@ export class LoginBackComponent {
           }
 
           if (this.user.role.startsWith('M') ){
-            console.log("YOAAAAAAAAAAAAAAAAAAAAAAA")
+            localStorage.setItem('currentUser',this.message);
             this.router.navigate(['/back-office/mod/dashboard']);
           }
           if (this.user.role.startsWith('A') ){
-            console.log("YOAAAAAAAAAAAAAAAAAAAAAAA")
+            localStorage.setItem('currentUser',this.message);
             this.router.navigate(['/back-office/dashboard']);
           }
 

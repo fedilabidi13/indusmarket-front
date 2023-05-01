@@ -117,6 +117,20 @@ export class UserService {
   public getAllMods():Observable<User[]>{
     return this.httpClient.get<User[]>(this.PATH_OF_API+"/admin/users?role=MOD").pipe();
   }
+  public logout(){
+    const user = this.getCurrentUser();
+    console.log(user)
+    if (user.role=="USER")
+    {
+      localStorage.removeItem('currentUser')
+      this.router.navigate(['/'])
+    }
+    else {
+      localStorage.removeItem('currentUser')
+      this.router.navigate(['/back-office'])
+    }
+
+  }
 
 
 }
