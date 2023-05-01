@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from "@auth0/angular-jwt";
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './_base_components/header/header.component';
 import { CarouselComponent } from './_base_components/carousel/carousel.component';
@@ -55,6 +54,8 @@ import { LoadingComponent } from './_base_components/loading/loading.component';
 import { CameraComponent } from './_base_components/camera/camera.component';
 import { AddEventComponent } from './_base_components/add-event/add-event.component';
 import { TicketUserComponent } from './_base_components/ticket-user/ticket-user.component';
+import { UpdateEventComponent } from './_base_components/update-event/update-event.component';
+import { AddPostClaimComponent } from './_base_components/add-post-claim/add-post-claim.component';
 import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
 
 export function tokenGetter() {
@@ -108,6 +109,8 @@ export function tokenGetter() {
     TicketUserComponent,
     RegisterComponent,
     IpVerifComponent,
+    UpdateEventComponent,
+    AddPostClaimComponent,
 
 
     MailVerifComponent,

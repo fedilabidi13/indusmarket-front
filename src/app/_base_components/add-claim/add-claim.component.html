@@ -1,18 +1,42 @@
-<div class="form-container">
-  <button type="button" class="close-button" (click)="closeForm()">X</button>
-  <form (ngSubmit)="onSubmit(claimForm)" #claimForm="ngForm" enctype="multipart/form-data">
-    <div>
-      <label for="eventName">Title</label>
-      <input type="text" id="eventName" name="title" [(ngModel)]="claim.title" required>
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="container py-5" style="position: absolute; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col">
+          <div class="card my-4 shadow-3">
+            <div class="row g-0">
+
+              <div class="col-xl-6 d-xl-block bg-image">
+                <img src="https://res.cloudinary.com/dh3co0nj3/image/upload/v1682612910/bg-1623066197_2_sjwovk.png"
+                     class="img-fluid" />
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <h3 class="mb-4 text-uppercase">Add Claim</h3>
+                  <form (ngSubmit)="onSubmit(claimForm)" #claimForm="ngForm" enctype="multipart/form-data">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example81">Title</label>
+                      <input class="form-control form-control-lg" type="text" id="form3Example81" name="title" [(ngModel)]="claim.title" required>
+                    </div>
+
+                      <div class="form-outline">
+                        <label class="form-label" for="form3Example82">Description</label>
+                        <textarea class="form-control form-control-lg" id="form3Example82" name="description" rows="3" [(ngModel)]="claim.description" required></textarea>
+                      </div>
+
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example86">Images</label>
+                      <input class="form-control form-control-lg" type="file" id="form3Example86" accept="image/*" (change)="onFileSelected($event)" multiple required>
+                    </div>
+                    <button class="btn btn-info btn-round btn-lg" type="submit" [disabled]="claimForm.invalid">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <label for="eventDescription">Description</label>
-      <textarea id="eventDescription" name="description" [(ngModel)]="claim.description" required></textarea>
-    </div>
-    <div>
-      <label for="eventImage">Images</label>
-      <input type="file" id="eventImage" accept="image/*" (change)="onFileSelected($event)" multiple required>
-    </div>
-    <button class="btn btn-info btn-round btn-lg" type="submit" [disabled]="claimForm.invalid">Submit</button>
-  </form>
+  </div>
 </div>
+
