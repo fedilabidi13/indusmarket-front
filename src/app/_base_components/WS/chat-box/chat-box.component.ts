@@ -1,8 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../../models/user";
 import {UserService} from "../../../_services/user.service";
-import {Message} from "@stomp/stompjs";
-import {ChatService} from "../../../_services/chat.service";
 
 @Component({
   selector: 'app-chat-box',

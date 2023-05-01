@@ -45,20 +45,23 @@
                       <td>{{shop.adresse}}</td>
 
                       <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" class="btn btn-warning btn-sm btn-round btn-icon" data-toggle="modal" data-target="#myModal2">
-                          <i class="now-ui-icons arrows-1_minimal-down"></i>
+                        <button type="button" rel="tooltip" class="btn btn-info btn-round" data-toggle="modal" data-target="#myModal2">
+                          Update shop
+                        </button><br><br>
+                        <button (click)="getId(shop.idShop)" type="button" rel="tooltip" class="btn btn-round" data-toggle="modal" data-target="#myModal5">
+                          Delete shop
                         </button>
-                        &nbsp;
-                        <button (click)="getId(shop.idShop)" type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon" data-toggle="modal" data-target="#myModal5">
-                          <i class="now-ui-icons ui-1_simple-delete"></i>
+                        <br><br>
+                        <button (click)="openShopDetails(shop.idShop)" type="button" rel="tooltip" class="btn btn-warning btn-round" data-toggle="modal" data-target="#myModal2">
+                          Show shop
+                        </button><br><br>
+                        <button (click)="shoPdf(shop)" type="button" rel="tooltip" class="btn btn-success btn-round" data-toggle="modal" data-target="#myModal2">
+                          Shop report
                         </button>
-                        <button (click)="openShopDetails(shop.idShop)"  type="button" rel="tooltip" class="btn btn-warning btn-sm btn-round btn-icon" data-toggle="modal" data-target="#myModal2">
-                          <i class="now-ui-icons arrows-1_minimal-down"></i>Show details
-
-                        </button>
-
-
                       </td>
+
+
+
                     </tr>
 
                     </tbody>

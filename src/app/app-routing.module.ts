@@ -37,6 +37,7 @@ import {PostsTabComponent} from "./_base_components/back-office/posts-tab/posts-
 import {ChatBoxComponent} from "./_base_components/WS/chat-box/chat-box.component";
 import {ChatPriveComponent} from "./_base_components/WS/chat-prive/chat-prive.component";
 import {ShopDetailsComponent} from "./_base_components/shop-details/shop-details.component";
+import {MapComponent} from "./_base_components/profile/map/map.component";
 
 
 const routes: Routes = [
@@ -75,6 +76,8 @@ const routes: Routes = [
 
   { path: 'verif-location', component: IpVerifComponent },
   {path:'addEvent',component:AddEventComponent},
+  { path: 'map', component: MapComponent },
+
   { path: 'back-office/mod-confirm', component: ModsConfirmComponent },
   { path: 'back-office/mod/dashboard', component: ModsDashboardComponent },
   {path:'mod/claim-mod',component:ClaimModComponent},

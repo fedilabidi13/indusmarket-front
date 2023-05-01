@@ -1,6 +1,5 @@
 <app-header1></app-header1>
 
-  <app-search-filter></app-search-filter>
 
 <div class="rating" >
   <h4><b>Rate This Shop</b></h4>
@@ -18,38 +17,59 @@
   </div>
   <h5>{{messageSuccess}}</h5>
 </div>
+<div class="form-group d-flex justify-content-center">
+  <h3><b>Search products</b></h3>
+</div>
+<div class="form-group d-flex justify-content-center">
+  <input type="text" class="form-control" [(ngModel)]="searchTerm" ngDefaultControl (keyup)="search($event)" placeholder="Search products">
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-md-3 col-sm-6 mb-3">
-      <button class="btn btn-info btn-round" (click)="confirm()"><strong>Show discounted products</strong></button>
+      <button class="btn btn-link btn-info" (click)="allProd(this.id)"><span style="font-size: 1.2rem;"><b>Show all shop products</b></span></button>
     </div>
     <div class="col-md-3 col-sm-6 mb-3">
-      <button class="btn btn-info btn-round" (click)="allProd(this.id)"><strong>Show all shop products</strong></button>
+      <button class="btn btn-link btn-info " (click)="mostSold()"><span style="font-size: 1.2rem;"><b>Show most 10 selled at top</b></span></button>
     </div>
     <div class="col-md-3 col-sm-6 mb-3">
-      <button class="btn btn-info btn-round" (click)="showdiv()"><strong>Sort products by category</strong></button>
+      <button class="btn btn-link btn-info" (click)="confirm()"><span style="font-size: 1.2rem;"><b>Show discounted products</b></span></button>
     </div>
-    <div class="col-md-3 col-sm-6 mb-3">
-      <button class="btn btn-info btn-round" (click)="showdiv1()"><strong>Find products by price</strong></button>
-    </div>
-
-
   </div>
   <div class="row">
-    <div class="col-md-4 col-sm-12 mb-3">
-      <button class="btn btn-info btn-round"><strong>Compare products</strong></button>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <button class="btn btn-link btn-info" (click)="show()"><span style="font-size: 1.2rem;"><b>Compare products</b></span></button>
     </div>
-    <div class="col-md-4 col-sm-12 mb-3">
-      <button class="btn btn-info btn-round" (click)="mostSold()"><strong>Show most 10 selled products in the top</strong></button>
-    </div>
-    <div class="col-md-4 col-sm-12 mb-3">
-      <button class="btn btn-info btn-round" (click)="searchedFirst()"><strong>Show my searched products in the top</strong></button>
-    </div>
+    <div *ngIf="divCom">
+      <h4 style="color : blue"> {{msg1}}</h4>
+      <h4 style="color : grey"> {{msg2}}</h4>
 
+      <div class="form-group">
+        <label for="exampleFormControlSelect1"><strong>Product1</strong></label>
+        <select class="form-control" id="exampleFormControlSelect11" [(ngModel)]="prr1" >
+          <option *ngFor="let p of productList" [value]="p.idProduct">{{p.name}}</option>
+
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1"><strong>Product2</strong></label>
+        <select class="form-control" id="exampleFormControlSelect411" [(ngModel)]="prr2" >
+          <option *ngFor="let p of productList" [value]="p.idProduct">{{p.name}}</option>
+
+        </select>
+      </div>
+      <button style="width: 500px;margin-left: 260px" (click)="OnCompare()" class="btn btn-info btn-round  btn-lg btn-block">Sort  </button>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <button class="btn btn-link btn-info" (click)="showdiv1()"><span style="font-size: 1.2rem;"><b>Find products by price</b></span></button>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3 ">
+      <button class="btn btn-link btn-info" (click)="showdiv()"><span style="font-size: 1.2rem;"><b>Sort products by category</b></span></button>
+    </div>
   </div>
 </div>
 
-<div style="width: 500px ; position: center" *ngIf="divShow">
+<div style="width: 500px ; position: center;margin-left: 38%" *ngIf="divShow">
   <div class="form-group">
     <label for="exampleFormControlSelect1"><strong>Category</strong></label>
     <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="cat" >
@@ -61,7 +81,7 @@
   <button style="width: 500px;margin-left: 260px" (click)="sortByCatg()" class="btn btn-info btn-round  btn-lg btn-block">Sort  </button>
 
 </div>
-<div style="width: 500px ; position: center" *ngIf="divShow1">
+<div style="width: 500px ; position: center;margin-left: 38%" *ngIf="divShow1">
   <div class="form-group">
     <div class="form-group mx-sm-3">
       <label for="min" class="sr-only">min</label>

@@ -34,7 +34,7 @@ export class UserShopsComponent implements OnInit{
     this.id=id;
  }
   ngOnInit(): void {
-    this.shop.getShops().subscribe(data=>this.shops=data)
+    this.shop.getShopsByUser().subscribe(data=>this.shops=data)
   }
 
 
@@ -87,6 +87,16 @@ export class UserShopsComponent implements OnInit{
 
   openShopDetails(id: any): void {
     this.router.navigate(['shop-details/', id]);
+  }
+
+  shoPdf(shop:Shop){
+    const url = 'http://localhost:4200/assets/img/'+shop.name+'.pdf';
+    const win = window.open(url, '_blank');
+    if (win) {
+      win.focus();
+    } else {
+      console.error('Failed to open window');
+    }
   }
 }
 

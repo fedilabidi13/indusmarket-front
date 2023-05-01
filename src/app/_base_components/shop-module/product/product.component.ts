@@ -19,7 +19,9 @@ import {CartItem} from "../../../models/cartItem";
 export class ProductComponent implements OnInit {
   public productList: Product[] = [];
   public shopList: Shop[] = [];
-
+  searchTerm:string='';
+  allProducts : Product[] = [];
+  products : Product[] = [];
   error: boolean = false;
   p: number = 1;
   itemsPerPage: number = 12;
@@ -54,13 +56,6 @@ export class ProductComponent implements OnInit {
       return myShoppingCart;
     }
   }
-
-
-
-
-
-
-  public indexImage:object={};
   constructor(private ac:ActivatedRoute,private api:ShowProductsShopService,private api1:ShowShopsService){
     this.shoppingCart = this.loadShoppingCart();
 
@@ -74,7 +69,6 @@ export class ProductComponent implements OnInit {
    myRating:number=0;
   ngOnInit(): void {
 
-
     this.routeSub = this.ac.params.subscribe((params: Params) => {
       this.id = params['id'];
       this.api.getRatingByUser(this.id).subscribe((data)=>{
@@ -85,8 +79,8 @@ export class ProductComponent implements OnInit {
     this.api.getProduct(this.id)
       .subscribe(res => {
         this.productList = res;
+        this.allProducts = res;
         for (let shop of this.productList) {
-
           this.indexImage[shop.idProduct] = 0;
         }
         console.log(this.productList)
@@ -96,7 +90,24 @@ export class ProductComponent implements OnInit {
   selectImage(idImage: number, index: number): void {
     this.indexImage[idImage] = index;
   }
+  divCom : boolean = false
+  show(){
+    this.divCom = ! this.divCom
+  }
+  prr1 : Product = new Product()
+  prr2: Product = new Product()
+msg1 : string = ""
+  msg2 : string = ""
 
+  OnCompare(){
+    this.api.compare(this.prr1,this.prr2).subscribe(data =>{
+      console.log(data)
+      this.msg1=data[0];
+      this.msg2=data[1]
+    })
+    console.log(this.prr1)
+    console.log(this.prr2)
+  }
   onPrevClick(idImage: number, longeur: number): void {
     if (this.indexImage[idImage] === 0) {
     } else {
@@ -184,7 +195,37 @@ divShow : boolean=false
       this.productList = data
       console.log(data)
     })
+  }
 
+  search(event:any){
+
+    this.searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    console.log(this.searchTerm);
+    this.productList = this.filteredProducts(this.searchTerm)
+    console.log(this.products)
+  }
+
+  filteredProducts(typedText){
+    let filtered = ["description","price","brand","category","name"]
+    if (typedText.length==0){
+      return [...this.allProducts]
+    }
+    let result = []
+    for(let product of [...this.allProducts]){
+      for(let filter of filtered){
+        if (typeof(product[filter]) == "string"){
+          if(product[filter].toLowerCase().includes(typedText)){
+            result.push(product)
+          }
+        }else{
+          if (product[filter]== Number(typedText)){
+            result.push(product)
+          }
+        }
+
+      }
+    }
+    return result;
 
   }
 

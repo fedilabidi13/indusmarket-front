@@ -6,7 +6,7 @@ export class Shop{
   mail!:string;
   phoneNumber!:number;
   isValidated!:boolean;
-  adresse!:string;
+  adresse:string;
   medias!:Media[];
 
 }

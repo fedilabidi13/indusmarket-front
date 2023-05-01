@@ -5,7 +5,7 @@ import {Subscription} from "rxjs";
 import {ShowShopsService} from "../../_services/show-shop.service";
 import {ShowProductsShopService} from "../../_services/show-products-shop.service";
 import {Product} from "../../models/product";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-shop-details',
@@ -13,7 +13,7 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./shop-details.component.scss']
 })
 export class ShopDetailsComponent implements OnInit{
-  constructor(private activatedRoute: ActivatedRoute ,private Shopservice : ShowShopsService ,private prductService : ShowProductsShopService) {
+  constructor(private http : HttpClient,private activatedRoute: ActivatedRoute ,private Shopservice : ShowShopsService ,private prductService : ShowProductsShopService) {
 
   }
   public productList: Product[] = [];
@@ -29,6 +29,8 @@ export class ShopDetailsComponent implements OnInit{
   x : boolean = false
   date1:any
   date2:any
+  product : Product = new Product();
+  files !: FileList
   products : Product[] = [];
   allProducts : Product[] = []
   shopDetail : Shop = new Shop();
@@ -57,6 +59,44 @@ export class ShopDetailsComponent implements OnInit{
     }
     return [];
   }
+  onFileSelected(event): void {
+    this.files = event.target.files;
+  }
+
+  submitProduct(product: Product){
+    const formData = new FormData();
+    formData.append('name', product.name);
+    formData.append('category', product.category);
+    // @ts-ignore
+
+    formData.append('brand', product.brand);
+    formData.append('description', product.description);
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
+    formData.append('shopId', this.shopid);
+    // @ts-ignore
+    formData.append('quantity', product.quantity);
+    // @ts-ignore
+    formData.append('price', product.price);
+    if (this.files) {
+      for (let i = 0; i < this.files.length; i++) {
+        formData.append('file', this.files[i]);
+      }
+    }
+
+    const token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post('http://localhost:8085/product/add', formData, {headers : headers }).subscribe(
+      (res)=>
+      {
+        console.log(res)
+      },
+      error => {
+        console.error(error)
+      }
+    )
+  }
   onPrevClick(idImage: number,longeur:number):void{
     if(this.indexImage===0){
     }else {
@@ -70,7 +110,7 @@ export class ShopDetailsComponent implements OnInit{
       this.indexImage++;
     }
   }
-  ff:number
+  ff:number;
   ngOnInit(): void {
     this.Shopservice.getAverageRating(1).subscribe(data =>{
       this.ff = Math.round( data)
@@ -134,10 +174,7 @@ confirme(){
 
     this.searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
     console.log(this.searchTerm);
-   // console.log(this.products[0].description.toLowerCase().includes(this.searchTerm),this.allProducts)
     this.products = this.filterProducts(this.searchTerm)
-    console.log(this.products)
-    //this.prductService.search.next(this.searchTerm);
   }
 
     filterProducts(typedText){
@@ -186,17 +223,7 @@ confirme(){
   hideDiv3() {
     this.divShow3 = false;
   }
-  s ():  string {
-    let name: string = "name";
-    let price: string = "price";
-    let description: string = "description";
-    let prop: string = "";
-    for (let p of [price, name, description]) {
-      prop = p;
-      console.log(prop);
-    }
-  return prop;
-}
+
 
   generateCatalog(idShop: number) {
 
@@ -207,13 +234,7 @@ confirme(){
     });
   }
 
-  // downloadCatalog(idShop: number) {
-  //   const url = `http://localhost:8080/createCatalog?idShop=${idShop}`;
-  //   this.http.get(url, { responseType: 'blob' }).subscribe(response => {
-  //     const filename = `catalog-${idShop}.pdf`;
-  //     // saveAs(response, filename);
-  //   });
-  // }
+
 
 
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import {Shop} from "../models/shop";
@@ -15,11 +15,22 @@ export class ShowShopsService {
 
   constructor(private http : HttpClient) { }
   getShops(){
+    const token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<Shop[]>("http://localhost:8085/shop/findAll")
       .pipe(map((res:any)=>{
         return res;
       }))
   }
+  getShopsByUser(){
+    const token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Shop[]>("http://localhost:8085/shop/findByUser", { headers : headers})
+      .pipe(map((res:any)=>{
+        return res;
+      }))
+  }
+
 
   getreport(id : any , date1 : any , date2 : any){
     return this.http.get<Shop[]>("http://localhost:8085/shop/createReport?shopId="+id+"&deb="+date1+"&fin="+date2+"")

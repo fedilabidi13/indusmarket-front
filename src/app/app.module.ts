@@ -42,7 +42,6 @@ import {CommentComponent} from "./_base_components/forum-chat/comment/comment.co
 import {ReactComponent} from "./_base_components/forum-chat/react/react.component";
 import {AddCommentComponent} from "./_base_components/forum-chat/add-comment/add-comment.component";
 import { PostDetailsComponent } from './_base_components/forum-chat/post-details/post-details.component';
-import {BackOfficeModule} from "./_base_components/back-office/back-office.module";
 import {NgOptimizedImage} from "@angular/common";
 import {ChatBoxComponent} from "./_base_components/WS/chat-box/chat-box.component";
 import {ChatComponent} from "./_base_components/WS/chat/chat.component";
@@ -61,6 +60,7 @@ import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
 import { ShopDetailsComponent } from './_base_components/shop-details/shop-details.component';
 import { FilterPipe } from './search/filter.pipe';
 import {BackOfficeModule} from "./_base_components/back-office/back-office.module";
+import {MapComponent} from "./_base_components/profile/map/map.component";
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -118,6 +118,7 @@ export function tokenGetter() {
 
     ShopDetailsComponent,
     FilterPipe,
+    MapComponent,
 
     MailVerifComponent,
     ForumComponent,
@@ -149,10 +150,11 @@ export function tokenGetter() {
       BrowserAnimationsModule,
       GoogleMapsModule,
       NgxPaginationModule,
-      ReactiveFormsModule,
         ReactiveFormsModule,
         BackOfficeModule,
         NgOptimizedImage,
+
+
     ],
     providers: [],
     exports: [
@@ -163,3 +165,4 @@ export function tokenGetter() {
 
 })
 export class AppModule { }
+

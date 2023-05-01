@@ -25,6 +25,7 @@ export class ShowProductsShopService {
     return this.http.get<Product[]>(url);
   }
   getProd(id:any){
+
     return this.http.get<Product[]>("http://localhost:8085/product/ShowAllProductsForUser/"+id)
       .pipe(map((res:any)=>{
         return res;
@@ -62,6 +63,13 @@ export class ShowProductsShopService {
         return res;
       }))
   }
+  compare(id1:any,id2:any){
+    return this.http.get<Product[]>("http://localhost:8085/product/compare?productId1="+id1+"&productId2="+id2)
+      .pipe(map((res:any)=>{
+        return res;
+      }))
+  }
+
   getDiscounted(){
     return this.http.get<Product[]>("http://localhost:8085/product/findByDiscount")
       .pipe(map((res:any)=>{
@@ -85,6 +93,8 @@ export class ShowProductsShopService {
     return this.http.post<any>(url, {},{headers:headers});
   }
   showMostSold(){
+
+
     return this.http.get<Product[]>("http://localhost:8085/product/mostSoldFirst")
       .pipe(map((res:any)=>{
         return res;
@@ -108,5 +118,11 @@ export class ShowProductsShopService {
       .pipe(map((res:any)=>{
         return res;
       }))
+  }
+  public findProduct(id: any):Observable<Product>
+  {
+    const token = localStorage.getItem('currentUser')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Product>('http://localhost:8085/product/findByid?id='+id,{ headers : headers})
   }
 }
