@@ -60,13 +60,13 @@
           <div class="nav-align-center">
             <ul class="nav nav-pills nav-pills-info nav-pills-just-icons" role="tablist">
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#profile" role="tablist">
-                  <i class="now-ui-icons design_image"></i>
+                <a class="nav-link active" data-toggle="tab" href="#productss" role="tablist">
+                  <i class="now-ui-icons design_app"></i>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home" role="tablist">
-                  <i class="now-ui-icons location_world"></i>
+                <a class="nav-link" data-toggle="tab" href="#shop" role="tablist">
+                  <i class="now-ui-icons shopping_shop"></i>
                 </a>
               </li>
               <li class="nav-item">
@@ -87,12 +87,16 @@
             </ul>
           </div>
         </div>
+      </div>
         <div class="tab-content">
-          <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            fghfj
+          <div class="tab-pane active" id="productss" role="tabpanel" aria-labelledby="home-tab">
+            <h4 class="title text-center">My Products</h4>
+            <app-user-products></app-user-products>
           </div>
-          <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">..jyuf.</div>
-          <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">..srq.</div>
+          <div class="tab-pane" id="shop" role="tabpanel">
+            <h4 class="title text-center">My Shops</h4>
+            <app-user-shops></app-user-shops>
+            </div>
           <div class="tab-pane" id="event" role="tabpanel" aria-labelledby="Event-tab">
             <h4 class="title text-center">My Events</h4>
             <app-event-user></app-event-user>
@@ -105,111 +109,8 @@
             <h4 class="title text-center">My Tickets</h4>
             <app-ticket-user></app-ticket-user>
           </div>
-        </div>
-        <!-- Tab panes -->
-        <div class="card bg-gray-50 ">
-<!--        <table class="table text-white">-->
-<!--          <thead>-->
-<!--          <tr>-->
-<!--            <th class="text-center">#</th>-->
-<!--            <th>Name</th>-->
-<!--            <th>Job Position</th>-->
-<!--            <th>Since</th>-->
-<!--            <th class="text-right">Salary</th>-->
-<!--            <th class="text-right">Actions</th>-->
-<!--          </tr>-->
-<!--          </thead>-->
-<!--          <tbody>-->
-<!--          <tr>-->
-<!--            <td class="text-center">1</td>-->
-<!--            <td>Andrew Mike</td>-->
-<!--            <td>Develop</td>-->
-<!--            <td>2013</td>-->
-<!--            <td class="text-right">&euro; 99,225</td>-->
-<!--            <td class="td-actions text-right">-->
-<!--              <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">-->
-<!--                <i class="now-ui-icons users_single-02"></i>-->
-<!--              </button>-->
-<!--              <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">-->
-<!--                <i class="now-ui-icons ui-2_settings-90"></i>-->
-<!--              </button>-->
-<!--              <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">-->
-<!--                <i class="now-ui-icons ui-1_simple-remove"></i>-->
-<!--              </button>-->
-<!--            </td>-->
-<!--          </tr>-->
-<!--          <tr>-->
-<!--            <td class="text-center">2</td>-->
-<!--            <td>John Doe</td>-->
-<!--            <td>Design</td>-->
-<!--            <td>2012</td>-->
-<!--            <td class="text-right">&euro; 89,241</td>-->
-<!--            <td class="td-actions text-right">-->
-<!--              <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">-->
-<!--                <i class="now-ui-icons users_single-02"></i>-->
-<!--              </button>-->
-<!--              <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">-->
-<!--                <i class="now-ui-icons ui-2_settings-90"></i>-->
-<!--              </button>-->
-<!--              <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">-->
-<!--                <i class="now-ui-icons ui-1_simple-remove"></i>-->
-<!--              </button>-->
-<!--            </td>-->
-<!--          </tr>-->
-<!--          <tr>-->
-<!--            <td class="text-center">3</td>-->
-<!--            <td>Alex Mike</td>-->
-<!--            <td>Design</td>-->
-<!--            <td>2010</td>-->
-<!--            <td class="text-right">&euro; 92,144</td>-->
-<!--            <td class="td-actions text-right">-->
-<!--              <button type="button" rel="tooltip" class="btn btn-info btn-simple btn-icon btn-sm">-->
-<!--                <i class="now-ui-icons users_single-02"></i>-->
-<!--              </button>-->
-<!--              <button type="button" rel="tooltip" class="btn btn-success btn-simple btn-icon btn-sm">-->
-<!--                <i class="now-ui-icons ui-2_settings-90"></i>-->
-<!--              </button>-->
-<!--              <button type="button" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm">-->
-<!--                <i class="now-ui-icons ui-1_simple-remove"></i>-->
-<!--              </button>-->
-<!--            </td>-->
-<!--          </tr>-->
-<!--          </tbody>-->
-<!--        </table>-->
-        </div>
+          </div>
   </div>
-  <footer class="footer footer-default">
-    <div class=" container ">
-      <nav>
-        <ul>
-          <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
-            </a>
-          </li>
-          <li>
-            <a href="http://presentation.creative-tim.com">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="http://blog.creative-tim.com">
-              Blog
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="copyright" id="copyright">
-        ©
-        <script>
-          document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-        </script>2023, Designed by
-        <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-      </div>
-    </div>
-  </footer>
-</div>
 </div>
 
 <!-- Modal -->
@@ -230,9 +131,6 @@
         </div>
         <div class="alert alert-info" role="alert" [hidden]="created">
           {{message}}
-        </div>
-        <div [hidden]="loading">
-          <app-loading></app-loading>
         </div>
       </div>
       <div class="modal-footer">
@@ -292,8 +190,6 @@
         </div>
       </div>
     </div>
-
-    <!---- Camera -->
     <div class="modal fade" id="exampleCam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -314,4 +210,46 @@
     </div>
 
 </div>
-</div></div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+        <h4 class="title title-up">Add a new shop</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Name</label>
+            <input class="form-control"   placeholder="Enter shop name" [(ngModel)]="shop.name">
+          </div>
+          <div class="form-group">
+            <label>Phone number</label>
+            <input type="number"  class="form-control"   placeholder="Enter shop phone number"  [(ngModel)]="phoneNumber">
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input  class="form-control"   placeholder="Enter shop Adress"  [(ngModel)]="adresse">
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Enter shop email"  [(ngModel)]="shop.mail">
+          </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label"> Images </label>
+            <input multiple class="form-control" type="file"  (change)="onFilesSelected($event)">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button (click)="addShop()" type="button" class="btn btn-info">Add shop</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>

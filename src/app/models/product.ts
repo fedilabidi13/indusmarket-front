@@ -1,6 +1,7 @@
 import {Category} from "./enumerations/Category";
 import {Media} from "./media";
 import {Shop} from "./shop";
+import {Stock} from "./stock";
 
 export class Product{
   idProduct!:number;
@@ -17,4 +18,5 @@ export class Product{
   medias!:Media[];
   status!:string;
   validated: boolean;
-  shop:Shop;}
+  shop:Shop;
+stock:Stock}

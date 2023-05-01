@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Shop} from "../../models/shop";
 import {ShowShopsService} from "../../_services/show-shop.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-shops',
@@ -15,7 +17,7 @@ export class UserShopsComponent implements OnInit{
   created = true;
   not_created = true;
   authToken !: string;
-  constructor(private shop:ShowShopsService, private http:HttpClient) {
+  constructor(private shop:ShowShopsService, private http:HttpClient,private router: Router) {
   }
   public shops: Shop[]=[];
   id:any;
@@ -32,7 +34,7 @@ export class UserShopsComponent implements OnInit{
     this.id=id;
  }
   ngOnInit(): void {
-    this.shop.getShops().subscribe(data=>this.shops=data)
+    this.shop.getShopsByUser().subscribe(data=>this.shops=data)
   }
 
 
@@ -78,5 +80,23 @@ export class UserShopsComponent implements OnInit{
     return allowedExtensions.some(ext => fileName.endsWith(ext));
   }
 
+  onButtonClick(id:any) {
+    this.router.navigate(['/shop-details']);
+  }
+
+
+  openShopDetails(id: any): void {
+    this.router.navigate(['shop-details/', id]);
+  }
+
+  shoPdf(shop:Shop){
+    const url = 'http://localhost:4200/assets/img/'+shop.name+'.pdf';
+    const win = window.open(url, '_blank');
+    if (win) {
+      win.focus();
+    } else {
+      console.error('Failed to open window');
+    }
+  }
 }
 

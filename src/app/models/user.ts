@@ -11,7 +11,7 @@ export class User {
     email!: string;
     password!: string;
     address!: Address ;
-    role!: string ;
+    role!: String ;
     enabled!: boolean;
     firstAttempt!: boolean;
     phoneNumber!: number;

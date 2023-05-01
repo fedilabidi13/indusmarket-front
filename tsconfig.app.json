@@ -10,5 +10,14 @@
   ],
   "include": [
     "src/**/*.d.ts"
-  ]
+  ],
+
+  "compilerOptions": {
+    // ...
+    "types": [
+      "sockjs-client",
+      "@stomp/stompjs"
+    ]
+  }
+
 }

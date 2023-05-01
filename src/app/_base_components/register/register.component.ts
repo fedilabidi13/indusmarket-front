@@ -16,13 +16,17 @@ export class RegisterComponent {
   created = true;
   not_created = true;
   message!: String;
+
+  loading = true;
   constructor(private userService:UserService, private CartItemService: CartItemService){}
 
 
   register(registerForm: NgForm){
+    this.loading= false;
     this.userService.register(registerForm.value).subscribe(
       (response)=>{
         this.created=false;
+        this.loading= true;
         this.message=response
         const shoppingCartJSON = localStorage.getItem('shoppingCart');
 
@@ -43,6 +47,7 @@ export class RegisterComponent {
         this.not_created=false;
         this.message=error;
         this.created=true;
+        this.loading= true;
 
             }
 

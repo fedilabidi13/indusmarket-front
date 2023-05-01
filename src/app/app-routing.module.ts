@@ -24,6 +24,20 @@ import {ModsDashboardComponent} from "./_base_components/back-office/mods-dashbo
 import {AddEventComponent} from "./_base_components/add-event/add-event.component";
 import {ClaimModComponent} from "./_base_components/back-office/claim-mod/claim-mod.component";
 import {EvantModComponent} from "./_base_components/back-office/evant-mod/evant-mod.component";
+import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
+import {ForumComponent} from './_base_components/forum-chat/forum/forum.component';
+import {AddPostComponent} from "./_base_components/forum-chat/add-post/add-post.component";
+import {EditPostComponent} from "./_base_components/forum-chat/edit-post/edit-post.component";
+import {ChatComponent} from "./_base_components/forum-chat/chat/chat.component";
+import {CommentComponent} from "./_base_components/forum-chat/comment/comment.component";
+import {ReactComponent} from "./_base_components/forum-chat/react/react.component";
+import {AddCommentComponent} from "./_base_components/forum-chat/add-comment/add-comment.component";
+import {PostDetailsComponent} from "./_base_components/forum-chat/post-details/post-details.component";
+import {PostsTabComponent} from "./_base_components/back-office/posts-tab/posts-tab.component";
+import {ChatBoxComponent} from "./_base_components/WS/chat-box/chat-box.component";
+import {ChatPriveComponent} from "./_base_components/WS/chat-prive/chat-prive.component";
+import {ShopDetailsComponent} from "./_base_components/shop-details/shop-details.component";
+import {MapComponent} from "./_base_components/profile/map/map.component";
 
 
 const routes: Routes = [
@@ -36,20 +50,40 @@ const routes: Routes = [
   { path: 'shoppingCartNoUser', component: ShoppingCartNoUserComponent },
   { path: 'shop', component: ShopComponent},
   { path: 'Orders', component: OrderComponent },
-
   { path: 'back-office', component: LoginBackComponent },
   { path: 'back-office/dashboard', component: DashboardComponent },
   { path: 'back-office/users', component: UsersTableComponent },
   { path: 'back-office/mods', component: ModsTableComponent },
   { path: 'user-shop', component: UserShopsComponent },
   { path: 'user-product', component: UserProductsComponent },
+  { path: 'shop-details/:id', component: ShopDetailsComponent },
+  { path: 'forum', component: ForumComponent },
+  { path: 'forum/add-post', component: AddPostComponent },
+  { path: 'forum/edit-post', component: EditPostComponent },
+  { path: 'forum/chat', component: ChatComponent },
+  { path: 'forum/comment', component: CommentComponent },
+  { path: 'forum/react', component: ReactComponent },
+  { path: 'forum/add-comment', component: AddCommentComponent },
+  { path: 'forum/post-details/:id', component: PostDetailsComponent },
+  { path: 'back-office/posts-tab', component: PostsTabComponent },
+  {path: 'chat', component: ChatBoxComponent},
+  {path: 'chatP', component: ChatPriveComponent},
+
+
+
+
+
+
+  { path: 'verif-location', component: IpVerifComponent },
   {path:'addEvent',component:AddEventComponent},
+  { path: 'map', component: MapComponent },
 
   { path: 'back-office/mod-confirm', component: ModsConfirmComponent },
   { path: 'back-office/mod/dashboard', component: ModsDashboardComponent },
-
   {path:'mod/claim-mod',component:ClaimModComponent},
   {path:'mod/event-mod',component:EvantModComponent},
+
+
 
 ];
 @NgModule({

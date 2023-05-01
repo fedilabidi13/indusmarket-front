@@ -22,9 +22,7 @@ export class LoginComponent {
   login(loginForm: NgForm){
     this.userService.login(loginForm.value).subscribe(
       (response)=>{
-
         this.message=response;
-
         if (this.message.startsWith('ey'))
         {
           localStorage.setItem('currentUser',this.message);
@@ -32,7 +30,10 @@ export class LoginComponent {
         }
         this.created=false;
         this.not_created=true;
-
+        if (this.message ==="account is locked due to location change. Verification is needed! ")
+        {
+          this.router.navigate(['/verif-location']);
+        }
       },
       (error)=>{
         console.log(error);
@@ -40,7 +41,6 @@ export class LoginComponent {
         this.message=error;
         this.created=true;
       }
-
     );
   }
 
