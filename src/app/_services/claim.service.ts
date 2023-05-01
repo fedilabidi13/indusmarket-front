@@ -25,4 +25,8 @@ export class ClaimService {
         return res;
       }))
   }
+  DeleteClaim(id: number) {
+    const url = `http://localhost:8085/claims/delete/${id}`;
+    return this.http.delete(url);
+  }
 }
