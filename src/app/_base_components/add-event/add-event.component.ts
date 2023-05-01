@@ -21,11 +21,10 @@ export class AddEventComponent {
   event: Event = new Event(); // define an empty Event object
   mediaList: Media[] = []; // define an empty array of Media objects
   selectedFiles: File[] = [];
-
   onFileSelected(event): void {
     this.selectedFiles = event.target.files;
   }
-  constructor(private eventService: EventService, private userService: UserService, private datePipe: DatePipe,private Euc : EventUserComponent) {}
+  constructor(private eventService: EventService, private userService: UserService, private datePipe: DatePipe) {}
 
 
   onSubmit(eventForm: NgForm) {
@@ -55,16 +54,12 @@ export class AddEventComponent {
         eventForm.reset(); // reset the form after successful submission
         this.event = new Event(); // reset the Event object
         this.mediaList = []; // reset the Media list
-        this.Euc.ngOnInit();
       },
       (error) => {
         console.log('Error adding event: ', error);
         // Add any additional code to handle error here
       }
     );
-  }
-  closeForm(){
-    this.Euc.isAddModalOpen=false;
   }
 
 }

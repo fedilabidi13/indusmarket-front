@@ -4,6 +4,8 @@ import {User} from "../../models/user";
 import {ClaimService} from "../../_services/claim.service";
 import {TicketService} from "../../_services/ticket.service";
 import {Ticket} from "../../models/Ticket";
+import {interval, Subscription} from "rxjs";
+import {StatusClaims} from "../../models/enumerations/StatusClaims";
 
 @Component({
   selector: 'app-ticket-user',
@@ -15,16 +17,25 @@ export class TicketUserComponent {
   pageSize = 3; // Number of items to display per page
   currentPage = 1; // Current page number
   user!:User;
+  private refreshSubscription: Subscription;
   constructor(private ticketService : TicketService,private cdr: ChangeDetectorRef) {
 
   }
+
   ngOnInit(): void {
+    this.getTickets(); // Get claims on component init
+    this.refreshSubscription = interval(5000).subscribe(() => {
+      // Refresh claims array every 5 seconds
+      this.getTickets();
+    });
+  }
+
+  private getTickets(): void {
     this.ticketService.GetUserTickets()
       .subscribe(res=>{
         this.tickets = res;
         console.log(this.tickets)
       })
-
   }
   onPageChange(event: any): void {
     this.currentPage = event; // Update current page when page changes
