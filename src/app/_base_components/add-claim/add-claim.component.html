@@ -8,25 +8,27 @@
 
               <div class="col-xl-6 d-xl-block bg-image">
                 <img src="https://res.cloudinary.com/dh3co0nj3/image/upload/v1682612910/bg-1623066197_2_sjwovk.png"
-                     class="img-fluid" />
+                     style="height: 100%;" class="img-fluid" />
               </div>
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">
                   <h3 class="mb-4 text-uppercase">Add Claim</h3>
                   <form (ngSubmit)="onSubmit(claimForm)" #claimForm="ngForm" enctype="multipart/form-data">
-                    <div class="form-outline">
+                    <div class="form-outline mb-4">
                       <label class="form-label" for="form3Example81">Title</label>
-                      <input class="form-control form-control-lg" type="text" id="form3Example81" name="title" [(ngModel)]="claim.title" required>
+                      <input class="form-control" type="text" id="form3Example81" name="title" [(ngModel)]="claim.title" required>
                     </div>
-
-                      <div class="form-outline">
-                        <label class="form-label" for="form3Example82">Description</label>
-                        <textarea class="form-control form-control-lg" id="form3Example82" name="description" rows="3" [(ngModel)]="claim.description" required></textarea>
+                    <div class="row">
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form3Example82">Description</label>
+                        <textarea class="form-control" id="form3Example82" name="description" rows="3" [(ngModel)]="claim.description" required></textarea>
                       </div>
-
-                    <div class="form-outline">
-                      <label class="form-label" for="form3Example86">Images</label>
-                      <input class="form-control form-control-lg" type="file" id="form3Example86" accept="image/*" (change)="onFileSelected($event)" multiple required>
+                    </div>
+                    <div class="row">
+                      <div class="form-outline mb-4">
+                        <label class="mb-3" for="form3Example86">Images</label>
+                        <input class="form-control" type="file" id="form3Example86" accept="image/*" (change)="onFileSelected($event)" multiple required>
+                      </div>
                     </div>
                     <button class="btn btn-info btn-round btn-lg" type="submit" [disabled]="claimForm.invalid">Submit</button>
                   </form>

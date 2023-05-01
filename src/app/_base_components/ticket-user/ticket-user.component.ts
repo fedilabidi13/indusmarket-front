@@ -23,11 +23,7 @@ export class TicketUserComponent {
   }
 
   ngOnInit(): void {
-    this.getTickets(); // Get claims on component init
-    this.refreshSubscription = interval(5000).subscribe(() => {
-      // Refresh claims array every 5 seconds
-      this.getTickets();
-    });
+    this.getTickets();
   }
 
   private getTickets(): void {

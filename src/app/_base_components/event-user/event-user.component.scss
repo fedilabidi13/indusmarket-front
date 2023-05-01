@@ -1,9 +1,10 @@
 .image-modal {
   position: fixed;
   top: 0;
-  left: 250px;
-  right: 250px;
+  left: 0;
+  right: 0;
   bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,6 +41,15 @@
   display: block;
   margin: 0 auto;
 }
+td img {
+  vertical-align: middle;
+}
+
+td span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .arrow-button {
   position: absolute;
   top: 50%;
@@ -64,6 +74,5 @@
 .arrow-button.right {
   right: 1rem;
 }
-
 
 

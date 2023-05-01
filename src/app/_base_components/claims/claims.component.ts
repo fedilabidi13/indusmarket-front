@@ -23,27 +23,16 @@ export class ClaimsComponent implements OnInit {
   public selectedMedia: Media; // declare the selectedMedia property with type Media
   public selectedMediaIndex = 0;
   public isAddModalOpen = false;
-  private refreshSubscription: Subscription;
-
   constructor(private claimsService: ClaimService) {}
 
   ngOnInit(): void {
     this.getClaims(); // Get claims on component init
-    this.refreshSubscription = interval(5000).subscribe(() => {
-      // Refresh claims array every 5 seconds
-      this.getClaims();
-    });
   }
 
   private getClaims(): void {
     this.claimsService.GetClaims().subscribe((res) => {
       this.claims = res.filter((claim) => claim.statusClaims != StatusClaims.In_process);
     });
-  }
-
-  ngOnDestroy(): void {
-    // Unsubscribe from refresh subscription on component destroy
-    this.refreshSubscription.unsubscribe();
   }
 
   onPageChange(event: any): void {

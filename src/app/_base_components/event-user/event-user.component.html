@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<button class="btn btn-info btn-sm btn-icon" data-bs-toggle="modal" data-bs-target="#exampleModalEvent">
+<button class="btn btn-info btn-round  btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModalEvent">
   <i class="fas fa-plus"></i>
 </button>
 <div class="modal fade" id="exampleModalEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -30,8 +30,8 @@
       <span *ngIf="event.accepted==true" class="badge badge-success">Accepted</span>
       <span *ngIf="event.accepted==false" class="badge badge-danger">Not Accepted</span>
     </td>
-    <td>{{event.startDate|date}}</td>
-    <td>{{event.endDate|date}}</td>
+    <td>{{event.startDate| date:'EEE, MMMM dd, yyyy' }}</td>
+    <td>{{event.endDate| date:'EEE, MMMM dd, yyyy' }}</td>
     <td>
       <div style="position: relative;">
         <img src="{{event.medias[0]?.imagenUrl}}" style="width: 50px; height: 50px;"  [ngStyle]="{'position': 'relative'}" (click)="onImageClick(event.medias)">
