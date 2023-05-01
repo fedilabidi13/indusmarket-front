@@ -12,7 +12,11 @@ import {Media} from "../models/media";
   providedIn: 'root'
 })
 export class EventService {
-  private apiUrl = 'http://localhost:8085/events'; // Replace with your API endpoint
+  private apiUrl = 'http://localhost:8085/events'; // Replace with your API endpointhttps:
+  private apiUrl2='http://localhost:8085/events/updateEvent'
+
+  private apiUrl3='http://localhost:8085/events/getEvent'
+
   event!:Event;
   token!:string;
   user!:User;
@@ -22,6 +26,9 @@ export class EventService {
       .pipe(map((res:any)=>{
         return res;
       }))
+  }
+  getEventById(eventId: number): Observable<Event> {
+    return this.http.get<Event>(`${this.apiUrl3}/${eventId}`);
   }
 
   getUserEvents(){
@@ -40,6 +47,14 @@ export class EventService {
     headers.append('Content-Type', 'multipart/form-data');
 
     return this.http.post<Event>(`${this.apiUrl}/addEvent`, formData, { headers });
+  }
+  updateEvent2(formData: FormData, mediaList: Media[]): Observable<string> {
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+
+    headers.append('Content-Type', 'multipart/form-data');
+
+    return this.http.put<string>(`${this.apiUrl2}`, formData, { headers });
   }
   acceptEvent(id : number){
     const url = `${this.apiUrl}/accepEvent/${id}`;

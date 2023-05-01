@@ -6,7 +6,7 @@
 /* CSS to style the button and icon */
 .carousel-inner .active .btn {
   position: absolute;
-  down: 0;
+  top: 0;
   left: 0;
   right: 0;
   margin: auto;
@@ -33,3 +33,22 @@ body {
   font-size: 18px;
   color: blue;
 }
+.title-style{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: hsl(52, 0%, 98%);
+}
+.title-quote{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 400;
+  color: hsl(52, 0%, 98%);
+}
+
+.modal-dialog {
+  max-width: 900px; /* adjust the width as per your requirement */
+  max-height: fit-content;
+}
+
+
+

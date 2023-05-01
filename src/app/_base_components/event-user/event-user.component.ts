@@ -4,7 +4,9 @@ import {EventService} from "../../_services/event.service";
 import {User} from "../../models/user";
 import {ClaimService} from "../../_services/claim.service";
 import {Media} from "../../models/media";
-
+import {interval, Subscription} from "rxjs";
+import {StatusClaims} from "../../models/enumerations/StatusClaims";
+// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-event-user',
   templateUrl: './event-user.component.html',
@@ -20,15 +22,27 @@ export class EventUserComponent {
   public isImageModalOpen = false;
   showText = false;
   public isAddModalOpen=false;
+  private refreshSubscription: Subscription;
+  id: number;
   constructor(private eventService: EventService) {}
-
-  ngOnInit(): void {
-    this.eventService.getUserEvents().subscribe((res) => {
-      this.events = res;
-      console.log(this.events);
+    ngOnInit(): void {
+    this.getEvents(); // Get claims on component init
+    this.refreshSubscription = interval(1000).subscribe(() => {
+      // Refresh claims array every 5 seconds
+      this.getEvents();
     });
   }
 
+  private getEvents(): void {
+    this.eventService.getUserEvents().subscribe((res) => {
+      this.events = res;
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe from refresh subscription on component destroy
+    this.refreshSubscription.unsubscribe();
+  }
   onPageChange(event: any): void {
     this.currentPage = event;
   }
@@ -61,14 +75,23 @@ export class EventUserComponent {
     this.isAddModalOpen=true;
   }
   onDeleteClick(id: number): void {
-    this.eventService.UserdeleteEvent(id).subscribe( response=>{
+    this.eventService.deleteEvent(id).subscribe( response=>{
       this.eventService.getUserEvents().subscribe((res) => {
         this.events = res;
       })
     });
 
   }
+  // onUpdateClick(id: number) {
+  //   const modalRef = this.modalService.open(UpdateEventComponent);
+  //   modalRef.componentInstance.id = id;
+  // }
+  setEventId(id: number) {
+    this.id = id;
+    console.log(this.id);
+  }
 }
+
 
 
 

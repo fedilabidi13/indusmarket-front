@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from "@auth0/angular-jwt";
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './_base_components/header/header.component';
 import { CarouselComponent } from './_base_components/carousel/carousel.component';
@@ -43,6 +42,7 @@ import {CommentComponent} from "./_base_components/forum-chat/comment/comment.co
 import {ReactComponent} from "./_base_components/forum-chat/react/react.component";
 import {AddCommentComponent} from "./_base_components/forum-chat/add-comment/add-comment.component";
 import { PostDetailsComponent } from './_base_components/forum-chat/post-details/post-details.component';
+import {BackOfficeModule} from "./_base_components/back-office/back-office.module";
 import {NgOptimizedImage} from "@angular/common";
 import {ChatBoxComponent} from "./_base_components/WS/chat-box/chat-box.component";
 import {ChatComponent} from "./_base_components/WS/chat/chat.component";
@@ -55,6 +55,8 @@ import { LoadingComponent } from './_base_components/loading/loading.component';
 import { CameraComponent } from './_base_components/camera/camera.component';
 import { AddEventComponent } from './_base_components/add-event/add-event.component';
 import { TicketUserComponent } from './_base_components/ticket-user/ticket-user.component';
+import { UpdateEventComponent } from './_base_components/update-event/update-event.component';
+import { AddPostClaimComponent } from './_base_components/add-post-claim/add-post-claim.component';
 import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
 import { ShopDetailsComponent } from './_base_components/shop-details/shop-details.component';
 import { FilterPipe } from './search/filter.pipe';
@@ -111,6 +113,9 @@ export function tokenGetter() {
     TicketUserComponent,
     RegisterComponent,
     IpVerifComponent,
+    UpdateEventComponent,
+    AddPostClaimComponent,
+
     ShopDetailsComponent,
     FilterPipe,
 

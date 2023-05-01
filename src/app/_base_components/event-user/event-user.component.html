@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<button class="btn btn-info btn-sm btn-icon" (click)="onAddClick()">
+<button class="btn btn-info btn-sm btn-icon" data-bs-toggle="modal" data-bs-target="#exampleModalEvent">
   <i class="fas fa-plus"></i>
 </button>
-<div *ngIf="isAddModalOpen==true">
+<div class="modal fade" id="exampleModalEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <app-add-event></app-add-event>
 </div>
-<div *ngIf="events.length>=1">
+<div *ngIf="events.length>=1" class="table-responsive">
 <table class="table" xmlns:paginate="http://www.w3.org/1999/xhtml"
        xmlns:itemsPerPage="http://www.w3.org/1999/xhtml" xmlns:currentPage="http://www.w3.org/1999/xhtml"
        xmlns:id="http://www.w3.org/1999/xhtml">
@@ -14,7 +14,7 @@
     <th scope="col">Title</th>
     <th scope="col">Description</th>
     <th scope="col">Price</th>
-    <th scope="col">Accepted</th>
+    <th scope="col">Status</th>
     <th scope="col">Start date</th>
     <th scope="col">End date</th>
     <th scope="col">Picture</th>
@@ -26,31 +26,33 @@
     <td>{{event.title}}</td>
     <td>{{event.description}}</td>
     <td>{{event.price}}</td>
-    <td><i [ngClass]="{
-  'now-ui-icons ui-1_check': event.accepted===true,
-  'now-ui-icons ui-1_simple-remove': event.accepted===false
-}"></i></td>
+    <td>
+      <span *ngIf="event.accepted==true" class="badge badge-success">Accepted</span>
+      <span *ngIf="event.accepted==false" class="badge badge-danger">Not Accepted</span>
+    </td>
     <td>{{event.startDate|date}}</td>
     <td>{{event.endDate|date}}</td>
     <td>
-    <td>
       <div style="position: relative;">
-        <img src="{{event.medias[0]?.imagenUrl}}" style="width: 50px; height: 50px;" (mouseover)="showText = true" (mouseout)="showText = false" [ngStyle]="{'position': 'relative'}" (click)="onImageClick(event.medias)">
-        <span *ngIf="showText" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 5px; font-size: 14px;">
-      <i class="fas fa-eye" style="margin-right: 5px;"></i>
-    </span>
+        <img src="{{event.medias[0]?.imagenUrl}}" style="width: 50px; height: 50px;"  [ngStyle]="{'position': 'relative'}" (click)="onImageClick(event.medias)">
+        <span *ngIf="event.medias.length>1" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: black; padding: 5px; font-size: 14px;border-radius: 5%">
+          +{{event.medias.length-1}}
+        </span>
       </div>
     <div *ngIf="isImageModalOpen" class="image-modal">
       <div class="modal-content">
         <img [src]="selectedMedia?.imagenUrl" [style.width.px]="500" [style.height.px]="500" class="center-image">
         <button (click)="closeImageModal()" class="close-button"><i class="fas fa-times"></i></button>
-        <button style="color: red" class="arrow-button left" (click)="onPreviousClick(event)" [hidden]="event.medias.length<=1" ><i class="fas fa-chevron-left"></i></button>
-        <button style="color: red" class="arrow-button right" (click)="onNextClick(event)" [hidden]="event.medias.length<=1"><i class="fas fa-chevron-right"></i></button>
+        <button style="color: black" class="arrow-button left" (click)="onPreviousClick(event)"  ><i class="fas fa-chevron-left"></i></button>
+        <button style="color: black" class="arrow-button right" (click)="onNextClick(event)" ><i class="fas fa-chevron-right"></i></button>
       </div>
     </div>
     </td>
     <td>
-      <button type="button" rel="tooltip" class="btn btn-danger btn-round btn-sm btn-icon" (click)="onDeleteClick(event.id)" [hidden]="event.tickets.length>0">
+      <button type="button" rel="tooltip" class="btn btn-default btn-round btn-sm btn-icon" data-bs-toggle="modal" data-bs-target="#exampleModalEditEvent" [hidden]="event.tickets.length>0" (click)="setEventId(event.id)">
+        <i class="fa-regular fa-file-pen"></i>
+      </button>
+      <button type="button" rel="tooltip" class="btn btn-danger btn-round btn-sm btn-icon" (click)="onDeleteClick(event.id)">
         <i class="now-ui-icons ui-1_simple-remove"></i>
       </button>
     </td>
@@ -62,4 +64,6 @@
 </div>
 </div>
 
-
+<div class="modal fade" id="exampleModalEditEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <app-update-event [id]="id"></app-update-event>
+</div>

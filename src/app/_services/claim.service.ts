@@ -53,4 +53,10 @@ export class ClaimService {
     headers.append('Content-Type', 'multipart/form-data');
     return this.http.post<Claims>(`${this.baseUrl}/addClaims`, formData, { headers });
   }
+  addPostClaim(formData: FormData, mediaList: Media[],postId : number): Observable<Claims> {
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.http.post<Claims>(`${this.baseUrl}/addPostClaims/${postId}`, formData, { headers });
+  }
 }
