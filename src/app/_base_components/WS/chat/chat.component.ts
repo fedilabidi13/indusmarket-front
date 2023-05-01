@@ -9,15 +9,15 @@ import {User} from "../../../models/user";
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent {
- /* // Holding the chat messages
-  messages!: string;
+export class ChatComponent implements OnInit {
+  // Holding the chat messages
+  messages: string;
   username: string = '';
   theme: string = '';
   avatar: string = '';
   currentUser: User = new User();
-  m!: string;
-  a!: string;
+  m: string;
+  a: string;
   @Input('m')
   set setsender(value: string) {
     this.m = value;
@@ -28,25 +28,27 @@ export class ChatComponent {
   }
 
 
-  constructor(public chatService: ChatService, private userService : UserService) {
-    this.userService.getCurrentUser()
+  constructor(public chatService: ChatService, private authenticationService: UserService) {
+   this.currentUser = this.authenticationService.getCurrentUser()
+    console.log(this.authenticationService.getCurrentUser())
   }
   ngOnInit(): void {
-    this.username = this.currentUser.email;
+    this.username = this.authenticationService.getCurrentUser().firstName.toString();
+    console.log(this.username)
     console.log(this.a, this.m);
   }
 
   // Prepare the chat message then call the chatService method 'sendMessage' to actually send the message
- // sendMessage(event: any, avatar: string) {
- //   let obj: Message = {
- //     text: this.messages,
- //     avatar: avatar,
- //     username: this.username,
- //     sender: '0',
- //     idchat: '0'
-  //  };
-   // console.log(this.a, this.m);
+  sendMessage(event: any, avatar: string) {
+    let obj: Message = {
+      text: this.messages,
+      avatar: avatar,
+      username: this.authenticationService.getCurrentUser().firstName.toString(),
+      sender: '0',
+      idchat: '0'
+    };
+    console.log(this.a, this.m);
 
-  //  this.chatService.sendMessage(obj);
-  //}*/
+    this.chatService.sendMessage(obj);
+  }
 }

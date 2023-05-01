@@ -42,27 +42,7 @@
               <h5 class="text-dark text-center w-100 m-0" id="exampleModalLabel">Create Post</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <!-- Alert BadWord Detected-->
-            <div class="row">
-              <div class="alert alert-primary alert-dismissible fade show text-white font-weight-bold" role="alert" *ngIf="errorMessage != 'Post Added successfully' && errorMessage != 'null'">
-                <i class="fas fa-exclamation-circle mr-2"></i>
-                {{errorMessage}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            </div>
-            <!-- Alert Post Added Successfully-->
-            <div class="row">
-              <div class="alert alert-success alert-dismissible fade show text-white font-weight-bold" role="alert" *ngIf="errorMessage == 'Post Added successfully'">
-                <i class="fas fa-check-circle mr-2"></i>
-                {{errorMessage}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
 
-            </div>
             <!-- body -->
             <div class="modal-body" >
               <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
@@ -100,6 +80,38 @@
                   <button class="btn  w-100  btn-info btn-round btn-lg" type="submit" >Add Post</button>
                   </div>
                 </div>
+                <!--Alert BadWord Detected-->
+                <div class="alert alert-danger" role="alert" *ngIf=" errorMessage != 'Post Added successfully' && errorMessage != 'null'">
+                  <div class="container">
+                    <div class="alert-icon">
+                      <i class="now-ui-icons objects_support-17"></i>
+                    </div>
+                    <strong>Oh snap!</strong> {{errorMessage}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </span>
+                    </button>
+                  </div>
+                </div>
+
+
+                <!--Alert success-->
+                <div class="alert alert-success" role="alert" *ngIf=" errorMessage == 'Post Added successfully'">
+                  <div class="container">
+                    <div class="alert-icon">
+                      <i class="now-ui-icons ui-2_like"></i>
+                    </div>
+                    <strong>Well done!</strong> {{errorMessage}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </span>
+                    </button>
+                  </div>
+                </div>
+
+
               </form>
             </div>
           </div>

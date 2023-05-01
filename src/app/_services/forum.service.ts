@@ -69,20 +69,17 @@ export class ForumService {
       headers: headers
     });
   }
-  updatePost(post: Post, files: FileList, id: number): Observable<Post> {
+  updatePost(post: Post, id: number, files?: FileList): Observable<Post> {
     const formData = new FormData();
     formData.append('postTitle', post.postTitle);
     formData.append('body', post.body);
-    formData.append('user', post.user.id.toString());
-    formData.append('id', id.toString());
     for (let i = 0; i < files.length; i++) {
-      formData.append('medias', files[i], files[i].name);
+      formData.append('files', files[i]);
+      console.warn(files[i])
     }
     const token = localStorage.getItem("currentUser")
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept', 'application/json');
-    return this.http.post<Post>("http://localhost:8085/post/update", formData, { headers });
+    return this.http.post<Post>("http://localhost:8085/post/update?idPost="+id, formData, { headers : headers});
   }
 
   getComments(idPost: number) {
@@ -139,13 +136,13 @@ export class ForumService {
 
 
 
-  getpostByiD(id: string): Observable<Post>{
+  getpostByiD(id: any): Observable<Post>{
     this.user=this.userService.getCurrentUser()
     // @ts-ignore
     this.token = localStorage.getItem("currentUser")
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     // @ts-ignore
-    return this.http.get<any>('http://localhost:8085/post/findById?idPost=' + id , {headers: this.getHeaders});
+    return this.http.get<any>('http://localhost:8085/post/findById?idPost=' + id , {headers: headers});
   }
 
   addReactToPost(idPost: number, reactType: string): Observable<React> {
@@ -160,6 +157,32 @@ export class ForumService {
     const url = `http://localhost:8085/react/comment/add?idComment=${idComment}&reactType=${reactType}`;
     return this.http.post<React>(url, {}, { headers: headers});
   }
+  getcommentByiD(id: any): Observable<PostComment>{
+    this.user=this.userService.getCurrentUser()
+    // @ts-ignore
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    // @ts-ignore
+    return this.http.get<any>('http://localhost:8085/comment/getById?idComment=' + id , {headers: headers});
+  }
+  updateComment(comment: PostComment, id: number, files?: FileList): Observable<PostComment> {
+    const formData = new FormData();
+    formData.append('commentBody', comment.commentBody);
+    for (let i = 0; i < files.length; i++) {
+      formData.append('files', files[i]);
+      console.warn(files[i])
+    }
+    const token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<PostComment>("http://localhost:8085/comment/update?idComment="+id, formData, { headers : headers});
+  }
 
+  getReacts(idPost: number) {
+    this.user=this.userService.getCurrentUser()
+    // @ts-ignore
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.get<any[]>('http://localhost:8085/react/post/getAll?idPost='+idPost, {headers: headers});
+  }
 
 }
