@@ -8,7 +8,6 @@ import { CarouselComponent } from './_base_components/carousel/carousel.componen
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './_base_components/login/login.component';
 import { RegisterComponent } from './_base_components/register/register.component';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './_base_components/cart/cart.component';
 import { HomeComponent } from './_base_components/home/home.component';
@@ -33,9 +32,22 @@ import { OrderComponent } from './_base_components/order/order.component';
 import { InvoiceComponent } from './_base_components/invoice/invoice.component';
 import { ShoppingCartComponent } from './_base_components/shopping-cart/shopping-cart.component';
 import { ShoppingCartNoUserComponent } from './_base_components/shopping-cart-no-user/shopping-cart-no-user.component';
-import { PostsComponent } from './_base_components/posts/posts.component';
 import { UserShopsComponent } from './_base_components/user-shops/user-shops.component';
 import { UserProductsComponent } from './_base_components/user-products/user-products.component';
+import { ForumComponent } from './_base_components/forum-chat/forum/forum.component';
+import { AddPostComponent } from './_base_components/forum-chat/add-post/add-post.component';
+import { EditPostComponent } from './_base_components/forum-chat/edit-post/edit-post.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {CommentComponent} from "./_base_components/forum-chat/comment/comment.component";
+import {ReactComponent} from "./_base_components/forum-chat/react/react.component";
+import {AddCommentComponent} from "./_base_components/forum-chat/add-comment/add-comment.component";
+import { PostDetailsComponent } from './_base_components/forum-chat/post-details/post-details.component';
+import {BackOfficeModule} from "./_base_components/back-office/back-office.module";
+import {NgOptimizedImage} from "@angular/common";
+import {ChatBoxComponent} from "./_base_components/WS/chat-box/chat-box.component";
+import {ChatComponent} from "./_base_components/WS/chat/chat.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ChatPriveComponent} from "./_base_components/WS/chat-prive/chat-prive.component";
 import { EventComponent } from './_base_components/event/event.component';
 import { AddClaimComponent } from './_base_components/add-claim/add-claim.component';
 import { EventUserComponent } from './_base_components/event-user/event-user.component';
@@ -49,6 +61,8 @@ export function tokenGetter() {
   return localStorage.getItem("currentUser");
 }
 @NgModule({
+  bootstrap: [AppComponent],
+
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -78,7 +92,6 @@ export function tokenGetter() {
     Nav2Component,
     ShopComponent,
     ShopModuleComponent,
-    PostsComponent,
     UserShopsComponent,
     UserProductsComponent,
     EventComponent,
@@ -94,9 +107,20 @@ export function tokenGetter() {
     AddEventComponent,
     TicketUserComponent,
     RegisterComponent,
-    IpVerifComponent
+    IpVerifComponent,
 
 
+    MailVerifComponent,
+    ForumComponent,
+    AddPostComponent,
+    EditPostComponent,
+    ChatComponent,
+    CommentComponent,
+    ReactComponent,
+    AddCommentComponent,
+    PostDetailsComponent,
+    ChatBoxComponent,
+    ChatPriveComponent
   ],
 
     imports: [
@@ -108,11 +132,13 @@ export function tokenGetter() {
         BrowserAnimationsModule,
         GoogleMapsModule,
         NgxPaginationModule,
+        ReactiveFormsModule,
+        BackOfficeModule,
+        NgOptimizedImage,
     ],
     providers: [],
     exports: [
         LoadingComponent
     ],
-    bootstrap: [AppComponent]
 })
 export class AppModule { }

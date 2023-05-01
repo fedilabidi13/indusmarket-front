@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body  style="background-image: url(./assets/img/header.jpg);
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;">
+<app-nav2></app-nav2>
+<div class="content">
+<div class="row">
+<div class=" col-md-3" style="padding: 4%">
+  <div class="card card-user">
+    <div class="card-body" >
+      <div class="author">
+        <a href="#">
+          <img class="rounded-circle img-raised" src="{{user.picture.imagenUrl}}" alt="...">
+          <h5 class="title">{{user.firstName}}{{user.lastName}}</h5>
+        </a>
+        <p class="description">
+          michael24
+        </p>
+      </div>
+      <p class="description text-center">
+        "Lamborghini Mercy <br>
+        Your chick she so thirsty <br>
+        I'm in that two seat Lambo"
+      </p>
+    </div>
+    <hr>
+    <div class="button-container">
+      <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+      <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+        <i class="fab fa-twitter"></i>
+      </button>
+      <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+        <i class="fab fa-google-plus-g"></i>
+      </button>
+    </div>
+  </div>
+
+</div>
+<div class="col-md-9" >
+
+
+<div >
+  <app-add-post></app-add-post>
+
+<div  >
+  <div
+    style="padding-top: 56px; max-width: 680px"
+    *ngFor="let posts of post"
+  >
+    <div class="bg-white p-3 mt-3 rounded border shadow">
+
+
+  <!-- author -->
+  <div class="d-flex justify-content-between" >
+
+    <!-- avatar -->
+    <div class="d-flex">
+      <img
+        src="{{posts.user.picture.imagenUrl}}"
+        alt="avatar"
+        class="rounded-circle me-2"
+        style="width: 38px; height: 38px; object-fit: cover"
+      />
+      <div>
+        <input type="text" [hidden]="true" id="postId" value="{{posts.id}}">
+        <p class="m-0 fw-bold">{{posts.user.firstName}} {{posts.user.lastName}}</p>
+        <span class="text-muted fs-7">{{posts.createdAt}}</span>
+      </div>
+    </div>
+      <!-- edit -->
+      <i
+        class="fas fa-ellipsis-h"
+        type="button"
+        id="post1Menu"
+        data-bs-toggle="dropdown"
+        data-toggle="dropdown"
+        aria-expanded="false"
+        data-toggle="dropdown" aria-haspopup="true"
+      ></i>
+      <!-- edit menu -->
+      <ul
+        class="dropdown-menu border-0 shadow"
+        aria-labelledby="post1Menu"
+      >
+        <li class="d-flex align-items-center">
+
+          <button
+            class="dropdown-item d-flex justify-content-around align-items-center fs-7  up-button form-control pointer"
+            data-toggle="modal"
+            data-target="#exampleModal25" (click)=" getPostId(posts.id); initPostUpdate()"
+          >
+
+            <i class="now-ui-icons loader_gear spin"></i>
+            update Post
+          </button>
+
+        </li>
+
+        <li class="d-flex align-items-center">
+          <button type="button" rel="tooltip"  class="dropdown-item d-flex justify-content-around align-items-center fs-7 delete-button form-control pointer"
+                  data-toggle="modal" data-target="#myModal1"    >
+            <i class="fas fa-trash">></i> Delete Post
+          </button>
+        </li>
+      </ul>
+          <div class="modal fade modal-mini modal-info" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true" *ngFor="let posts of post">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                  <div class="modal-profile">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </div>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete this post ? </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-link btn-neutral" (click)="deletePost(posts.id)" >Yes</button>
+
+                  <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Close</button>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf=" errormessage==false">
+                  <div class="container">
+                    <div class="alert-icon">
+                      <i class="now-ui-icons objects_support-17"></i>
+                    </div>
+                    <strong>Oh snap!</strong> {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+    </div>
+  <!-- post content -->
+  <div class="mt-3" >
+    <!-- content -->
+    <div>
+      <h5 class="card-title">{{posts.postTitle}}</h5>
+      <p>
+        {{posts.body}}
+      </p>
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2" class="active"></li>
+            </ol>
+            <div  class="carousel-inner" role="listbox">
+              <div class="carousel-item">
+                <img class="d-block" src="{{posts.medias[0].imagenUrl}}" alt="First slide">
+
+              </div>
+              </div>
+              <div *ngFor="let media of posts.medias" class="carousel-item active">
+                <img class="d-block" src="{{media.imagenUrl}}" alt="Third slide">
+
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <i class="now-ui-icons arrows-1_minimal-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <i class="now-ui-icons arrows-1_minimal-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- React & comments -->
+    <div class="post__comment mt-3 position-relative">
+      <!-- React -->
+      <div
+        class="
+                      d-flex
+                      align-items-center
+                      top-0
+                      start-0
+                      position-absolute
+                    "
+        style="height: 50px; z-index: 5"
+      >
+        <div class="me-2">
+
+        </div>
+      </div>
+      <!-- comments start-->
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item border-0">
+          <button class="dropdown-item d-flex justify-content-around align-items-center fs-7  btn-react form-control pointer"
+                  data-toggle="modal"
+                  data-target="#exampleModalReact">👍😍😡...</button>
+          <!-- comment collapse -->
+          <h2 class="accordion-header" id="headingTwo">
+            <div
+              class="
+                            accordion-button
+                            collapsed
+                            pointer
+                            d-flex
+                            justify-content-end
+                          "
+              data-bs-toggle="collapse"
+              data-bs-target="#collapsePost1"
+              aria-expanded="false"
+              aria-controls="collapsePost1"
+            >
+              <a class="m-0" (click)="showPost(posts.id)" >comment section</a>
+            </div>
+          </h2>
+          <hr />
+          <!-- comment & like bar -->
+          <div class="d-flex justify-content-around">
+            <div
+              class="
+                            dropdown-item
+                            rounded
+                            d-flex
+                            justify-content-center
+                            pointer
+                            p-1
+                          "
+            >
+              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="reactType" id="likeReact" value="LIKE" (click)="addReactToPost(selectedPost.id,'LIKE')">
+                <label class="btn btn-round btn-outline-primary" for="likeReact" (click)="getPostId(posts.id);">&nbsp;&nbsp;👍&nbsp;&nbsp;</label>
+
+                <input type="radio" class="btn-check" name="reactType" id="dislikeReact" value="DISLIKE" (click)="addReactToPost(selectedPost.id,'DISLIKE')">
+                <label class="btn btn-round btn-outline-primary" for="dislikeReact" (click)="getPostId(posts.id);">👎&nbsp;&nbsp;</label>
+
+                <input type="radio" class="btn-check" name="reactType" id="loveReact" value="LOVE" (click)="addReactToPost(selectedPost.id,'LOVE')">
+                <label class="btn btn-round btn-outline-primary" for="loveReact" (click)="getPostId(posts.id);">😍&nbsp;&nbsp;</label>
+
+                <input type="radio" class="btn-check" name="reactType" id="sadReact" value="SAD" (click)="addReactToPost(selectedPost.id,'SAD')">
+                <label class="btn btn-round btn-outline-primary" for="sadReact" (click)="getPostId(posts.id);">😔&nbsp;&nbsp;</label>
+
+                <input type="radio" class="btn-check" name="reactType" id="surprisedReact" value="SURPRISED" (click)="addReactToPost(selectedPost.id,'WOW')">
+                <label class="btn btn-round btn-outline-primary" for="surprisedReact" (click)="getPostId(posts.id);">😲&nbsp;&nbsp;</label>
+
+                <input type="radio" class="btn-check" name="reactType" id="angryReact" value="ANGRY" (click)="addReactToPost(selectedPost.id,'ANGRY')">
+                <label class="btn btn-round btn-outline-primary" for="angryReact" (click)="getPostId(posts.id);">😡&nbsp;&nbsp;</label>
+
+                <input type="radio" class="btn-check" name="reactType" id="laughReact" value="LAUGH" (click)="addReactToPost(selectedPost.id,'LAUGH')">
+                <label class="btn btn-round btn-outline-primary" for="laughReact" (click)="getPostId(posts.id);">😂&nbsp;&nbsp;</label>
+              </div>
+
+              <div
+              class="
+                            dropdown-item
+                            rounded
+                            d-flex
+                            justify-content-center
+                            align-items-center
+                            pointer
+                            text-muted
+                            p-1
+                          "
+              data-bs-toggle="collapse"
+              data-bs-target="#collapsePost1"
+              aria-expanded="false"
+              aria-controls="collapsePost1"
+            >
+              <i class="fas fa-comment-alt me-3"></i>
+              <p class="m-0">Comment</p>
+            </div>
+          </div>
+          <!-- comment expand -->
+          <div
+            id="collapsePost1"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingTwo"
+            data-bs-parent="#accordionExample"
+          >
+            <hr />
+
+
+            </div>
+
+
+
+
+            <!-- end -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end -->
+    </div>
+
+</div>
+</div>
+
+<app-chat></app-chat>
+  <!-- create update modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- head -->
+          <div class="modal-header align-items-center">
+            <h5
+              class="text-dark text-center w-100 m-0"
+              id="exampleModalLabel12"
+            >
+              Update Post
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- body -->
+          <div class="modal-body">
+            <div class="my-1 p-1">
+              <div class="d-flex flex-column">
+                <!-- name -->
+                <div class="d-flex align-items-center">
+                  <div class="p-2">
+                    <img
+                      src="{{user.picture.imagenUrl}}"
+                      alt="from fb"
+                      class="rounded-circle"
+                      style="
+                                  width: 38px;
+                                  height: 38px;
+                                  object-fit: cover;
+                                "
+                    />
+                  </div>
+                  <div>
+                    <p class="m-0 fw-bold">{{user.firstName}}&nbsp;{{user.lastName}}</p>
+                  </div>
+                </div>
+                <!-- text -->
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Post Title</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1" [(ngModel)]="selectedPost.postTitle"  placeholder="add title to your post">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea11" class="form-label">Post Body</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea11" [(ngModel)]="selectedPost.body" placeholder="add body to your post" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3">
+                  <label for="formFileMultiple" class="form-label">Post Images</label>
+                  <input class="form-control" type="file" id="formFileMultiple" multiple>
+                </div>
+                <input [hidden]="true" type="email" class="form-control" id="exampddleFormControlInput1" [(ngModel)]="selectedPost.id"  placeholder="add title to your post">
+
+
+                <!-- end -->
+              </div>
+              <!-- footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary w-100">
+                  Post
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+      </div>
+    </div>
+  </div>
+  <!--model update post-->
+<div class="modal fade" id="exampleModal25" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!-- head -->
+        <div class="modal-header align-items-center">
+          <h5
+            class="text-dark text-center w-100 m-0"
+            id="exampleModalLabel1"
+          >
+            Update Post
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <!-- body -->
+        <div class="modal-body">
+          <div class="my-1 p-1">
+            <div class="d-flex flex-column">
+              <!-- name -->
+              <div class="d-flex align-items-center">
+                <div class="p-2">
+                  <img
+                    src="{{user.picture.imagenUrl}}"
+                    alt="from fb"
+                    class="rounded-circle"
+                    style="
+                                  width: 38px;
+                                  height: 38px;
+                                  object-fit: cover;
+                                "
+                  />
+                </div>
+                <div>
+                  <p class="m-0 fw-bold">{{user.firstName}}&nbsp;{{user.lastName}}</p>
+                </div>
+              </div>
+              <!-- text -->
+              <input [hidden]="true" type="text" class="form-control" id="exaddmpleForsmControlInput1" [value]="selectedPost.id" [(ngModel)]="selectedPost.id" placeholder="add title to your post">
+
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Post Title</label>
+                <input type="email" class="form-control" id="exaddmpleFormControlInput1"  [value]="selectedPost.postTitle"  [(ngModel)]="selectedPost.postTitle" placeholder="add title to your post">
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea11" class="form-label">Post Body</label>
+                <textarea class="form-control" id="exampleFormContddrolTextarea11" [value]="selectedPost.body" [(ngModel)]="selectedPost.body"  placeholder="add body to your post" rows="3"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="formFileMultiple" class="form-label">Post Images</label>
+                <input class="form-control" type="file" id="formFileMultipddle" (change)="onFileSelected($event)" multiple>
+              </div>
+
+
+              <!-- end -->
+            </div>
+            <!-- footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn  w-100  btn-info btn-round btn-lg" (click)="updatePost()">
+                Update Post
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <hr />
+
+    </div>
+  </div>
+
+</div>
+  <!--model Affichage React-->
+  <div class="modal fade" id="exampleModalReact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- head -->
+          <div class="modal-header align-items-center">
+            <h5
+              class="text-dark text-center w-100 m-0"
+              id="exampleModalLabelreact"
+            >
+              Post Reacts
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- body -->
+          <div class="modal-body">
+            <div class="my-1 p-1">
+              <div class="d-flex" *ngFor="let reacts of react">
+                <img
+                  src="{{reacts.user.picture.imagenUrl}}"
+                  alt="avatar"
+                  class="rounded-circle me-2"
+                  style="width: 38px; height: 38px; object-fit: cover"
+                />
+                <div>
+                  <p class="m-0 fw-bold">{{reacts.user.firstName}}{{reacts.user.lastName}}</p>
+                  <p class="m-0 fw-bold">{{reacts.react}}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <hr />
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+</div>
