@@ -6,7 +6,7 @@ import {ReactType} from "./enumerations/ReactType";
 
 export class React {
   id!: number;
-  react!:ReactType
+  type!:string
   user!: User;
   postComments!: PostComment[];
   post!: Post;
