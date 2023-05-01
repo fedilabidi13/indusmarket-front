@@ -24,7 +24,6 @@ import {ModsDashboardComponent} from "./_base_components/back-office/mods-dashbo
 import {AddEventComponent} from "./_base_components/add-event/add-event.component";
 import {ClaimModComponent} from "./_base_components/back-office/claim-mod/claim-mod.component";
 import {EvantModComponent} from "./_base_components/back-office/evant-mod/evant-mod.component";
-import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
 import {ForumComponent} from './_base_components/forum-chat/forum/forum.component';
 import {AddPostComponent} from "./_base_components/forum-chat/add-post/add-post.component";
 import {EditPostComponent} from "./_base_components/forum-chat/edit-post/edit-post.component";
@@ -39,6 +38,10 @@ import {ChatPriveComponent} from "./_base_components/WS/chat-prive/chat-prive.co
 import {ShopDetailsComponent} from "./_base_components/shop-details/shop-details.component";
 import {MapComponent} from "./_base_components/profile/map/map.component";
 import {MsgComponent} from "./_base_components/forum-chat/msg/msg.component";
+import {TwoFaComponent} from "./_base_components/two-fa/two-fa.component";
+import {ResetpwdComponent} from "./_base_components/resetpwd/resetpwd.component";
+import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
+import {NewPasswordComponent} from "./_base_components/new-password/new-password.component";
 
 
 const routes: Routes = [
@@ -78,6 +81,13 @@ const routes: Routes = [
   {path:'mod/claim-mod',component:ClaimModComponent},
   {path:'mod/event-mod',component:EvantModComponent},
   {path:'msg',component:MsgComponent},
+
+  { path: 'user-shop', component: UserShopsComponent },
+  { path: 'user-product', component: UserProductsComponent },
+  { path: 'twoFactorsAuth', component: TwoFaComponent },
+  { path: 'passwordReset', component: ResetpwdComponent },
+  { path: 'verif-location', component: IpVerifComponent },
+  { path: 'new-password', component: NewPasswordComponent },
 
 
 

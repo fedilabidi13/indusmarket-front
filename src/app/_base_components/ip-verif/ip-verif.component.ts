@@ -20,13 +20,15 @@ export class IpVerifComponent {
     return this.http.post("http://localhost:8085/auth/confirmAddress?mail="+this.emailToken+"&phone="+this.phoneToken,
 
       {}).subscribe(next => {
-        // @ts-ignore
+      // @ts-ignore
       this.message = next;
+    }, error => {
+      if (error.error.text==="location approved u can login now! ")
+      {
+        this.router.navigate(['login']);
+      }
     })
-    if (this.message==="location approved u can login now! ")
-    {
-      this.router.navigate(['profile']);
-    }
+
   }
 
 }

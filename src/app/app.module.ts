@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from "@auth0/angular-jwt";
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './_base_components/header/header.component';
 import { CarouselComponent } from './_base_components/carousel/carousel.component';
@@ -19,8 +20,6 @@ import { MailVerifComponent } from './_base_components/mail-verif/mail-verif.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {GoogleMapsModule} from "@angular/google-maps";
 import {ClaimsComponent} from "./_base_components/claims/claims.component";
-//import { ClaimsComponent } from './claims/claims.component';
-
 
 import {ShopComponent} from "./_base_components/shop-module/shop/shop.component";
 import {ShopModuleComponent} from "./_base_components/shop-module/shop-module.component";
@@ -50,13 +49,16 @@ import {ChatPriveComponent} from "./_base_components/WS/chat-prive/chat-prive.co
 import { EventComponent } from './_base_components/event/event.component';
 import { AddClaimComponent } from './_base_components/add-claim/add-claim.component';
 import { EventUserComponent } from './_base_components/event-user/event-user.component';
+import { TwoFaComponent } from './_base_components/two-fa/two-fa.component';
+import { ResetpwdComponent } from './_base_components/resetpwd/resetpwd.component';
+import { IpVerifComponent } from './_base_components/ip-verif/ip-verif.component';
+import { NewPasswordComponent } from './_base_components/new-password/new-password.component';
 import { LoadingComponent } from './_base_components/loading/loading.component';
 import { CameraComponent } from './_base_components/camera/camera.component';
 import { AddEventComponent } from './_base_components/add-event/add-event.component';
 import { TicketUserComponent } from './_base_components/ticket-user/ticket-user.component';
 import { UpdateEventComponent } from './_base_components/update-event/update-event.component';
 import { AddPostClaimComponent } from './_base_components/add-post-claim/add-post-claim.component';
-import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
 import { ShopDetailsComponent } from './_base_components/shop-details/shop-details.component';
 import { FilterPipe } from './search/filter.pipe';
 import {BackOfficeModule} from "./_base_components/back-office/back-office.module";
@@ -98,6 +100,37 @@ export function tokenGetter() {
     Nav2Component,
     ShopComponent,
     ShopModuleComponent,
+
+        AppComponent,
+        HeaderComponent,
+        CarouselComponent,
+        LoginComponent,
+        RegisterComponent,
+        CartComponent,
+        HomeComponent,
+        NavComponent,
+        ProfileComponent,
+        ProfileBadgeComponent,
+        BreadCrumpComponent,
+        Nav2Component,
+        MailVerifComponent,
+        ClaimsComponent,
+        AppComponent,
+        HeaderComponent,
+        CarouselComponent,
+        LoginComponent,
+        RegisterComponent,
+        CartComponent,
+        HomeComponent,
+        NavComponent,
+        ProfileComponent,
+        ProfileBadgeComponent,
+        BreadCrumpComponent,
+        Nav2Component,
+        ShopComponent,
+        ShopModuleComponent,
+        LoadingComponent,
+        CameraComponent,
     UserShopsComponent,
     UserProductsComponent,
     EventComponent,
@@ -133,6 +166,12 @@ export function tokenGetter() {
     ChatBoxComponent,
     ChatPriveComponent,
     MsgComponent,
+    EventUserComponent,
+    TwoFaComponent,
+    ResetpwdComponent,
+    IpVerifComponent,
+    NewPasswordComponent
+
 
   ],
 
@@ -154,7 +193,6 @@ export function tokenGetter() {
       GoogleMapsModule,
       NgxPaginationModule,
         ReactiveFormsModule,
-        BackOfficeModule,
         NgOptimizedImage,
 
 
@@ -168,4 +206,3 @@ export function tokenGetter() {
 
 })
 export class AppModule { }
-

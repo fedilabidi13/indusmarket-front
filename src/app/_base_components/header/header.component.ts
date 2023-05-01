@@ -2,11 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../_services/user.service";
 import {User} from "../../models/user";
 import jwt_decode from "jwt-decode";
-
-
-
-
-
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +11,7 @@ import jwt_decode from "jwt-decode";
 })
 export class HeaderComponent implements OnInit{
   user!:User;
-  constructor(private userService:UserService){
+  constructor(private userService:UserService, private router: Router){
     this.user=this.userService.getCurrentUser();
   }
 
@@ -24,6 +20,16 @@ export class HeaderComponent implements OnInit{
     console.log("hrkzlejr");
     console.log(this.user.id);
 
+  }
+  account()
+  {
+    if (localStorage.getItem('currentUser')!= null)
+    {
+      this.router.navigate(['/profile'])
+    }
+    else {
+      this.router.navigate(['/login'])
+    }
   }
 
 

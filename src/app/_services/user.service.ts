@@ -37,12 +37,9 @@ export class UserService {
     return this.httpClient.post(this.PATH_OF_API+"/auth/authenticate",loginData,{ responseType: 'text' });
 
   }
-  getUser(email: string): Observable<User>{
-     return this.httpClient.get<User>(this.PATH_OF_API + "/auth/get?email=" + email).pipe(
-       map((res:any)=>{
-         return res;
-       })
-     );
+  getUser(email: string) {
+     return this.httpClient.get<User>(this.PATH_OF_API + "/auth/get?email=" + email)
+
   }
   public getCurrentUser():User{
     const token = localStorage.getItem('currentUser');
@@ -51,8 +48,8 @@ export class UserService {
       const decodedJwt: any = jwt_decode(token);
       const email = decodedJwt.sub;
       console.log(token);
-      this.getUser(email).subscribe({
-        next: (user) => {
+      this.getUser(email).subscribe(
+         user=> {
           console.log(user);
           this.user2.id=user.id
           this.user2.firstName=user.firstName;
@@ -60,8 +57,11 @@ export class UserService {
           this.user2.email=user.email;
           this.user2.phoneNumber=user.phoneNumber;
           this.user2.picture=user.picture;
+          console.warn('authhjdsf')
+          console.log(user.twoFactorsAuth)
           this.user2.phoneNumberVerif= user.phoneNumberVerif;
-
+         this.user2.twoFactorsAuth= user.twoFactorsAuth.valueOf();
+          this.user2=user;
           if (user.role==="MOD")
           {
             this.user2.role="MOD"
@@ -85,22 +85,20 @@ export class UserService {
 
 
 
-          return this.user2;
+     //     return this.user2;
 
 
-        },error: (error: any) => {
+        } ,(error: any) => {
           console.error(error);
           return this.user2;
 
         },
-        complete: () => {
-          console.log('Complete');
-          console.log(this.user2.role);
-
-          return this.user2;
-
-        },
-      });
+        ()=>{
+        console.log(this.user2.twoFactorsAuth)
+          var x : any = this.user2.twoFactorsAuth;
+        console.log(x)
+        }
+      );
 
 
       return this.user2;
@@ -116,6 +114,20 @@ export class UserService {
   }
   public getAllMods():Observable<User[]>{
     return this.httpClient.get<User[]>(this.PATH_OF_API+"/admin/users?role=MOD").pipe();
+  }
+  public logout(){
+    const user = this.getCurrentUser();
+    console.log(user)
+    if (user.role=="USER")
+    {
+      localStorage.removeItem('currentUser')
+      this.router.navigate(['/'])
+    }
+    else {
+      localStorage.removeItem('currentUser')
+      this.router.navigate(['/back-office'])
+    }
+
   }
 
 

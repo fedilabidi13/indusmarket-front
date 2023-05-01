@@ -4,6 +4,7 @@ import {User} from "../../models/user";
 import {Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 import {Shop} from "../../models/shop";
 
 
@@ -11,18 +12,17 @@ import {Shop} from "../../models/shop";
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  providers: [DatePipe],
-
+  providers: [DatePipe]
 })
 export class ProfileComponent implements OnInit{
   shop : Shop = new Shop();
   user!: User;
   constructor(private http:HttpClient,private userService: UserService, private router: Router) {
   }
+  loading = true;
   public  redirect(root:any){
     this.router.navigate([root]);
   }
-  loading = true;
 
   private fileToUpload: File | null = null;
   //TODO add condition for empty file on upload
@@ -35,7 +35,6 @@ export class ProfileComponent implements OnInit{
   authToken !: string;
   phoneNumber : string =''
   adresse : string =''
-
   ngOnInit(): void {
 
 
@@ -99,6 +98,23 @@ export class ProfileComponent implements OnInit{
         this.message = "shop picture added successfully! "
       });
     }
+  enable2fa()
+  {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authToken}`);
+    this.http.post("http://localhost:8085/auth/enable2fa", {}, {headers: headers}).subscribe(
+      (res) =>
+      {
+        console.log(res)
+        window.location.reload()
+
+      }, error=>{
+        console.error(error)
+        window.location.reload()
+      }
+    )
+
+
+  }
 
 
 
@@ -107,11 +123,11 @@ export class ProfileComponent implements OnInit{
     this.files = event.target.files//.items//(0);
   }
   onUpload(): void {
+    this.loading = false;
     console.log("begining upload!")
     if (!this.fileToUpload) {
       return;
     }
-
 
     const formData = new FormData();
     formData.append('file', this.fileToUpload);
@@ -139,6 +155,7 @@ export class ProfileComponent implements OnInit{
         this.message = "profile picture added successfully! "
       });
     }
+
 
   }
   isImageFile(file: File): boolean {

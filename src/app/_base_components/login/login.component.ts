@@ -22,11 +22,17 @@ export class LoginComponent {
   login(loginForm: NgForm){
     this.userService.login(loginForm.value).subscribe(
       (response)=>{
+
         this.message=response;
+
         if (this.message.startsWith('ey'))
         {
           localStorage.setItem('currentUser',this.message);
           this.router.navigate(['/profile']);
+        }
+        if (this.message.startsWith('2fa required'))
+        {
+          this.router.navigate(['/twoFactorsAuth'])
         }
         this.created=false;
         this.not_created=true;
@@ -34,6 +40,7 @@ export class LoginComponent {
         {
           this.router.navigate(['/verif-location']);
         }
+
       },
       (error)=>{
         console.log(error);
@@ -41,6 +48,7 @@ export class LoginComponent {
         this.message=error;
         this.created=true;
       }
+
     );
   }
 

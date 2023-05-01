@@ -27,52 +27,38 @@
     <div class="container h-100 d-flex align-items-center justify-content-center" >
       <div class="col-md-4 ml-auto mr-auto">
         <div class="card card-login card-plain" style="background-color: rgba(57,37,30,0.61);
-backdrop-filter: blur(5px);">
-          <form class="form" style="padding: 3%" >
-            <div class="card-header text-center">
-              <h3>Help us verify your identity</h3>
 
-            </div>
-            <div class="alert alert-warning" role="alert">
-              <div class="container">
-                <div class="alert-icon">
-                  <i class="now-ui-icons ui-1_bell-53"></i>
-                </div>
-                <strong>Notice! </strong>We detected an unusual device. We've sent two confirmation codes to your email and phone number.
-              </div>
+backdrop-filter: blur(5px);">
+          <form class="form" style="padding: 3%"  >
+            <div class="card-header text-center">
+              <h3>reset your account</h3>
             </div>
             <div class="card-body">
               <div class="form-group position-relative">
-                <label class="d-flex justify-content-between" style="padding-left: 5%" for="email">Email verification code</label>
-                <input type="email" class="form-control"  [(ngModel)]="emailToken" name="email" id="email"  aria-describedby="emailHelp" placeholder="Enter email verification code">
-              </div>
-              <div class="form-group">
-                <label class="d-flex justify-content-between" style="padding-left: 5%" style="color: white"  for="password">Phone verification code</label>
-                <input input type="text" class="form-control"  [(ngModel)]="phoneToken" name="password" id="password"  placeholder="Enter phone verification code">
+                <label class="d-flex justify-content-between" style="padding-left: 5%" for="email">Email address</label>
+                <input type="email" class="form-control"  [(ngModel)]="email" name="email" id="email"  aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" style="color: white"  class="form-text ">We'll never share your email with anyone else.</small>
               </div>
 
 
             </div>
             <div class="card-footer text-center">
-              <button type="submit"  (click)="validate()" class="btn btn-info btn-round btn-outline-light btn-lg btn-block">confirm</button>
+              <button type="button" (click)="requestPwd()"  class="btn btn-info btn-round btn-outline-light btn-lg btn-block">confirm</button>
               <br>
               <div class="pull-left">
                 <h6>
-                  <a routerLink="/login" class="link-light">login</a>
+                  <a routerLink="/register" class="link-light">Create Account</a>
                 </h6>
               </div>
-              <div class="pull-right">
-                <h6>
-                  <a href="#pablo" class="link-light">Need Help?</a>
-                </h6>
-              </div>
+
               <br>
             </div>
-            <div [hidden]="true" class="alert alert-info" role="alert">
+            <div [hidden]="not_created" class="alert alert-info" role="alert">
               invalid credentials.
             </div>
-            <div [hidden]="true" class="alert alert-info" role="alert">
-              jhjhjgj            </div>
+            <div [hidden]="created" class="alert alert-info" role="alert">
+              {{message}}
+            </div>
           </form>
         </div>
       </div>
