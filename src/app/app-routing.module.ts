@@ -14,7 +14,6 @@ import {UsersTableComponent} from "./_base_components/back-office/users-table/us
 import {ModsTableComponent} from "./_base_components/back-office/mods-table/mods-table.component";
 import {UserShopsComponent} from "./_base_components/user-shops/user-shops.component";
 import {UserProductsComponent} from "./_base_components/user-products/user-products.component";
-import {Essai2Component} from "./_base_components/forum/essai2/essai2.component";
 import {ForumComponent} from './_base_components/forum-chat/forum/forum.component';
 import {AddPostComponent} from "./_base_components/forum-chat/add-post/add-post.component";
 import {EditPostComponent} from "./_base_components/forum-chat/edit-post/edit-post.component";
@@ -24,8 +23,8 @@ import {ReactComponent} from "./_base_components/forum-chat/react/react.componen
 import {AddCommentComponent} from "./_base_components/forum-chat/add-comment/add-comment.component";
 import {PostDetailsComponent} from "./_base_components/forum-chat/post-details/post-details.component";
 import {PostsTabComponent} from "./_base_components/back-office/posts-tab/posts-tab.component";
-import {CommentsTabComponent} from "./_base_components/back-office/comments-tab/comments-tab.component";
-import {ReactsTabComponent} from "./_base_components/back-office/reacts-tab/reacts-tab.component";
+import {ChatBoxComponent} from "./_base_components/WS/chat-box/chat-box.component";
+import {ChatPriveComponent} from "./_base_components/WS/chat-prive/chat-prive.component";
 
 
 const routes: Routes = [
@@ -40,7 +39,6 @@ const routes: Routes = [
   { path: 'back-office/mods', component: ModsTableComponent },
   { path: 'user-shop', component: UserShopsComponent },
   { path: 'user-product', component: UserProductsComponent },
-  { path: 'essai2', component: Essai2Component },
   { path: 'forum', component: ForumComponent },
   { path: 'forum/add-post', component: AddPostComponent },
   { path: 'forum/edit-post', component: EditPostComponent },
@@ -50,9 +48,8 @@ const routes: Routes = [
   { path: 'forum/add-comment', component: AddCommentComponent },
   { path: 'forum/post-details/:id', component: PostDetailsComponent },
   { path: 'back-office/posts-tab', component: PostsTabComponent },
-  { path: 'back-office/comments-tab', component: CommentsTabComponent },
-  { path: 'back-office/reacts-tab', component: ReactsTabComponent },
-
+  {path: 'chat', component: ChatBoxComponent},
+  {path: 'chatP', component: ChatPriveComponent},
 
 
 

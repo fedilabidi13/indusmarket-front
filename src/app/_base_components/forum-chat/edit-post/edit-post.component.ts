@@ -27,7 +27,7 @@ onFileSelect(event) {
 }
 
 onSubmit() {
-  this.forumService.updatePost(this.post, this.files, this.post.id).subscribe(
+  this.forumService.updatePost(this.post,this.post.id, this.files).subscribe(
     post => {
       console.log(post);
       window.location.reload();

@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+
+import {Router} from "@angular/router";
 import {Chatroom} from "../../../models/chatroom";
 import {User} from "../../../models/user";
-import {Router} from "@angular/router";
-import {ChatService} from "../../../_services/chat.service";
-import {UserService} from "../../../_services/user.service";
 import {Subscription} from "rxjs";
+import {ChatService} from "../../../_services/chat.service";
+import {ForumService} from "../../../_services/forum.service";
+import {UserService} from "../../../_services/user.service";
 import {Message} from "../../../models/message";
 
 @Component({
@@ -12,31 +14,36 @@ import {Message} from "../../../models/message";
   templateUrl: './chat-prive.component.html',
   styleUrls: ['./chat-prive.component.scss']
 })
-export class ChatPriveComponent {
- /* // Holding the chat messages
-  private routeSub!: Subscription;
+export class ChatPriveComponent implements OnInit {
+
+  // Holding the chat messages
+  private routeSub: Subscription;
   //mess: Message = new Message();
-  chhh!: Chatroom[];
+  chhh: Chatroom[];
   ch: Chatroom = new Chatroom();
-  chatLists!: Chatroom[];
-  messages!: string;
+  chatLists: Chatroom[];
+  messages: string;
   username: string = '';
   theme: string = '';
   avatar: string = '';
   currentUser: User = new User();
-  users!: User[];
+  users: User[];
   map: Map<number, Chatroom> = new Map();
   map2: Map<number, string> = new Map();
   map3: Map<number, string> = new Map();
 
 
-  constructor(private router: Router, public chatService: ChatService, private userService : UserService) {
-    this.userService.getCurrentUser()
+  constructor(private router: Router, public chatService: ChatService, private service: ForumService, private authenticationService: UserService) {
 
   }
 
   ngOnInit(): void {
-    this.routeSub = this.chatService.getchatroom('1', '2').subscribe(res => {
+
+    this.currentUser = this.authenticationService.getCurrentUser();
+    console.log("idddddddddddd" ,this.authenticationService.getCurrentUser().id)
+    this.currentUser.id = 1
+    console.log("idddddddddddd" ,this.currentUser.id)
+    this.routeSub = this.chatService.getchatroom('1', '3').subscribe(res => {
       console.log(res);
       this.ch = res;
     });
@@ -44,7 +51,7 @@ export class ChatPriveComponent {
       console.log(res);
       this.users = res;
     });
-    this.username = this.currentUser.email;
+    this.username = this.currentUser.firstName;
     this.allchat();
     this.ch.color = '#EC407A';
     this.map.set(this.currentUser.id, this.ch);
@@ -56,18 +63,18 @@ export class ChatPriveComponent {
   // Prepare the chat message then call the chatService method 'sendMessage' to actually send the message
   sendMessage(event: any, avatar: string) {
     let obj: Message = {
-      avatar: avatar,
-      idchat: `${this.map.get(this.currentUser.id)?.chatroomId}`,
-      sender: this.currentUser.id.toString(),
       text: this.messages,
-      username: this.username
+      avatar: avatar,
+      username: this.username,
+      idchat: '1',
+      sender: this.currentUser.id.toString()
 
     };
 
     this.chatService.sendMessage(obj);
   }
 
-  ref({id1, id2, xx, yy}: { id1: string, id2: string, xx: string, yy: any } ) {
+  ref(id1: string, id2: string, xx: string,yy) {
     this.routeSub = this.chatService.getchatroom(id1, id2).subscribe(res => {
       console.log(res);
       this.ch = res;
@@ -103,6 +110,5 @@ export class ChatPriveComponent {
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigate([currentUrl]);
     });
-  }*/
-
+  }
 }

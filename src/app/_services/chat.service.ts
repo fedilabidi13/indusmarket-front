@@ -30,7 +30,7 @@ export class ChatService {
     /**
      * Create a SockJS server with created back-end endpoint called /chat-websocket and added it over Stomp.
      */
-    const serverUrl = 'http://localhost:8085/SpringMVC/chat-websocket';
+    const serverUrl = 'http://localhost:8085/chat-websocket';
     const ws = new SockJS(serverUrl);
     this.stompClient = Stomp.over(ws);
     const that = this;
@@ -83,7 +83,7 @@ export class ChatService {
     this.token = localStorage.getItem("currentUser")
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     // @ts-ignore
-    return this.http.get<Chatroom>('http://localhost:8085/SpringMVC/chat/Chatroom/' + ids + '/' + idr , {headers})
+    return this.http.get<Chatroom>('http://localhost:8085/chat/Chatroom/' + ids + '/' + idr , {headers})
       .pipe(map((res:any)=>{
         return res;
       }))
@@ -96,7 +96,7 @@ color(id: string , c: string) {
   this.token = localStorage.getItem("currentUser")
   const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
   // @ts-ignore
-  return this.http.post<string>('http://localhost:8085/SpringMVC/chat/color/' + id , c , {headers})
+  return this.http.post<string>('http://localhost:8085/chat/color/' + id , c , {headers})
     .pipe(map((res:any)=>{
       return res;
     }))
@@ -107,13 +107,10 @@ color(id: string , c: string) {
 
 
 GetAllUser() {
-  // @ts-ignore
   this.user=this.userService.getCurrentUser()
-  // @ts-ignore
   this.token = localStorage.getItem("currentUser")
   const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-  // @ts-ignore
-    return this.http.get<User[]>('http://localhost:8085/SpringMVC/chat/ListUser/', {headers})
+    return this.http.get<User[]>('http://localhost:8085/chat/ListUser/', {headers})
       .pipe(map((res:any)=>{
         return res;
       }))
@@ -126,7 +123,7 @@ GetAllUser() {
   this.token = localStorage.getItem("currentUser")
   const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
   // @ts-ignore
-    return this.http.get<Chatroom[]>('http://localhost:8085/SpringMVC/chat/allchat' , {headers})
+    return this.http.get<Chatroom[]>('http://localhost:8085/chat/allchat' , {headers})
       .pipe(map((res:any)=>{
         return res;
       }))

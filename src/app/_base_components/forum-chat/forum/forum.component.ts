@@ -8,6 +8,7 @@ import {PostComment} from "../../../models/postComment";
 import {UserService} from "../../../_services/user.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {React} from "../../../models/react";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-forum',
@@ -17,8 +18,11 @@ import {React} from "../../../models/react";
 export class ForumComponent implements OnInit{
   public post:Post[]=[];
   public comment:PostComment[]=[];
+  public react:React[]=[];
   selectedPost : Post = new Post();
   user!:User;
+  message !: string;
+  errormessage = true;
   @Input() indicators = true;
   @Input() controls = true;
   posts : Post = new Post();
@@ -26,8 +30,9 @@ export class ForumComponent implements OnInit{
   commentForm: FormGroup;
   files: FileList;
   reactType: string;
-  react: React;
+  reacts: React;
   public allcomments:any[] = [];
+  public allreacts:any[] = [];
 
   constructor(private forumService : ForumService , private router:Router ,private userService: UserService , private routers: ActivatedRoute ,private fb: FormBuilder ) {
   }
@@ -41,6 +46,8 @@ export class ForumComponent implements OnInit{
         res.forEach((element)=>
         {
           this.allcomments.push(this.getComments(element.id))
+          this.allreacts.push(this.getReacts(element.id))
+
         })
 
 
@@ -79,13 +86,20 @@ export class ForumComponent implements OnInit{
       },
 
       error => {
+      console.log('output of the deleeteeee')
+        if(error.error.text.startsWith('You can'))
+        {
+          this.errormessage = false;
+          this.message = error.error.text;
+          return;
+        }
         window.location.reload();
       });
   }
   initPostUpdate()
   {
-    const element = document.getElementById('postId')as HTMLInputElement | null;
-    this.forumService.getpostByiD(element.value).subscribe(response =>
+    console.warn(this.selectedPost.id)
+    this.forumService.getpostByiD(this.selectedPost.id).subscribe(response =>
     {
       this.selectedPost.postTitle = response.postTitle;
       this.selectedPost.id = response.id;
@@ -93,13 +107,18 @@ export class ForumComponent implements OnInit{
       this.selectedPost.medias = response.medias;
       this.selectedPost.user = response.user;
       this.selectedPost.createdAt = response.createdAt
+      console.log(this.selectedPost)
 
     })
+  }
+  getPostId(id: any)
+  {
+    this.selectedPost.id = id;
   }
   updatePost()
   {
 
-    return this.forumService.addPost(this.selectedPost).subscribe(
+    return this.forumService.updatePost(this.selectedPost ,this.selectedPost.id, this.files).subscribe(
       response => {
         console.log(response);
         window.location.reload();
@@ -119,6 +138,16 @@ export class ForumComponent implements OnInit{
     return this.forumService.getComments(id)
       .subscribe(res=>{
         this.comment = res;
+
+
+
+      });
+
+  }
+  getReacts(id: number){
+    return this.forumService.getReacts(id)
+      .subscribe(res=>{
+        this.react = res;
 
 
 
@@ -146,10 +175,20 @@ export class ForumComponent implements OnInit{
 
   ////React CRUD
   addReactToPost(id: number ,reactType: string): void {
-    this.forumService.addReactToPost(id, reactType).subscribe(react => {
-      console.log(`Added ${react.react} reaction to post ${react.post.id}`);
-      // You could also update the UI to show the new reaction here
-    });
+    console.warn(id)
+    console.warn(reactType)
+    this.forumService.addReactToPost(id, reactType).subscribe(
+      (response)=>
+      {
+        console.log(response);
+        // Store the selected react type in local storage
+        localStorage.setItem('selectedReactType', reactType);
+      },
+      error1 => {
+        console.error(error1)
+      }
+    )
   }
+
 
 }
