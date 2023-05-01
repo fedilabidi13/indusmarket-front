@@ -30,8 +30,16 @@ export class LoginComponent {
           localStorage.setItem('currentUser',this.message);
           this.router.navigate(['/profile']);
         }
+        if (this.message.startsWith('2fa required'))
+        {
+          this.router.navigate(['/twoFactorsAuth'])
+        }
         this.created=false;
         this.not_created=true;
+        if (this.message ==="account is locked due to location change. Verification is needed! ")
+        {
+          this.router.navigate(['/verif-location']);
+        }
 
       },
       (error)=>{

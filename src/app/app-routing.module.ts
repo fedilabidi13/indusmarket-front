@@ -16,6 +16,10 @@ import {ModsConfirmComponent} from "./_base_components/back-office/mods-confirm/
 import {ModsDashboardComponent} from "./_base_components/back-office/mods-dashboard/mods-dashboard.component";
 import {UserShopsComponent} from "./_base_components/user-shops/user-shops.component";
 import {UserProductsComponent} from "./_base_components/user-products/user-products.component";
+import {TwoFaComponent} from "./_base_components/two-fa/two-fa.component";
+import {ResetpwdComponent} from "./_base_components/resetpwd/resetpwd.component";
+import {IpVerifComponent} from "./_base_components/ip-verif/ip-verif.component";
+import {NewPasswordComponent} from "./_base_components/new-password/new-password.component";
 
 
 const routes: Routes = [
@@ -32,6 +36,10 @@ const routes: Routes = [
   { path: 'back-office/mod/dashboard', component: ModsDashboardComponent },
   { path: 'user-shop', component: UserShopsComponent },
   { path: 'user-product', component: UserProductsComponent },
+  { path: 'twoFactorsAuth', component: TwoFaComponent },
+  { path: 'passwordReset', component: ResetpwdComponent },
+  { path: 'verif-location', component: IpVerifComponent },
+  { path: 'new-password', component: NewPasswordComponent },
 
 
 

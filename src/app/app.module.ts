@@ -36,6 +36,10 @@ import { UserProductsComponent } from './_base_components/user-products/user-pro
 import { EventComponent } from './_base_components/event/event.component';
 import { AddClaimComponent } from './_base_components/add-claim/add-claim.component';
 import { EventUserComponent } from './_base_components/event-user/event-user.component';
+import { TwoFaComponent } from './_base_components/two-fa/two-fa.component';
+import { ResetpwdComponent } from './_base_components/resetpwd/resetpwd.component';
+import { IpVerifComponent } from './_base_components/ip-verif/ip-verif.component';
+import { NewPasswordComponent } from './_base_components/new-password/new-password.component';
 
 export function tokenGetter() {
   return localStorage.getItem("currentUser");
@@ -78,7 +82,11 @@ export function tokenGetter() {
     UserProductsComponent,
     EventComponent,
     AddClaimComponent,
-    EventUserComponent
+    EventUserComponent,
+    TwoFaComponent,
+    ResetpwdComponent,
+    IpVerifComponent,
+    NewPasswordComponent
 
 
   ],
@@ -95,6 +103,7 @@ export function tokenGetter() {
   ],
   exports: [LoadingComponent],
   providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

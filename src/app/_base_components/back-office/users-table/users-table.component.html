@@ -6,7 +6,10 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
+  />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -127,17 +130,14 @@
                         <span *ngIf="user.banType.startsWith('PERMA')" class="badge badge-danger">Banned</span>
                       </td>
                       <td >
-                        {{user.country}}
+
                         <span class="fi fi-{{user.country | lowercase}}"></span>
-                        <span class="fi fi-us"></span>
+
 
                       </td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" class="btn btn-warning btn-sm btn-round btn-icon" (click)="getUserEmail(user.email)" data-toggle="modal" data-target="#myModal2">
-                          <i class="now-ui-icons arrows-1_minimal-down"></i>
-                        </button>
-                        &nbsp;
-                        <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon" (click)="getUserEmail(user.email)" data-toggle="modal" data-target="#myModal1">
+                      <td class="td-actions text-center">
+
+                        <button type="button" rel="tooltip" class="btn btn-warning btn-sm btn-round btn-icon" (click)="getUserEmail(user.email)" data-toggle="modal" data-target="#myModal1">
                           <i class="now-ui-icons ui-1_simple-delete"></i>
                         </button>
 

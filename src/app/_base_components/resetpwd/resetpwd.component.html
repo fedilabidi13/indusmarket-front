@@ -29,37 +29,29 @@
         <div class="card card-login card-plain" style="background-color: rgba(57,37,30,0.61);
 
 backdrop-filter: blur(5px);">
-          <form class="form" style="padding: 3%" #loginForm="ngForm" (ngSubmit)="login(loginForm)" >
+          <form class="form" style="padding: 3%"  >
             <div class="card-header text-center">
-              <h3>connect to your account</h3>
+              <h3>reset your account</h3>
             </div>
             <div class="card-body">
               <div class="form-group position-relative">
                 <label class="d-flex justify-content-between" style="padding-left: 5%" for="email">Email address</label>
-                <input type="email" class="form-control"  ngModel name="email" id="email"  aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="email" class="form-control"  [(ngModel)]="email" name="email" id="email"  aria-describedby="emailHelp" placeholder="Enter email">
                 <small id="emailHelp" style="color: white"  class="form-text ">We'll never share your email with anyone else.</small>
-              </div>
-              <div class="form-group">
-                <label class="d-flex justify-content-between" style="padding-left: 5%" style="color: white"  for="password">Password</label>
-                <input input type="password" class="form-control"  ngModel name="password" id="password"  placeholder="Password">
               </div>
 
 
             </div>
             <div class="card-footer text-center">
-              <button type="submit"  class="btn btn-info btn-round btn-outline-light btn-lg btn-block">login</button>
+              <button type="button" (click)="requestPwd()"  class="btn btn-info btn-round btn-outline-light btn-lg btn-block">confirm</button>
               <br>
               <div class="pull-left">
                 <h6>
                   <a routerLink="/register" class="link-light">Create Account</a>
                 </h6>
               </div>
-              <div class="pull-right">
-                <h6>
-                  <a routerLink="/passwordReset" class="link-light">Need Help?</a>
-                </h6>
-              </div>
-            <br>
+
+              <br>
             </div>
             <div [hidden]="not_created" class="alert alert-info" role="alert">
               invalid credentials.

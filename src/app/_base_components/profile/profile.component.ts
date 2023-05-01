@@ -4,6 +4,7 @@ import {User} from "../../models/user";
 import {Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-profile',
@@ -31,6 +32,7 @@ export class ProfileComponent implements OnInit{
       this.router.navigate(['/login'])
     }
     this.user=this.userService.getCurrentUser()
+
     // @ts-ignore
     this.authToken = localStorage.getItem("currentUser")
     console.log(this.user)
@@ -38,6 +40,23 @@ export class ProfileComponent implements OnInit{
 
   onFileSelected(event: any): void {
     this.fileToUpload = event.target.files.item(0);
+  }
+  enable2fa()
+  {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authToken}`);
+    this.http.post("http://localhost:8085/auth/enable2fa", {}, {headers: headers}).subscribe(
+      (res) =>
+      {
+        console.log(res)
+        window.location.reload()
+
+      }, error=>{
+        console.error(error)
+        window.location.reload()
+      }
+    )
+
+
   }
 
   onUpload(): void {

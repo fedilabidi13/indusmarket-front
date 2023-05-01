@@ -33,8 +33,8 @@ export class User {
 
     bannedAt!: string;
 
-    twoFactoesAuth!: boolean;
-    phoneNumberVerif!: boolean;
+  twoFactorsAuth?: boolean;
+    phoneNumberVerif!: any;
 
     emailVerif!:boolean;
 

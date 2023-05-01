@@ -27,46 +27,52 @@
     <div class="container h-100 d-flex align-items-center justify-content-center" >
       <div class="col-md-4 ml-auto mr-auto">
         <div class="card card-login card-plain" style="background-color: rgba(57,37,30,0.61);
-
 backdrop-filter: blur(5px);">
-          <form class="form" style="padding: 3%" #loginForm="ngForm" (ngSubmit)="login(loginForm)" >
+          <form class="form" style="padding: 3%" >
             <div class="card-header text-center">
-              <h3>connect to your account</h3>
+              <h3>Help us verify your identity</h3>
+
+            </div>
+            <div class="alert alert-warning" role="alert">
+              <div class="container">
+                <div class="alert-icon">
+                  <i class="now-ui-icons ui-1_bell-53"></i>
+                </div>
+                <strong>Notice! </strong>We detected an unusual device. We've sent two confirmation codes to your email and phone number.
+              </div>
             </div>
             <div class="card-body">
               <div class="form-group position-relative">
-                <label class="d-flex justify-content-between" style="padding-left: 5%" for="email">Email address</label>
-                <input type="email" class="form-control"  ngModel name="email" id="email"  aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" style="color: white"  class="form-text ">We'll never share your email with anyone else.</small>
+                <label class="d-flex justify-content-between" style="padding-left: 5%" for="email">Email verification code</label>
+                <input type="email" class="form-control"  [(ngModel)]="emailToken" name="email" id="email"  aria-describedby="emailHelp" placeholder="Enter email verification code">
               </div>
               <div class="form-group">
-                <label class="d-flex justify-content-between" style="padding-left: 5%" style="color: white"  for="password">Password</label>
-                <input input type="password" class="form-control"  ngModel name="password" id="password"  placeholder="Password">
+                <label class="d-flex justify-content-between" style="padding-left: 5%" style="color: white"  for="password">Phone verification code</label>
+                <input input type="text" class="form-control"  [(ngModel)]="phoneToken" name="password" id="password"  placeholder="Enter phone verification code">
               </div>
 
 
             </div>
             <div class="card-footer text-center">
-              <button type="submit"  class="btn btn-info btn-round btn-outline-light btn-lg btn-block">login</button>
+              <button type="submit"  (click)="validate()" class="btn btn-info btn-round btn-outline-light btn-lg btn-block">confirm</button>
               <br>
               <div class="pull-left">
                 <h6>
-                  <a routerLink="/register" class="link-light">Create Account</a>
+                  <a routerLink="/login" class="link-light">login</a>
                 </h6>
               </div>
               <div class="pull-right">
                 <h6>
-                  <a routerLink="/passwordReset" class="link-light">Need Help?</a>
+                  <a href="#pablo" class="link-light">Need Help?</a>
                 </h6>
               </div>
-            <br>
+              <br>
             </div>
-            <div [hidden]="not_created" class="alert alert-info" role="alert">
+            <div [hidden]="true" class="alert alert-info" role="alert">
               invalid credentials.
             </div>
-            <div [hidden]="created" class="alert alert-info" role="alert">
-              {{message}}
-            </div>
+            <div [hidden]="true" class="alert alert-info" role="alert">
+              jhjhjgj            </div>
           </form>
         </div>
       </div>

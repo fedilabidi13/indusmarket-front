@@ -24,14 +24,18 @@ import {AppModule} from "../../app.module";
     ModsTableComponent,
     ModsConfirmComponent,
     ModsDashboardComponent,
-    ModsSidebarComponent
+    ModsSidebarComponent,
+
+
+
   ],
     imports: [
         CommonModule,
         BackOfficeRoutingModule,
         FormsModule,
         NgxPaginationModule,
-        AppModule
+      AppModule
+
     ]
 })
 export class BackOfficeModule { }
