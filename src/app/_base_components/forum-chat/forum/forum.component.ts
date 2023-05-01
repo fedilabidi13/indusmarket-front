@@ -42,6 +42,7 @@ export class ForumComponent implements OnInit{
   nbr_angry : number;
   nbr_laugh : number;
   nbr_wow : number;
+  id : number;
   public selectedMedia: Media; // declare the selectedMedia property with type Media
   public selectedMediaIndex = 0;
   public isImageModalOpen = false;
@@ -273,6 +274,11 @@ export class ForumComponent implements OnInit{
     this.selectedMediaIndex = 0;
     this.selectedMedia = medias[0];
     this.isImageModalOpen = true;
+  }
+//   oussama
+  setPostId(postId: number) {
+    this.id = postId;
+    console.log(postId);
   }
 
 

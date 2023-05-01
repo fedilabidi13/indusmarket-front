@@ -25,7 +25,7 @@ export class EventUserComponent {
   id: number;
   constructor(private eventService: EventService) {}
     ngOnInit(): void {
-    this.getEvents(); // Get claims on component init
+    this.getEvents();
 
   }
 

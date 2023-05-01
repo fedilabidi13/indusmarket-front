@@ -106,14 +106,15 @@ background-size: cover;">
 
         <li class="d-flex align-items-center">
           <button type="button" rel="tooltip"  class="dropdown-item d-flex justify-content-around align-items-center fs-7 delete-button form-control pointer"
-                  data-toggle="modal" data-target="#myModal1"    >
+                  data-toggle="modal" data-target="#myModal1">
             <i class="fas fa-trash">></i> Delete Post
           </button>
         </li>
         <li class="d-flex align-items-center">
           <button type="button" rel="tooltip"  class="dropdown-item d-flex justify-content-around align-items-center fs-7 delete-button form-control pointer"
-                  data-toggle="modal" data-target="#myModal1gggg"    >
-            <i class="fas fa-trash">></i> Report Post
+                  data-bs-toggle="modal" data-bs-target="#exampleModalReportPost" (click)="setPostId(posts.id)">
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            Report Post
           </button>
         </li>
       </ul>
@@ -501,3 +502,6 @@ background-size: cover;">
 </div>
 </div>
 <app-msg></app-msg>
+<div class="modal fade" id="exampleModalReportPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <app-add-post-claim [ngModel]="postId"></app-add-post-claim>
+</div>

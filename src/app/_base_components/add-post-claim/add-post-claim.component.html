@@ -1,1 +1,44 @@
-<p>add-post-claim works!</p>
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="container py-5" style="position: absolute; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col">
+          <div class="card my-4 shadow-3">
+            <div class="row g-0">
+
+              <div class="col-xl-6 d-xl-block bg-image">
+                <img src="https://res.cloudinary.com/dh3co0nj3/image/upload/v1682612910/bg-1623066197_2_sjwovk.png"
+                     style="height: 100%;" class="img-fluid" />
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <h3 class="mb-4 text-uppercase">Add Claim</h3>
+                  <form (ngSubmit)="onSubmit(claimForm)" #claimForm="ngForm" enctype="multipart/form-data">
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form3Example81">Title</label>
+                      <input class="form-control" type="text" id="form3Example81" name="title" [(ngModel)]="claim.title" required>
+                    </div>
+                    <div class="row">
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example82">Description</label>
+                        <textarea class="form-control" id="form3Example82" name="description" rows="3" [(ngModel)]="claim.description" required></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-outline mb-4">
+                        <label class="mb-3" for="form3Example86">Images</label>
+                        <input class="form-control" type="file" id="form3Example86" accept="image/*" (change)="onFileSelected($event)" multiple required>
+                      </div>
+                    </div>
+                    <button class="btn btn-info btn-round btn-lg" type="submit" [disabled]="claimForm.invalid">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
