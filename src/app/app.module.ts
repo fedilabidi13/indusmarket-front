@@ -93,6 +93,7 @@ export function tokenGetter() {
     GoogleMapsModule,
     NgxPaginationModule,
   ],
+  exports: [LoadingComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
