@@ -1,0 +1,89 @@
+<app-header1></app-header1>
+
+<section class="h-100 h-custom" style="background-color: #eee; margin-top: 1px;">
+  <div class="container py-5 h-60">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-lg-7">
+                <h5 class="mb-3"><a href='/shop' class="text-body"><i
+                  class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                  <div>
+                    <p class="mb-0">You have 1 items in your cart</p>
+                  </div>
+                </div>
+                <!-- Start of the cart -->
+                <div *ngFor="let cartItem of shoppingCart.cartItemList" class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+
+                      <div class="d-flex flex-row align-items-center">
+                        <div  style="width: 65px;" >
+                         <img src="{{ cartItem.product.medias[0].imagenUrl }}" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                       </div>
+
+                      <div class="ms-3">
+                        <h5>{{ cartItem.product.name }}</h5>
+                        <p class="small mb-0">{{ cartItem.product.category }}</p>
+                      </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div style="margin-right: 20px;">
+                        <div style="width: 85px;">
+                          <input type="number" class="form-control" [(ngModel)]="cartItem.quantity" id="input1" placeholder="quantity">
+                        </div>
+                      </div>
+                      <div style="width: 80px;">
+                        <h5 class="mb-0">{{ cartItem.product.price * cartItem.quantity }} dt</h5>
+                      </div>
+                      <a href="#!" (click)="removeCartItem(cartItem)" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="col-lg-5">
+
+                <div class="card bg-primary text-white rounded-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                      <h5 class="mb-0" style="color: #00bbff;">Cart Summary</h5>
+                      <img src="https://cdn-icons-png.flaticon.com/512/69/69881.png"
+                           class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
+                    </div>
+                    <hr class="my-4" style="color: lightgray"  >
+                    <div class="d-flex justify-content-between mb-4">
+                      <p class="mb-2" style="color: black;">Total(Without. taxes)</p>
+                      <p style="color: black">Total price: {{ getTotalPrice() }} dt</p>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <button type="button" class="btn btn-round btn-info btn-block btn-lg">
+                          <div class="d-flex justify-content-between">
+                            <span> My Order <i class="fa-regular fa-newspaper" style="margin-left: 5px;"></i></span>
+                          </div>
+                        </button>>
+                      </div>
+                      <div class="col-md-6">
+                        <button type="button" class="btn btn-round btn-info btn-block btn-lg">
+                          <div class="d-flex justify-content-between">
+                            <span>Order <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

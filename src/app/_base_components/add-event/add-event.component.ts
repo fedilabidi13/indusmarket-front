@@ -6,6 +6,8 @@ import { User } from '../../models/user';
 import { Media } from '../../models/media';
 import {NgForm} from "@angular/forms";
 import {DatePipe} from "@angular/common";
+import {EventUserComponent} from "../event-user/event-user.component";
+import {EventComponent} from "../event/event.component";
 
 @Component({
   selector: 'app-add-event',
@@ -23,7 +25,7 @@ export class AddEventComponent {
   onFileSelected(event): void {
     this.selectedFiles = event.target.files;
   }
-  constructor(private eventService: EventService, private userService: UserService, private datePipe: DatePipe) {}
+  constructor(private eventService: EventService, private userService: UserService, private datePipe: DatePipe,private Euc : EventUserComponent) {}
 
 
   onSubmit(eventForm: NgForm) {
@@ -53,12 +55,16 @@ export class AddEventComponent {
         eventForm.reset(); // reset the form after successful submission
         this.event = new Event(); // reset the Event object
         this.mediaList = []; // reset the Media list
+        this.Euc.ngOnInit();
       },
       (error) => {
         console.log('Error adding event: ', error);
         // Add any additional code to handle error here
       }
     );
+  }
+  closeForm(){
+    this.Euc.isAddModalOpen=false;
   }
 
 }

@@ -42,4 +42,28 @@
   margin: 0 auto;
 }
 
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.3s ease;
+}
+
+.arrow-button:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+
+.arrow-button.left {
+  left: 1rem;
+}
+
+.arrow-button.right {
+  right: 1rem;
+}
 

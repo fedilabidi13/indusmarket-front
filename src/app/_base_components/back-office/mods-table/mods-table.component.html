@@ -10,6 +10,7 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
   />
+
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -130,10 +131,7 @@
                         <span *ngIf="user.banType.startsWith('IP')" class="badge badge-info">Locked-IP</span>
                         <span *ngIf="user.banType.startsWith('PERMA')" class="badge badge-danger">Banned</span>
                       </td>
-
-                      <td >
-                        <span class="fi fi-{{user.country | lowercase}}"></span>
-                      </td>
+                      <td >{{user.country}}</td>
                       <td class="td-actions text-right">
                         <button type="button" rel="tooltip" class="btn btn-warning btn-sm btn-round btn-icon" (click)="getUserEmail(user.email)" data-toggle="modal" data-target="#myModal2">
                           <i class="now-ui-icons arrows-1_minimal-down"></i>
