@@ -6,6 +6,7 @@ import {Claims} from "../models/Claims";
 import {map} from "rxjs";
 import {Ticket} from "../models/Ticket";
 import {Event} from "../models/Event";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class TicketService {
   private apiUrl = 'http://localhost:8085/tickets';
   token!:string;
   user!:User;
-  constructor(private userService : UserService , private http : HttpClient) { }
+  constructor(private userService : UserService , private http : HttpClient,private router : Router) { }
 
   GetUserTickets(){
     this.user=this.userService.getCurrentUser()
@@ -31,6 +32,7 @@ export class TicketService {
   }
   Partipate(eventId : number){
     this.user=this.userService.getCurrentUser()
+
     // @ts-ignore
     this.token = localStorage.getItem("currentUser")
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);

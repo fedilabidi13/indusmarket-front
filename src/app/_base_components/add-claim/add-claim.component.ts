@@ -23,7 +23,7 @@ export class AddClaimComponent {
   onFileSelected(event): void {
     this.selectedFiles = event.target.files;
   }
-  constructor(private claimService: ClaimService, private userService: UserService,private cc : ClaimsComponent) {}
+  constructor(private claimService: ClaimService, private userService: UserService) {}
 
 
   onSubmit(claimForm: NgForm) {
@@ -41,15 +41,11 @@ export class AddClaimComponent {
         claimForm.reset(); // reset the form after successful submission
         this.claim = new Claims(); // reset the Event object
         this.mediaList = []; // reset the Media list
-        this.cc.ngOnInit();
       },
       (error) => {
         console.log('Error adding claim: ', error);
         // Add any additional code to handle error here
       }
     );
-  }
-  closeForm(){
-    this.cc.isAddModalOpen=false;
   }
 }
