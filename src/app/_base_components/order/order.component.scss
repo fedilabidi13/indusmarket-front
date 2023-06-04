@@ -14,5 +14,12 @@
   max-width: 900px; /* adjust the width as per your requirement */
   max-height: fit-content;
 }
-
+.cart li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+  color: #000; /* add this line to set the text color to black */
+}
 

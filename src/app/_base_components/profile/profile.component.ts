@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../../_services/user.service";
 import {User} from "../../models/user";
 import {Router} from "@angular/router";
@@ -6,8 +6,14 @@ import {DatePipe} from "@angular/common";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {Shop} from "../../models/shop";
+import {Product} from "../../models/product";
 
-
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {UserProductsComponent} from "../user-products/user-products.component";
+import Swal from "sweetalert2";
+import * as tt from "@tomtom-international/web-sdk-maps";
+import {MapService} from "../../_services/map.service";
+import {localisation} from "../../models/Localisation";
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -17,13 +23,84 @@ import {Shop} from "../../models/shop";
 export class ProfileComponent implements OnInit{
   shop : Shop = new Shop();
   user!: User;
-  constructor(private http:HttpClient,private userService: UserService, private router: Router) {
+  prod : Product[]=[];
+
+  //map
+  longitude:number ;
+  latitude:number ;
+  map : tt.Map;
+  constructor(private http:HttpClient,private userService: UserService, private router: Router,
+              private fb: FormBuilder,
+              private mapService:MapService) {
   }
   loading = true;
   public  redirect(root:any){
     this.router.navigate([root]);
   }
+  ngAfterViewInit(): void {
+    this.map = tt.map({
+      key: this.mapService.key,
+      container: 'map',
+    });
+    this.mapService.centerMapAroundLocation(this.map);
+    this.map.on('click', this.handleMapClick.bind(this));
+  }
+  handleMapClick(event: any) {
+    const lngLat = event.lngLat;
+    this.longitude = lngLat.lng;
+    this.latitude = lngLat.lat;
+    this.mapService.setMarker(this.longitude,this.latitude,this.map);
+  }
+  addShop() {
+    const lat = this.latitude;
+    const lng = this.longitude;
 
+    const shop : Shop = this.addShopForm.value;
+    console.log('shop to add')
+    console.log(shop)
+
+    const formData = new FormData();
+
+    // Ajouter les données du formulaire dans l'objet FormData
+    formData.append('name', shop.name);
+    formData.append('mail', shop.mail);
+    formData.append('adresse','cite elghazela ariana')
+
+    const adr:JSON = <JSON><unknown>{
+      "adresse": "cite elghazela ariana",
+    }
+    console.warn(JSON.stringify(adr))
+    // @ts-ignore
+    // formData.append("adresse"
+    //   , shop.adresse);
+
+    formData.append('phoneNumber', shop.phoneNumber.toString() );
+
+    if (this.files) {
+      for (let i = 0; i < this.files.length; i++) {
+        formData.append('file', this.files[i]);
+      }
+    }
+
+    const token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post('http://localhost:8085/shop/add?longitude='+lng+'&latitude='+lat, formData, { headers: headers }).subscribe(
+      (response) => {
+        console.log(localisation)
+        console.log(response)
+        Swal.fire('Success!', 'Shop added successfully!', 'success')
+          .then(function(){
+            window.location.reload();
+          });
+
+      },
+      (error) => {
+        console.error(error)
+      }
+    )
+
+
+  }
   private fileToUpload: File | null = null;
   //TODO add condition for empty file on upload
   private shopFiles: File[]  = [];
@@ -35,7 +112,16 @@ export class ProfileComponent implements OnInit{
   authToken !: string;
   phoneNumber : string =''
   adresse : string =''
+  //TODO add condition for empty file on upload
+  addShopForm: FormGroup;
+  @ViewChild(UserProductsComponent) prodd !: UserProductsComponent;
   ngOnInit(): void {
+    this.addShopForm = this.fb.group({
+      name: '',
+      mail: '',
+      adresse: '',
+      phoneNumber: '',
+    });
 
 
     if(localStorage.getItem('currentUser')===null)
@@ -48,10 +134,6 @@ export class ProfileComponent implements OnInit{
     console.log(this.user)
   }
 
-  onFileSelected(event: any): void {
-    console.log(event.target.files)
-    this.fileToUpload = event.target.files.items
-  }
   getLatLng(event){
     console.log('we are in parent component');
     console.log(event);
@@ -67,6 +149,8 @@ export class ProfileComponent implements OnInit{
     const formData = new FormData();
     // @ts-ignore
     formData.append('file', this.shopFiles);
+    formData.append("adresse"
+      , new Blob([JSON.stringify(this.adresse)], {type:"application/json"}));
     formData.append('name', this.shop.name)
     formData.append('mail', this.shop.mail)
     formData.append('phoneNumber', this.phoneNumber)
@@ -87,17 +171,17 @@ export class ProfileComponent implements OnInit{
 
 
 
-      this.http.post("http://localhost:8085/shop/add",formData, {headers}).subscribe(() => {
+    this.http.post("http://localhost:8085/shop/add",formData, {headers}).subscribe(() => {
 
-        this.message = "shop picture added successfully! "
-        this.created=false;
+      this.message = "shop picture added successfully! "
+      this.created=false;
 
-        window.location.reload();
-      }, error => {
-        this.created=false;
-        this.message = "shop picture added successfully! "
-      });
-    }
+      window.location.reload();
+    }, error => {
+      this.created=false;
+      this.message = "shop picture added successfully! "
+    });
+  }
   enable2fa()
   {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authToken}`);
@@ -113,7 +197,6 @@ export class ProfileComponent implements OnInit{
       }
     )
 
-
   }
 
 
@@ -121,6 +204,9 @@ export class ProfileComponent implements OnInit{
   onFilesSelected(event: any): void {
     console.log("files",event.target.files)
     this.files = event.target.files//.items//(0);
+  }
+  onFileSelected(event: any): void {
+    this.fileToUpload = event.target.files.item(0);
   }
   onUpload(): void {
     this.loading = false;
@@ -163,42 +249,6 @@ export class ProfileComponent implements OnInit{
     const fileName = file.name.toLowerCase();
     return allowedExtensions.some(ext => fileName.endsWith(ext));
   }
-  addShop() {
-    // Créer un objet FormData pour envoyer des données sous forme de formulaire
-    const formData = new FormData();
 
-    // Ajouter les données du formulaire dans l'objet FormData
-    formData.append('name', this.shop.name);
-    formData.append('mail', this.shop.mail);
-    formData.append('adresse', this.shop.adresse);
-    console.log(this.shop.adresse)
-    // @ts-ignore
-    formData.append('phoneNumber', this.shop.phoneNumber);
-
-    // Ajouter des fichiers s'il y en a
-    if (this.files) {
-      for (let i = 0; i < this.files.length; i++) {
-        formData.append('file', this.files[i]);
-      }
-    }
-
-    // Récupérer le token d'authentification depuis le localStorage
-    const token = localStorage.getItem("currentUser")
-
-    // Ajouter l'en-tête d'autorisation contenant le token JWT
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    // Envoyer la requête POST pour ajouter le magasin avec les données du formulaire
-    return this.http.post('http://localhost:8085/shop/add', formData, { headers: headers }).subscribe(
-      // En cas de succès, afficher la réponse dans la console
-      (response) => {
-        console.log(response)
-      },
-      // En cas d'erreur, afficher l'erreur dans la console
-      (error) => {
-        console.error(error)
-      }
-    )
-  }
 
 }

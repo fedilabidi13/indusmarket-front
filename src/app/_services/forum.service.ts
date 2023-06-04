@@ -184,5 +184,37 @@ export class ForumService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.get<any[]>('http://localhost:8085/react/post/getAll?idPost='+idPost, {headers: headers});
   }
+  DeleteReact(idReact: number) {
+    this.user=this.userService.getCurrentUser()
+    // @ts-ignore
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    const url = `http://localhost:8085/react/deleteReact?idReact=${idReact}`;
 
+    // @ts-ignore
+    return this.http.post<React>(url ,new FormData(),{headers: headers});
+
+  }
+  GetAllReacts(){
+    // this.user=this.userService.getCurrentUser()
+    // // @ts-ignore
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    // // @ts-ignore
+    return this.http.get<React[]>("http://localhost:8085/react/getAll",{ headers: headers} )
+      .pipe(map((res:any)=>{
+        return res;
+      }))
+  }
+  GetAllComments(){
+    // this.user=this.userService.getCurrentUser()
+    // // @ts-ignore
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    // // @ts-ignore
+    return this.http.get<PostComment[]>("http://localhost:8085/comment/getAllComment",{ headers: headers} )
+      .pipe(map((res:any)=>{
+        return res;
+      }))
+  }
 }

@@ -3,6 +3,8 @@ import {User} from "../../../models/user";
 import {ChatService} from "../../../_services/chat.service";
 import {UserService} from "../../../_services/user.service";
 import {Message} from "../../../models/message";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Chatroom} from "../../../models/chatroom";
 
 @Component({
   selector: 'app-msg',
@@ -18,7 +20,15 @@ export class MsgComponent implements OnInit {
   currentUser: User = new User();
   m: string;
   a: string;
-@Input('m')
+  email!: string;
+  public users: User[]=[];
+  pageSize = 10; // Number of items to display per page
+  currentPage = 1; //
+  user !: User;
+  msgForm: FormGroup;
+  public chatroom: Chatroom[]=[];
+
+  @Input('m')
 set setsender(value: string) {
     this.m = value;
   }
@@ -28,7 +38,7 @@ set setreciver(value: string) {
   }
 
 
-  constructor(public chatService: ChatService, private authenticationService: UserService) {
+  constructor(public chatService: ChatService, private authenticationService: UserService , private fb: FormBuilder) {
     this.currentUser = this.authenticationService.getCurrentUser()
     console.log(this.authenticationService.getCurrentUser())
   }
@@ -36,6 +46,21 @@ set setreciver(value: string) {
     this.username = this.authenticationService.getCurrentUser().firstName.toString();
     console.log(this.username)
     console.log(this.a, this.m);
+    this.authenticationService.getAllMods().subscribe(res =>{
+      this.users=res
+      console.log(this.users)
+
+    })
+    this.msgForm = this.fb.group({
+      postTitle: '',
+    });
+    this.user= this.authenticationService.getCurrentUser()
+    this.chatService.GetAllChats()
+      .subscribe(res=>{
+        this.chatroom = res;
+        console.log(this.chatroom)
+      })
+
   }
 
   // Prepare the chat message then call the chatService method 'sendMessage' to actually send the message

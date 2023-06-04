@@ -6,6 +6,7 @@ import {ShowShopsService} from "../../_services/show-shop.service";
 import {ShowProductsShopService} from "../../_services/show-products-shop.service";
 import {Product} from "../../models/product";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-shop-details',
@@ -91,9 +92,13 @@ export class ShopDetailsComponent implements OnInit{
       (res)=>
       {
         console.log(res)
+        Swal.fire('Success!', 'Product added successfully!', 'success')
+
       },
       error => {
         console.error(error)
+        Swal.fire('Success!', 'Product added successfully!', 'success')
+
       }
     )
   }

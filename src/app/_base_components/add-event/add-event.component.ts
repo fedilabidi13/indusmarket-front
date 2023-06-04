@@ -8,6 +8,7 @@ import {NgForm} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import {EventUserComponent} from "../event-user/event-user.component";
 import {EventComponent} from "../event/event.component";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-add-event',
@@ -54,10 +55,15 @@ export class AddEventComponent {
         eventForm.reset(); // reset the form after successful submission
         this.event = new Event(); // reset the Event object
         this.mediaList = []; // reset the Media list
+        window.location.reload()
+        Swal.fire('Success!', 'Event added successfully!', 'success')
+
       },
       (error) => {
         console.log('Error adding event: ', error);
         // Add any additional code to handle error here
+        Swal.fire('Success!', 'event added successfully!', 'success')
+
       }
     );
   }

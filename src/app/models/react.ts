@@ -8,7 +8,7 @@ export class React {
   id!: number;
   type!:string
   user!: User;
-  postComments!: PostComment[];
+  postComments!: PostComment;
   post!: Post;
 
 

@@ -13,6 +13,6 @@ export class Post {
   postComment!: PostComment[];
   user!: User;
   medias!: Media[];
-  react!:React[];
+  reacts!:React[];
 
 }

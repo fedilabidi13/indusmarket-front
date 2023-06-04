@@ -26,10 +26,10 @@ constructor(private eventService:EventService,private ticketService : TicketServ
   OnParticipate(eventId : number){
   this.ticketService.Partipate(eventId).subscribe(
     (response) => {
-      alert('you are participate succefuly !');
+      alert('you are participated successfully !');
     },
     (error) => {
-      alert('you dont participate !');      // Add any additional code to handle error here
+      alert('error !');      // Add any additional code to handle error here
     }
   );
   }

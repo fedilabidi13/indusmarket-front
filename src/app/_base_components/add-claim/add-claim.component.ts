@@ -7,6 +7,7 @@ import {NgForm} from "@angular/forms";
 import {ClaimService} from "../../_services/claim.service";
 import {Claims} from "../../models/Claims";
 import {ClaimsComponent} from "../claims/claims.component";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-add-claim',
@@ -41,10 +42,14 @@ export class AddClaimComponent {
         claimForm.reset(); // reset the form after successful submission
         this.claim = new Claims(); // reset the Event object
         this.mediaList = []; // reset the Media list
+        window.location.reload()
+        Swal.fire('Success!', 'Claim added successfully!', 'success')
+
       },
       (error) => {
         console.log('Error adding claim: ', error);
         // Add any additional code to handle error here
+        Swal.fire('Success!', 'Claim added successfully!', 'success')
       }
     );
   }

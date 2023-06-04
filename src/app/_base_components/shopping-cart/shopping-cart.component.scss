@@ -6,6 +6,11 @@
 
 
 
+
+
+
+
+
 .delete-icon {
   display: inline-flex;
   align-items: center;
@@ -23,4 +28,29 @@
 .delete-icon > span {
   display: none;
 }
+
+
+
+
+.show-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.show-icon:hover {
+  color: green;
+}
+
+.show-icon:hover > span {
+  display: block;
+  margin-left: 5px;
+}
+
+.show-icon > span {
+  display: none;
+}
+
+
+
+
 

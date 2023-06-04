@@ -24,51 +24,43 @@
 </button>
 
 
-                  <table class="table">
-                    <thead>
-                    <tr>
-                      <th class="text-center">#</th>
-                      <th>Name</th>
-                      <th>Mail</th>
-                      <th>Phone Number</th>
-                      <th>Adress</th>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Mail</th>
+    <th>Phone Number</th>
+    <th>Adress</th>
 
-                      <th class="text-right">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let shop of shops | paginate: { itemsPerPage: pageSize, currentPage: currentPage, id: 'claim-pagination' }">
-                      <td class="text-center">{{shop.idShop}}</td>
-                      <td>{{shop.name}}</td>
-                      <td>{{shop.mail}}</td>
-                      <td>{{shop.phoneNumber}}</td>
-                      <td>{{shop.adresse}}</td>
-
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" class="btn btn-info btn-round" data-toggle="modal" data-target="#myModal2">
-                          Update shop
-                        </button><br><br>
-                        <button (click)="getId(shop.idShop)" type="button" rel="tooltip" class="btn btn-round" data-toggle="modal" data-target="#myModal5">
-                          Delete shop
-                        </button>
-                        <br><br>
-                        <button (click)="openShopDetails(shop.idShop)" type="button" rel="tooltip" class="btn btn-warning btn-round" data-toggle="modal" data-target="#myModal2">
-                          Show shop
-                        </button><br><br>
-                        <button (click)="shoPdf(shop)" type="button" rel="tooltip" class="btn btn-success btn-round" data-toggle="modal" data-target="#myModal2">
-                          Shop report
-                        </button>
-                      </td>
+    <th class="text-right">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let shop of shops | paginate: { itemsPerPage: pageSize, currentPage: currentPage, id: 'claim-pagination' }">
+    <td>{{shop.name}}</td>
+    <td>{{shop.mail}}</td>
+    <td>{{shop.phoneNumber}}</td>
+    <td>{{shop.adresse}}</td>
 
 
-
-                    </tr>
-
-                    </tbody>
-                  </table>
-                  <div class="pagination pagination-success justify-content-end">
-                    <pagination-controls class="page-item" (pageChange)="onPageChange($event)" id="claim-pagination"></pagination-controls>
-                  </div>
+    <td class="td-actions text-right">
+      <button (click)="getId(shop.idShop)" type="button" rel="tooltip" class="btn btn-round" data-toggle="modal" data-target="#myModal5">
+        Delete shop
+      </button>
+      <br><br>
+      <button (click)="openShopDetails(shop.idShop)" type="button" rel="tooltip" class="btn btn-warning btn-round" data-toggle="modal" data-target="#myModal2">
+        Show shop
+      </button><br><br>
+      <button (click)="shoPdf(shop)" type="button" rel="tooltip" class="btn btn-info btn-round" data-toggle="modal" data-target="#myModal2">
+        Shop report
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="pagination pagination-success justify-content-end">
+  <pagination-controls class="page-item" (pageChange)="onPageChange($event)" id="claim-pagination"></pagination-controls>
+</div>
 
 
 

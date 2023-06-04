@@ -11,8 +11,12 @@ import {Rating} from "../models/rating";
   providedIn: 'root'
 })
 export class ShowProductsShopService {
+  private  cartItemUrl = "http://localhost:8085/cartItem";
+
   public search = new BehaviorSubject<any>([]);
   private shopId: number;
+  private token: string;
+
   private httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json','Authorization':""})
   }
@@ -32,6 +36,12 @@ export class ShowProductsShopService {
       }))
   }
 
+
+  addAndAssignToCart(productId: number, quantity : number): Observable<string> {
+    const url = `${this.cartItemUrl}/add`;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.post<string>(url, { productId, quantity }, { headers });
+  }
 
   addRating(shopId,rateValue){
     this.httpOptions = {
@@ -125,4 +135,10 @@ export class ShowProductsShopService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<Product>('http://localhost:8085/product/findByid?id='+id,{ headers : headers})
   }
+  checkCurrentQuantity(idProd: number): Observable<number>{
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.get<number>(`http://localhost:8085/product/checkCurrentQuantity?idProd=${idProd}`,{headers: headers});
+  }
+
+
 }

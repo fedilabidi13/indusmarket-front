@@ -1,28 +1,28 @@
 
-<button class="btn  btn-primary btn-icon btn-round " type="button" style="position: fixed;
+<button class="btn  btn-info btn-icon btn-round " type="button" style="position: fixed;
 bottom: 20px; right: 20px;font-size: 1.5rem;width: 60px;height: 60px;"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModalChat"
-        data-bs-placement="top">
+        data-bs-target="#exampleModalChat">
   <i class="now-ui-icons ui-2_chat-round"></i>
 </button>
-<div class="modal fade" id="exampleModalChat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
-     style="width: 500px;height: 800px;">
-  <div class="modal-dialog" role="document">
+
+<div style="padding-left: 30%;" class="modal fade justify-content-center" id="exampleModalChat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+>
+  <div class="modal-dialog bg-info" role="document">
 
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
 
-        <div class="chat-header  align-items-center">
-          <div class="logo">
-            <img src="./assets/img/logo.png" alt="cwt" />
-          </div>
-          <div class="title">Let's Chat</div>
+        <div class="modal-header  align-items-center bg-info">
+
+          <div style="padding-bottom: 10%" class="title text-white bg-info">Indus Market Chat</div>
+          <hr>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
           <div class="card max-height-vh-80 ">
 
-            <div class="card-body overflow-auto overflow-x-hidden" style="height: 600px">
+            <div class="modal-body overflow-auto overflow-x-hidden" style="height: 600px">
+
               <ng-container *ngFor="let message of chatService.messages" >
 
                 <div class="row justify-content-start mb-4" *ngIf="message.user.name != this.username ">

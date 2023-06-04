@@ -5,6 +5,7 @@ import {UserService} from "./user.service";
 import {Chatroom} from "../models/chatroom";
 import {User} from "../models/user";
 import {map} from "rxjs";
+import {PostComment} from "../models/postComment";
 
 /**
  * Declaring SockJS and Stomp : check the assets/js folder and the index.html script section
@@ -128,7 +129,17 @@ GetAllUser() {
         return res;
       }))
 };
-
+  GetAllChats(){
+    // this.user=this.userService.getCurrentUser()
+    // // @ts-ignore
+    this.token = localStorage.getItem("currentUser")
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    // // @ts-ignore
+    return this.http.get<Chatroom[]>("http://localhost:8085/chat/getAll",{ headers: headers} )
+      .pipe(map((res:any)=>{
+        return res;
+      }))
+  }
 
 
 

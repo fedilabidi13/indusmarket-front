@@ -36,7 +36,6 @@ import {PostsTabComponent} from "./_base_components/back-office/posts-tab/posts-
 import {ChatBoxComponent} from "./_base_components/WS/chat-box/chat-box.component";
 import {ChatPriveComponent} from "./_base_components/WS/chat-prive/chat-prive.component";
 import {ShopDetailsComponent} from "./_base_components/shop-details/shop-details.component";
-import {MapComponent} from "./_base_components/profile/map/map.component";
 import {MsgComponent} from "./_base_components/forum-chat/msg/msg.component";
 import {TwoFaComponent} from "./_base_components/two-fa/two-fa.component";
 import {ResetpwdComponent} from "./_base_components/resetpwd/resetpwd.component";
@@ -74,13 +73,13 @@ const routes: Routes = [
   {path: 'chatP', component: ChatPriveComponent},
   { path: 'verif-location', component: IpVerifComponent },
   {path:'addEvent',component:AddEventComponent},
-  { path: 'map', component: MapComponent },
 
   { path: 'back-office/mod-confirm', component: ModsConfirmComponent },
   { path: 'back-office/mod/dashboard', component: ModsDashboardComponent },
   {path:'mod/claim-mod',component:ClaimModComponent},
   {path:'mod/event-mod',component:EvantModComponent},
   {path:'msg',component:MsgComponent},
+  { path: 'Orders', component: OrderComponent },
 
   { path: 'user-shop', component: UserShopsComponent },
   { path: 'user-product', component: UserProductsComponent },

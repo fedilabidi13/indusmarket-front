@@ -27,7 +27,6 @@ export class ForumComponent implements OnInit{
   errormessage = true;
   @Input() indicators = true;
   @Input() controls = true;
-  posts : Post = new Post();
   postId: number;
   commentForm: FormGroup;
   files: FileList;
@@ -52,9 +51,10 @@ export class ForumComponent implements OnInit{
 
 
     this.forumService.GetPosts()
-      .subscribe(res=>{
+      .subscribe((res)=>{
         this.post = res;
-
+        console.log('RRRRRRRRRRRRRRRRRRRR')
+        console.log(this.post)
         res.forEach((element)=>
         {
           this.allcomments.push(this.getComments(element.id))
@@ -64,6 +64,8 @@ export class ForumComponent implements OnInit{
 
 
       });
+    console.error(this.post)
+
 
 
 

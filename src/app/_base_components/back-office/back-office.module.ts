@@ -47,8 +47,8 @@ import { ReactsTabComponent } from './reacts-tab/reacts-tab.component';
         FormsModule,
         NgxPaginationModule,
         ReactiveFormsModule,
+        AppModule
 
-      AppModule
 
     ]
 
